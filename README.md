@@ -2,3 +2,7 @@
 ## Beschrijving Project
 ## Documentatie
 ## Groepsleden
+
+* Mathias Samyn
+* Joey Driessen
+* Marijn Joosens
