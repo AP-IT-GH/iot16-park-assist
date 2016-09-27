@@ -32,7 +32,7 @@ Maar niet enkel caravans hebben dit probleem, hedendaags heeft niet elke auto pa
 
 ###High level blokdiagrammen
 
-![blokdiagram.JPG](img/blokdiagram.JPG)
+![blokdiagram.JPG](img/blokdiagram.png)
 
 ###Flowcharts software
 
@@ -75,6 +75,9 @@ De gebruiker moet visuele feedback krijgen van de parkeer sensoren wanneer het e
 De gebruiker moet feedback krijgen via geluid wanneer het een object nadert.
 - [ ] **As a user I want a simple interface to show the distance from the parking sensor**
 De gebruiker moet op een makkelijke manier kunnen zien hoe ver hij verwijderd is van een object
+- [ ] **As a user I want to use Bluetooth to connect to my parking sensor**
+De gebruiker gebruikt Bluetooth om te verbinden met de Parking sensor
+
 
 
 
