@@ -32,11 +32,11 @@ Wij gaan dit probleem oplossen door afneembare modules te maken met telkens 6 se
 
 ###High level blokdiagrammen
 
-![blokdiagram.JPG](img\blokdiagram.JPG)
+![blokdiagram.JPG](img/blokdiagram.JPG)
 
 ###Flowcharts software
 
-![Software flowchart.png](img\Software flowchart.png)
+![Software flowchart.png](img/Software flowchart.png)
 
 
 ###Bruikbare technlogieën
