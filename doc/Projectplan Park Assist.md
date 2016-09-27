@@ -32,7 +32,7 @@ Maar niet enkel caravans hebben dit probleem, hedendaags heeft niet elke auto pa
 
 ###High level blokdiagrammen
 
-![blokdiagram.JPG](img/blokdiagram.png)
+![blokdiagram.png](img/blokdiagram.png)
 
 ###Flowcharts software
 
