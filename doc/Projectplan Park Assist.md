@@ -33,7 +33,7 @@ Het idee is om modules te creëren om op de hoeken te plaatsen. Per module maken
 ####Hardware
 
 - Bluetooth module (HC-05)
-- Ultra Sonic range measurement module ( M:SEN136B5B)
+- Ultra Sonic range measurement module ( M: HC-SR04)
 - Arduino ( ATMEGA328P-PU )
 - Android phone
 
