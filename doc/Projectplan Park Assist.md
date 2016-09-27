@@ -22,7 +22,7 @@ Het idee is om modules te creëren om op de hoeken te plaatsen. Per module maken
 
 ##Functionele analyse
 
-###Bruikbare technlogieën
+###Bruikbare technologieën
 
 ####Software
 - Android
