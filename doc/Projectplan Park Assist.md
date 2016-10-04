@@ -1,11 +1,11 @@
 #Projectplan Park Assist
 
-##Team 
-- Mathias Samyn
-- Joey Driessen
-- Marijn Joosens
+##Team
+- Mathias Samyn (mathiassamyn)
+- Joey Driessen (xigolle)
+- Marijn Joosens (MJoosens)
 
-##Project keuze 
+##Project keuze
 
 Onze project keuze is gevallen voor *Park Assist* omdat dit ons wel een zeer interessant project leek.
 Met dit project gaan we een bestaand product op een andere manier realiseren. Uiteraard bestaan er al park assist producten op de markt, maar nog geen die afneembaar zijn. Dit stelt het mogelijk om het op je auto te gebruiken of op je caravan wanneer nodig. Tevens vinden wij het interessant om IoT te verbinden met de mobiele telefoon om zo een goede ervaring voor de gebruiker te realiseren.
@@ -42,17 +42,23 @@ Maar niet enkel caravans hebben dit probleem, hedendaags heeft niet elke auto pa
 ###Bruikbare technlogieën
 
 ####Software
-- Android
-- Bluetooth
-- C++ ( Arduino )
+- **Android** Wordt gebruikt voor het ontwikkelen van de mobiele applicatie die de waardes van de gemeten sensoren grafisch laat zien en voor het instellen van de sensoren.
+- **Bluetooth** Wordt gebruikt voor het versturen van de sensor data van de Arduino naar de mobiele applicatie.
+- **C++ ( Arduino )** Wordt gebruikt voor het programmeren van de Arduino voor bijvoorbeeld het aansturen van de sensoren en Bluetooth module.
 
 
 ####Hardware
 
-- Bluetooth module (HC-05)
-- Ultra Sonic range measurement module ( M: HC-SR04)
-- Arduino ( ATMEGA328P-PU )
-- Android phone
+- **1X Bluetooth module (HC-05)** Wordt gebruikt voor het verzenden van data van de Arduino naar de mobiele applicatie.
+- **3X Ultra Sonic range measurement module ( M: HC-SR04)** Wordt gebruikt voor het meten van de afstand tot naderende objecten.
+- **1X Arduino NANO( ATMEGA328P-PU )** Wordt gebruikt voor al de logica voor het aansturen van de sensoren.
+- **1X Android phone** Wordt gebruikt voor het developpen en testen van de mobiele applicatie.
+- **1X ( ATMEGA328P-PU )** Mogelijk gaan we de Arduino ook nog zelf maken zodat we de formfactor van ons project nog kleiner kunnen maken.
+
+###Project Planning
+Voor het plannen en managen van het project maken we gebruik van Agile development via Github zelf.
+Ons project kan gevolgd worden op de volgende link:
+[Github project link park-assist](https://github.com/AP-Elektronica-ICT/iot16-park-assist/projects/1)
 
 ###Backlog
 - [ ] **As a developer I need to prototype with the Arduino platform to work with the sensors**
