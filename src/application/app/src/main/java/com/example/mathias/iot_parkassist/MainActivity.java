@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,9 +26,17 @@ public class MainActivity extends AppCompatActivity {
         caravan.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-                //textView.setText("Touch coordinates : " +
-                  //      String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
+                int x = (int)event.getX();
+                int y = (int)event.getY();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_MOVE:
+                    case MotionEvent.ACTION_UP:
+                        addSensor(x, y);
+                        TextView textView = (TextView) findViewById(R.id.text);
+                        textView.setText("Touch coordinates : " + String.valueOf(x) + "x" + String.valueOf(y));
+                        break;
+                }
                 return true;
             }
         });
@@ -67,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private void addSensor() {
+    private void addSensor(int x, int y) {
+
+
         Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.caravan);
         Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.sensor);
 
@@ -75,14 +87,18 @@ public class MainActivity extends AppCompatActivity {
 
         Canvas c = new Canvas(resultBitmap);
 
+
         c.drawBitmap(bitmap1, 0, 0, null);
 
         Paint p = new Paint();
+
         p.setAlpha(127);
 
-        c.drawBitmap(bitmap2, 0, 0, p);
+        c.drawBitmap(bitmap2, x, y, null);
 
-
+        ImageView image = (ImageView) findViewById(R.id.caravan);
+        BitmapDrawable bd = new BitmapDrawable(getResources(), resultBitmap);
+        image.setBackground(bd);
 
         // Your final bitmap is resultBitmap
     }
