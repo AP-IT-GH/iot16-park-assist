@@ -26,15 +26,17 @@ public class MainActivity extends AppCompatActivity {
         caravan.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                int x = (int)event.getX();
-                int y = (int)event.getY();
+
+
+                float x = event.getRawX();
+                float y = event.getRawY();
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                     case MotionEvent.ACTION_MOVE:
                     case MotionEvent.ACTION_UP:
                         addSensor(x, y);
-                        TextView textView = (TextView) findViewById(R.id.text);
-                        textView.setText("Touch coordinates : " + String.valueOf(x) + "x" + String.valueOf(y));
+                        //TextView textView = (TextView) findViewById(R.id.text);
+                        //textView.setText("Touch coordinates : " + String.valueOf(x) + "x" + String.valueOf(y));
                         break;
                 }
                 return true;
@@ -64,20 +66,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int x = (int)event.getX();
-        int y = (int)event.getY();
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_MOVE:
-
-            case MotionEvent.ACTION_UP:
-        }
-        return false;
-    }
-
-    private void addSensor(int x, int y) {
+    private void addSensor(float x, float y) {
 
 
         Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.caravan);
