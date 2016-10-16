@@ -1,4 +1,4 @@
-#Projectplan Park Assist
+﻿#Projectplan Park Assist
 
 ##Team
 - Mathias Samyn (mathiassamyn)
@@ -16,7 +16,7 @@ Maar niet enkel caravans hebben dit probleem, hedendaags heeft niet elke auto pa
 Zo zou ons systeem ook kunnen dienen als een oplossing voor het dode hoek-probleem bij grote camions/opleggers. Het komt wel vaker op het nieuws dat er weer een dode hoek-ongeval is gebeurd met jonge kinderen/verwarde fietsers.
 Omdat de bestuurders van deze grote voertuigen vaak beperkt zicht hebben naar buiten toe, en meer bepaald naar de ‘dode hoek’ omdat ze op een hoogte zitten. Zo zouden onze sensoren dus mensen kunnen detecteren die zich naast de vrachtwagen bevinden en zo heel wat ongevallen kunnen voorkomen.
 
-Wij gaan dit probleem oplossen door afneembare modules te maken met telkens 6 sensoren. Iedere sensor heeft een optimale leeshoek van 15°, om dus een volledige hoek te kunnen dekken, maken we gebruik van 6 sensoren. Zo creëren we een hoek van 90° om zo optimaal objecten te kunnen detecteren. De sensoren hebben een bereik vanaf minimaal 2 cm tot ongeveer een maximum van 400cm. Op deze manier hebben we een groot genoeg “kijkvlak” om alles te detecteren en kunnen we meldingen geven aan de hand van vooraf bepaalde afstanden. Deze meldingen zouden we sturen naar een mobiele app die via bluetooth met deze modules kan verbinden om zo het park assist-systeem te vervolledigen.
+Wij gaan dit probleem oplossen door afneembare modules te maken met telkens 3 sensoren. Iedere sensor heeft een optimale leeshoek van 30°, om dus een volledige hoek te kunnen dekken, maken we gebruik van 3 sensoren. Zo creëren we een hoek van 90° om zo optimaal objecten te kunnen detecteren. De sensoren hebben een bereik vanaf minimaal 3 cm tot ongeveer een maximum van 400cm. Op deze manier hebben we een groot genoeg “kijkvlak” om alles te detecteren en kunnen we meldingen geven aan de hand van vooraf bepaalde afstanden. Deze meldingen zouden we sturen naar een mobiele app die via bluetooth met deze modules kan verbinden om zo het park assist-systeem te vervolledigen.
 
 Het idee is om modules te creëren om op de hoeken te plaatsen. Per module maken we gebruik van 3 ultrasone sensoren, een arduino voor het verwerken van de informatie en het berekenen van de afstanden, en een bluetoothmodule waarmee men kan verbinden met de mobiele app.
 Een idee kan zijn om vanaf 1.5m een onderbroken pieptoon te geven, vanaf 50cm een onderbroken pieptoon met een snellere frequentie en vanaf 30cm een durende pieptoon om aan te geven dat men zeer dicht tot een bepaald object zit.
@@ -50,7 +50,7 @@ Maar niet enkel caravans hebben dit probleem, hedendaags heeft niet elke auto pa
 ####Hardware
 
 - **1X Bluetooth module (HC-05)** Wordt gebruikt voor het verzenden van data van de Arduino naar de mobiele applicatie.
-- **3X Ultra Sonic range measurement module ( M: HC-SR04)** Wordt gebruikt voor het meten van de afstand tot naderende objecten.
+- **3X Ultra Sonic range measurement module ( M:  SEN136B5B)** Wordt gebruikt voor het meten van de afstand tot naderende objecten.
 - **1X Arduino NANO( ATMEGA328P-PU )** Wordt gebruikt voor al de logica voor het aansturen van de sensoren.
 - **1X Android phone** Wordt gebruikt voor het developpen en testen van de mobiele applicatie.
 - **1X ( ATMEGA328P-PU )** Mogelijk gaan we de Arduino ook nog zelf maken zodat we de formfactor van ons project nog kleiner kunnen maken.
