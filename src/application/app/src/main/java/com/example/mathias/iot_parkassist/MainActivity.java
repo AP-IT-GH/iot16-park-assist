@@ -22,8 +22,12 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private Canvas canvas;
     final Paint myPaint = new Paint();
-
-    ImageView caravan;
+    private int width, height;
+    private int top, left, bottom, right;
+    private int sensorWidth, sensorHeight;
+    private int touchMargin;
+    private boolean topBool, leftBool, bottomBool, rightBool = false;
+    ImageView drawingSpace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,41 +35,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        caravan = (ImageView) findViewById(R.id.caravan);
+        drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
         //final View content = findViewById(android.R.id.content);
-        caravan.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        drawingSpace.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 //Remove it here unless you want to get this callback for EVERY
                 //layout pass, which can get you into infinite loops if you ever
                 //modify the layout from within this method.
-                caravan.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                drawingSpace.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 
                 //Now you can get the width and height from content
-                TextView textView = (TextView) findViewById(R.id.text);
-                textView.setText(String.valueOf(caravan.getWidth()) + "  " + String.valueOf(caravan.getHeight()));
-                bitmap = Bitmap.createBitmap(caravan.getWidth(), caravan.getHeight(), Bitmap.Config.ARGB_8888);
+                width = drawingSpace.getWidth();
+                height = drawingSpace.getHeight();
+                bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                 canvas = new Canvas(bitmap);
-                caravan.setImageBitmap(bitmap);
+                drawingSpace.setImageBitmap(bitmap);
 
                 myPaint.setColor(Color.rgb(0, 0, 0));
                 myPaint.setStrokeWidth(10);
-                canvas.drawRect(300, 200, 700, 800, myPaint);
+
+                top = left = 300;
+                right = width-300;
+                bottom = height-300;
+                sensorWidth = 40;
+                sensorHeight = sensorWidth*2;
+                touchMargin = sensorWidth;
+
+                canvas.drawRect(left, top, right, bottom, myPaint);
             }
         });
 
-
-
-        //bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
-        /*canvas = new Canvas(bitmap);
-        caravan.setImageBitmap(bitmap);
-
-        myPaint.setColor(Color.rgb(0, 0, 0));
-        myPaint.setStrokeWidth(10);
-        canvas.drawRect(300, 200, 700, 800, myPaint);*/
-
-
-        caravan.setOnTouchListener(new View.OnTouchListener() {
+        drawingSpace.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
@@ -73,12 +74,10 @@ public class MainActivity extends AppCompatActivity {
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                    case MotionEvent.ACTION_MOVE:
+                    //case MotionEvent.ACTION_DOWN:
+                    //case MotionEvent.ACTION_MOVE:
                     case MotionEvent.ACTION_UP:
                         addSensor(x, y);
-                        //TextView textView = (TextView) findViewById(R.id.text);
-                        //textView.setText("Touch coordinates : " + String.valueOf(x) + "x" + String.valueOf(y));
                         break;
                 }
                 return true;
@@ -110,32 +109,55 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSensor(int x, int y) {
 
-
-       /* Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.caravan);
-        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.sensor);
-
-        Bitmap resultBitmap = Bitmap.createBitmap(bitmap1.getWidth(), bitmap1.getHeight(), Bitmap.Config.ARGB_8888);
-
-        Canvas c = new Canvas(resultBitmap);
+        myPaint.setColor(Color.rgb(200, 200, 100));
 
 
-        c.drawBitmap(bitmap1, 0, 0, null);
+        if (x > left-touchMargin && x < left+touchMargin){
+            x = left-sensorWidth;
+            leftBool = true;
+        } else if (x > right-touchMargin && x < right+touchMargin) {
+            x = right;
+            rightBool = true;
+        }
+        if (y > top-touchMargin && y < top+touchMargin) {
+            y = top-sensorWidth;
+            topBool = true;
+        } else if (y > bottom-touchMargin && y < bottom+touchMargin) {
+            y = bottom;
+            bottomBool = true;
+        }
 
-        Paint p = new Paint();
+        if (leftBool && topBool) {
+            drawSensor(x,y, sensorHeight, sensorWidth);
+            drawSensor(x,y, sensorWidth, sensorHeight);
+        } else if (leftBool && bottomBool) {
+            drawSensor(x,y, sensorHeight, sensorWidth);
+            drawSensor(x,y-sensorWidth, sensorWidth, sensorHeight );
+        } else if (rightBool && topBool) {
+            drawSensor(x,y, sensorWidth, sensorHeight);
+            drawSensor(x-sensorWidth,y, sensorHeight, sensorWidth);
+        } else if (rightBool && bottomBool) {
+            drawSensor(x-sensorWidth,y, sensorHeight, sensorWidth);
+            drawSensor(x,y-sensorWidth, sensorWidth, sensorHeight);
+        } else if (leftBool || rightBool) {
+            if (y > top && y < bottom) {
+                drawSensor(x, y, sensorWidth, sensorHeight);
+            }
+        } else if (topBool || bottomBool) {
+            if (x > left && x < right) {
+                drawSensor(x, y, sensorHeight, sensorWidth);
+            }
+        }
 
-        p.setAlpha(127);
+        topBool = rightBool = bottomBool = leftBool = false;
 
-        c.drawBitmap(bitmap2, x, y, null);
 
-        ImageView image = (ImageView) findViewById(R.id.caravan);
-        BitmapDrawable bd = new BitmapDrawable(getResources(), resultBitmap);
-        image.setBackground(bd);*/
+    }
 
-        // Your final bitmap is resultBitmap
-
-        myPaint.setColor(Color.rgb(200, 20, 100));
-        Rect sensor = new Rect(x, y, x+20, y+20);
+    private void drawSensor(int x, int y, int sensorDrawWidth, int sensorDrawHeight) {
+        Rect sensor = new Rect(x, y, x+sensorDrawWidth, y+sensorDrawHeight);
         canvas.drawRect(sensor, myPaint);
-        caravan.setImageBitmap(bitmap);
+        drawingSpace.setImageBitmap(bitmap);
     }
 }
+
