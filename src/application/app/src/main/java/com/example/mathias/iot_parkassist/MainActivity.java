@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+
 public class MainActivity extends AppCompatActivity {
 
     private Bitmap bitmap;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private int sensorWidth, sensorHeight;
     private int touchMargin;
     private boolean topBool, leftBool, bottomBool, rightBool = false;
+    private int[] xCoöList, yCoöList;
+    private String[] macList;
+    private int sensorCount = 0;
     ImageView drawingSpace;
 
     @Override
@@ -109,23 +114,37 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSensor(int x, int y) {
 
+        xCoöList[sensorCount] = x;
+        yCoöList[sensorCount] = y;
+        //macList[sensorCount] = ;
+        sensorCount++;
+
+
         myPaint.setColor(Color.rgb(200, 200, 100));
 
+        //necessary to have the sensor drawn with the touch point as middle.
+        int ySide = y;
+        int xSide = x;
 
         if (x > left-touchMargin && x < left+touchMargin){
             x = left-sensorWidth;
             leftBool = true;
+            ySide = y-sensorWidth;
         } else if (x > right-touchMargin && x < right+touchMargin) {
             x = right;
             rightBool = true;
+            ySide = y-sensorWidth;
         }
         if (y > top-touchMargin && y < top+touchMargin) {
             y = top-sensorWidth;
             topBool = true;
+            xSide = x-sensorWidth;
         } else if (y > bottom-touchMargin && y < bottom+touchMargin) {
             y = bottom;
             bottomBool = true;
+            xSide = x-sensorWidth;
         }
+
 
         if (leftBool && topBool) {
             drawSensor(x,y, sensorHeight, sensorWidth);
@@ -141,11 +160,11 @@ public class MainActivity extends AppCompatActivity {
             drawSensor(x,y-sensorWidth, sensorWidth, sensorHeight);
         } else if (leftBool || rightBool) {
             if (y > top && y < bottom) {
-                drawSensor(x, y, sensorWidth, sensorHeight);
+                drawSensor(x, ySide, sensorWidth, sensorHeight);
             }
         } else if (topBool || bottomBool) {
             if (x > left && x < right) {
-                drawSensor(x, y, sensorHeight, sensorWidth);
+                drawSensor(xSide, y, sensorHeight, sensorWidth);
             }
         }
 
