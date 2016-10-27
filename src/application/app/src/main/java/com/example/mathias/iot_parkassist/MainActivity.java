@@ -130,92 +130,7 @@ public class MainActivity extends AppCompatActivity {
                             myPaint.setColor(Color.rgb(200, 200, 100));
                             addSensor(x, y);
                         } else if(toggleDelete) {
-
-                            //!!!!!!!!Voor verwijderen bluetooth nodig, denk dat het op deze manier werkt maar niet zeker (linkerbovenhoek).
-
-                            //Log.e("in delete", String.valueOf(toggleDelete));
-                            xCoöList = yCoöList = new ArrayList<Integer>();
-
-                            xCoöList = getCoöList(sharedPreferencesX);
-                            yCoöList = getCoöList(sharedPreferencesY);
-
-
-                            myPaint.setColor(Color.rgb(255, 255, 255));
-                            for (int i=0; i<xCoöList.size(); i++) {
-                                addSensor(xCoöList.get(i),yCoöList.get(i));
-                            }
-                            Log.e("size", String.valueOf(xCoöList.size()));
-                            for (int i=0; i<xCoöList.size(); i++) {
-                                int xList = xCoöList.get(i);
-                                int yList = yCoöList.get(i);
-
-                                if (x > left-touchMargin && x < left+touchMargin){
-
-                                    leftBool = true;
-                                    //Log.e("Left bool", String.valueOf(leftBool));
-
-                                } else if (x > right-touchMargin && x < right+touchMargin) {
-
-                                    rightBool = true;
-
-                                }
-                                if (y > top-touchMargin && y < top+touchMargin) {
-
-                                    topBool = true;
-                                    //Log.e("top bool", String.valueOf(topBool));
-                                } else if (y > bottom-touchMargin && y < bottom+touchMargin) {
-
-                                    bottomBool = true;
-
-                                }
-
-                                if (leftBool && topBool) {
-                                    Log.e("x", String.valueOf(x));
-                                    Log.e("xList", String.valueOf(xList));
-                                    Log.e("y", String.valueOf(y));
-                                    Log.e("yList", String.valueOf(yList));
-                                    if (x >= xList && x <= xList+sensorHeight && y >= yList && y <= yList+sensorHeight) {
-                                        Log.e("in linkerbovenhoek", "ja hoor");
-                                        xCoöList.remove(i);
-                                        yCoöList.remove(i);
-                                        toggleDelete = false;
-                                    }
-                                } else if (leftBool && bottomBool) {
-                                    /*if (x >= xList && x <= xList+sensorHeight && y >= yList-sensorWidth && y <= yList) {
-
-                                    }*/
-                                } else if (rightBool && topBool) {
-
-                                } else if (rightBool && bottomBool) {
-
-                                } else if (leftBool || rightBool) {
-                                    if (y > top && y < bottom) {
-
-                                    }
-                                } else if (topBool || bottomBool) {
-                                    if (x > left && x < right) {
-
-                                    }
-                                }
-
-                                topBool = rightBool = bottomBool = leftBool = false;
-
-
-                            }
-                            clearSharedPreferences(sharedPreferencesX);
-                            clearSharedPreferences(sharedPreferencesY);
-
-                            fillSharedPreferences(sharedPreferencesX, xCoöList);
-                            fillSharedPreferences(sharedPreferencesY, yCoöList);
-
-                            myPaint.setColor(Color.rgb(200, 200, 100));
-
-                            for (int j=0; j<xCoöList.size(); j++) {
-                                addSensor(xCoöList.get(j),yCoöList.get(j));
-                            }
-
-
-
+                            deleteSensor(x,y);
                         }
                         break;
                 }
@@ -351,5 +266,90 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void deleteSensor(int x, int y) {
+        //!!!!!!!!Voor verwijderen bluetooth nodig, denk dat het op deze manier werkt maar niet zeker (linkerbovenhoek).
+
+        //Log.e("in delete", String.valueOf(toggleDelete));
+        xCoöList = yCoöList = new ArrayList<Integer>();
+
+        xCoöList = getCoöList(sharedPreferencesX);
+        yCoöList = getCoöList(sharedPreferencesY);
+
+
+        myPaint.setColor(Color.rgb(255, 255, 255));
+        for (int i=0; i<xCoöList.size(); i++) {
+            addSensor(xCoöList.get(i),yCoöList.get(i));
+        }
+        Log.e("size", String.valueOf(xCoöList.size()));
+        for (int i=0; i<xCoöList.size(); i++) {
+            int xList = xCoöList.get(i);
+            int yList = yCoöList.get(i);
+
+            if (x > left-touchMargin && x < left+touchMargin){
+
+                leftBool = true;
+                //Log.e("Left bool", String.valueOf(leftBool));
+
+            } else if (x > right-touchMargin && x < right+touchMargin) {
+
+                rightBool = true;
+
+            }
+            if (y > top-touchMargin && y < top+touchMargin) {
+
+                topBool = true;
+                //Log.e("top bool", String.valueOf(topBool));
+            } else if (y > bottom-touchMargin && y < bottom+touchMargin) {
+
+                bottomBool = true;
+
+            }
+
+            if (leftBool && topBool) {
+                Log.e("x", String.valueOf(x));
+                Log.e("xList", String.valueOf(xList));
+                Log.e("y", String.valueOf(y));
+                Log.e("yList", String.valueOf(yList));
+                if (x >= xList && x <= xList+sensorHeight && y >= yList && y <= yList+sensorHeight) {
+                    Log.e("in linkerbovenhoek", "ja hoor");
+                    xCoöList.remove(i);
+                    yCoöList.remove(i);
+                    toggleDelete = false;
+                }
+            } else if (leftBool && bottomBool) {
+                                    /*if (x >= xList && x <= xList+sensorHeight && y >= yList-sensorWidth && y <= yList) {
+
+                                    }*/
+            } else if (rightBool && topBool) {
+
+            } else if (rightBool && bottomBool) {
+
+            } else if (leftBool || rightBool) {
+                if (y > top && y < bottom) {
+
+                }
+            } else if (topBool || bottomBool) {
+                if (x > left && x < right) {
+
+                }
+            }
+
+            topBool = rightBool = bottomBool = leftBool = false;
+
+
+        }
+        clearSharedPreferences(sharedPreferencesX);
+        clearSharedPreferences(sharedPreferencesY);
+
+        fillSharedPreferences(sharedPreferencesX, xCoöList);
+        fillSharedPreferences(sharedPreferencesY, yCoöList);
+
+        myPaint.setColor(Color.rgb(200, 200, 100));
+
+        for (int j=0; j<xCoöList.size(); j++) {
+            addSensor(xCoöList.get(j),yCoöList.get(j));
+        }
+
+    }
 }
 
