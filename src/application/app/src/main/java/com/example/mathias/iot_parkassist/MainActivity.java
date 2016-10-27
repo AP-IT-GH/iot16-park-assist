@@ -1,5 +1,7 @@
 package com.example.mathias.iot_parkassist;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,11 +15,23 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOError;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.Math.abs;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,16 +43,20 @@ public class MainActivity extends AppCompatActivity {
     private int sensorWidth, sensorHeight;
     private int touchMargin;
     private boolean topBool, leftBool, bottomBool, rightBool = false;
-    private int[] xCoöList, yCoöList;
-    private String[] macList;
-    private int sensorCount = 0;
+    private boolean toggleAdd, toggleDelete = false;
+    private ArrayList<Integer> xCoöList, yCoöList = new ArrayList<Integer>();
+    private ArrayList<String> macList = new ArrayList<String>();
     ImageView drawingSpace;
+    SharedPreferences sharedPreferencesX;
+    SharedPreferences sharedPreferencesY;
+    SharedPreferences.Editor editor;
+    private static final String LIST_X = "listXCoördinates";
+    private static final String LIST_Y = "listYCoördinates";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
         //final View content = findViewById(android.R.id.content);
@@ -68,6 +86,33 @@ public class MainActivity extends AppCompatActivity {
                 touchMargin = sensorWidth;
 
                 canvas.drawRect(left, top, right, bottom, myPaint);
+
+
+
+                //Here comes the code where we retrieve the connected sensors and put them in macList
+                macList.add("z");
+
+                /*xCoöList = new int[macList.size()];
+                yCoöList = new int[macList.size()];*/
+
+                sharedPreferencesX = getSharedPreferences(LIST_X, Context.MODE_PRIVATE);
+                sharedPreferencesY = getSharedPreferences(LIST_Y, Context.MODE_PRIVATE);
+
+                xCoöList = getCoöList(sharedPreferencesX);
+                yCoöList = getCoöList(sharedPreferencesY);
+
+                clearSharedPreferences(sharedPreferencesX);
+                clearSharedPreferences(sharedPreferencesY);
+
+                fillSharedPreferences(sharedPreferencesX, xCoöList);
+                fillSharedPreferences(sharedPreferencesY, yCoöList);
+
+                myPaint.setColor(Color.rgb(200, 200, 100));
+
+                for (int i=0; i<xCoöList.size(); i++) {
+                    addSensor(xCoöList.get(i),yCoöList.get(i));
+                }
+
             }
         });
 
@@ -75,17 +120,121 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 switch (event.getAction()) {
                     //case MotionEvent.ACTION_DOWN:
                     //case MotionEvent.ACTION_MOVE:
                     case MotionEvent.ACTION_UP:
-                        addSensor(x, y);
+                        if(toggleAdd) {
+                            myPaint.setColor(Color.rgb(200, 200, 100));
+                            addSensor(x, y);
+                        } else if(toggleDelete) {
+
+                            //!!!!!!!!Voor verwijderen bluetooth nodig, denk dat het op deze manier werkt maar niet zeker (linkerbovenhoek).
+
+                            //Log.e("in delete", String.valueOf(toggleDelete));
+                            xCoöList = yCoöList = new ArrayList<Integer>();
+
+                            xCoöList = getCoöList(sharedPreferencesX);
+                            yCoöList = getCoöList(sharedPreferencesY);
+
+
+                            myPaint.setColor(Color.rgb(255, 255, 255));
+                            for (int i=0; i<xCoöList.size(); i++) {
+                                addSensor(xCoöList.get(i),yCoöList.get(i));
+                            }
+                            Log.e("size", String.valueOf(xCoöList.size()));
+                            for (int i=0; i<xCoöList.size(); i++) {
+                                int xList = xCoöList.get(i);
+                                int yList = yCoöList.get(i);
+
+                                if (x > left-touchMargin && x < left+touchMargin){
+
+                                    leftBool = true;
+                                    //Log.e("Left bool", String.valueOf(leftBool));
+
+                                } else if (x > right-touchMargin && x < right+touchMargin) {
+
+                                    rightBool = true;
+
+                                }
+                                if (y > top-touchMargin && y < top+touchMargin) {
+
+                                    topBool = true;
+                                    //Log.e("top bool", String.valueOf(topBool));
+                                } else if (y > bottom-touchMargin && y < bottom+touchMargin) {
+
+                                    bottomBool = true;
+
+                                }
+
+                                if (leftBool && topBool) {
+                                    Log.e("x", String.valueOf(x));
+                                    Log.e("xList", String.valueOf(xList));
+                                    Log.e("y", String.valueOf(y));
+                                    Log.e("yList", String.valueOf(yList));
+                                    if (x >= xList && x <= xList+sensorHeight && y >= yList && y <= yList+sensorHeight) {
+                                        Log.e("in linkerbovenhoek", "ja hoor");
+                                        xCoöList.remove(i);
+                                        yCoöList.remove(i);
+                                        toggleDelete = false;
+                                    }
+                                } else if (leftBool && bottomBool) {
+                                    /*if (x >= xList && x <= xList+sensorHeight && y >= yList-sensorWidth && y <= yList) {
+
+                                    }*/
+                                } else if (rightBool && topBool) {
+
+                                } else if (rightBool && bottomBool) {
+
+                                } else if (leftBool || rightBool) {
+                                    if (y > top && y < bottom) {
+
+                                    }
+                                } else if (topBool || bottomBool) {
+                                    if (x > left && x < right) {
+
+                                    }
+                                }
+
+                                topBool = rightBool = bottomBool = leftBool = false;
+
+
+                            }
+                            clearSharedPreferences(sharedPreferencesX);
+                            clearSharedPreferences(sharedPreferencesY);
+
+                            fillSharedPreferences(sharedPreferencesX, xCoöList);
+                            fillSharedPreferences(sharedPreferencesY, yCoöList);
+
+                            myPaint.setColor(Color.rgb(200, 200, 100));
+
+                            for (int j=0; j<xCoöList.size(); j++) {
+                                addSensor(xCoöList.get(j),yCoöList.get(j));
+                            }
+
+
+
+                        }
                         break;
                 }
+
                 return true;
+            }
+        });
+
+        Button buttonAdd = (Button) findViewById(R.id.add);
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                toggleAdd = true;
+            }
+        });
+
+        Button buttonDelete = (Button) findViewById(R.id.delete);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                toggleDelete = true;
             }
         });
     }
@@ -114,37 +263,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSensor(int x, int y) {
 
-        xCoöList[sensorCount] = x;
-        yCoöList[sensorCount] = y;
-        //macList[sensorCount] = ;
-        sensorCount++;
 
-
-        myPaint.setColor(Color.rgb(200, 200, 100));
-
-        //necessary to have the sensor drawn with the touch point as middle.
+        //necessary to have the sensor drawn with the touch point as middle. Momenteel niet in gebruik!!!!
         int ySide = y;
         int xSide = x;
 
-        if (x > left-touchMargin && x < left+touchMargin){
+        if (x >= left-touchMargin && x <= left+touchMargin){
             x = left-sensorWidth;
             leftBool = true;
-            ySide = y-sensorWidth;
-        } else if (x > right-touchMargin && x < right+touchMargin) {
+            //ySide = y-sensorWidth;
+        } else if (x >= right-touchMargin && x <= right+touchMargin) {
             x = right;
             rightBool = true;
-            ySide = y-sensorWidth;
+            //ySide = y-sensorWidth;
         }
-        if (y > top-touchMargin && y < top+touchMargin) {
+        if (y >= top-touchMargin && y <= top+touchMargin) {
             y = top-sensorWidth;
             topBool = true;
-            xSide = x-sensorWidth;
-        } else if (y > bottom-touchMargin && y < bottom+touchMargin) {
+            //xSide = x-sensorWidth;
+        } else if (y >= bottom-touchMargin && y <= bottom+touchMargin) {
             y = bottom;
             bottomBool = true;
-            xSide = x-sensorWidth;
+            //xSide = x-sensorWidth;
         }
-
 
         if (leftBool && topBool) {
             drawSensor(x,y, sensorHeight, sensorWidth);
@@ -161,22 +302,54 @@ public class MainActivity extends AppCompatActivity {
         } else if (leftBool || rightBool) {
             if (y > top && y < bottom) {
                 drawSensor(x, ySide, sensorWidth, sensorHeight);
+                y = ySide;
             }
         } else if (topBool || bottomBool) {
             if (x > left && x < right) {
                 drawSensor(xSide, y, sensorHeight, sensorWidth);
+                x = xSide;
             }
         }
 
         topBool = rightBool = bottomBool = leftBool = false;
 
+        //z = mac address of the sensor that has been selected to add.
+        //TODO: check of de coo al in de arrays zitten, want dan moeten deze niet weer toegevoegd worden.
+        editor = sharedPreferencesX.edit().putInt("z", x);
+        editor.commit();
+        editor = sharedPreferencesY.edit().putInt("z", y);
+        editor.commit();
 
     }
 
     private void drawSensor(int x, int y, int sensorDrawWidth, int sensorDrawHeight) {
+
         Rect sensor = new Rect(x, y, x+sensorDrawWidth, y+sensorDrawHeight);
         canvas.drawRect(sensor, myPaint);
         drawingSpace.setImageBitmap(bitmap);
+
+        toggleAdd = false;
     }
+
+    private ArrayList<Integer> getCoöList(SharedPreferences sharedPreferences) {
+        ArrayList<Integer> coöList = new ArrayList<Integer>();
+        for (int i = 0; i < macList.size(); i++) {
+            coöList.add(sharedPreferences.getInt(macList.get(i),-1));
+        }
+        return coöList;
+    }
+
+    private void clearSharedPreferences(SharedPreferences sharedPreferences) {
+        editor = sharedPreferences.edit().clear();
+        editor.commit();
+    }
+
+    private void fillSharedPreferences(SharedPreferences sharedPreferences, ArrayList<Integer> coöList) {
+        for (int i=0; i<coöList.size(); i++) {
+            editor = sharedPreferences.edit();
+            editor.putInt(macList.get(i), coöList.get(i));
+        }
+    }
+
 }
 
