@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i=0; i<xCoöList.size(); i++) {
                     addSensor(xCoöList.get(i),yCoöList.get(i));
+                    drawDistance(xCoöList.get(i), yCoöList.get(i));
                 }
 
             }
@@ -285,21 +287,21 @@ public class MainActivity extends AppCompatActivity {
             int xList = xCoöList.get(i);
             int yList = yCoöList.get(i);
 
-            if (x > left-touchMargin && x < left+touchMargin){
+            if (x >= left-touchMargin && x <= left+touchMargin){
 
                 leftBool = true;
                 //Log.e("Left bool", String.valueOf(leftBool));
 
-            } else if (x > right-touchMargin && x < right+touchMargin) {
+            } else if (x >= right-touchMargin && x <= right+touchMargin) {
 
                 rightBool = true;
 
             }
-            if (y > top-touchMargin && y < top+touchMargin) {
+            if (y >= top-touchMargin && y <= top+touchMargin) {
 
                 topBool = true;
                 //Log.e("top bool", String.valueOf(topBool));
-            } else if (y > bottom-touchMargin && y < bottom+touchMargin) {
+            } else if (y >= bottom-touchMargin && y <= bottom+touchMargin) {
 
                 bottomBool = true;
 
@@ -350,6 +352,69 @@ public class MainActivity extends AppCompatActivity {
             addSensor(xCoöList.get(j),yCoöList.get(j));
         }
 
+    }
+
+    private void drawDistance(int x, int y) {
+        if (x >= left - touchMargin && x <= left + touchMargin) {
+
+            leftBool = true;
+            //Log.e("Left bool", String.valueOf(leftBool));
+
+        } else if (x >= right - touchMargin && x <= right + touchMargin) {
+
+            rightBool = true;
+
+        }
+        if (y >= top - touchMargin && y <= top + touchMargin) {
+
+            topBool = true;
+            //Log.e("top bool", String.valueOf(topBool));
+        } else if (y >= bottom - touchMargin && y <= bottom + touchMargin) {
+
+            bottomBool = true;
+
+        }
+
+        Path path = new Path();
+        path.setFillType(Path.FillType.EVEN_ODD);
+
+        if (leftBool && topBool) {
+
+            path.moveTo(x,y);
+            path.lineTo(x-200,y);
+            path.lineTo(x,y-200);
+            path.lineTo(x,y);
+
+
+
+        } else if (leftBool && bottomBool) {
+
+        } else if (rightBool && topBool) {
+            path.moveTo(x+sensorWidth,y);
+            path.lineTo(x+200,y);
+            path.lineTo(x+sensorWidth,y-200);
+            path.lineTo(x+sensorWidth,y);
+        } else if (rightBool && bottomBool) {
+
+        } else if (leftBool || rightBool) {
+            if (y > top && y < bottom) {
+
+            }
+        } else if (topBool || bottomBool) {
+            if (x > left && x < right) {
+
+            }
+        }
+
+
+        topBool = rightBool = bottomBool = leftBool = false;
+        path.close();
+        myPaint.setColor(android.graphics.Color.RED);
+        myPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        myPaint.setAntiAlias(true);
+
+        canvas.drawPath(path, myPaint);
+        drawingSpace.setImageBitmap(bitmap);
     }
 }
 
