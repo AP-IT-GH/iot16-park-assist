@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.Shader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,15 +78,15 @@ public class MainActivity extends AppCompatActivity {
                 canvas = new Canvas(bitmap);
                 drawingSpace.setImageBitmap(bitmap);
 
-                myPaint.setColor(Color.rgb(0, 0, 0));
-                myPaint.setStrokeWidth(10);
-
                 top = left = 300;
                 right = width-300;
                 bottom = height-300;
                 sensorWidth = 40;
                 sensorHeight = sensorWidth*2;
                 touchMargin = sensorWidth;
+
+                myPaint.setColor(Color.rgb(0, 0, 0));
+                myPaint.setStrokeWidth(10);
 
                 canvas.drawRect(left, top, right, bottom, myPaint);
 
@@ -346,6 +348,7 @@ public class MainActivity extends AppCompatActivity {
         fillSharedPreferences(sharedPreferencesX, xCoöList);
         fillSharedPreferences(sharedPreferencesY, yCoöList);
 
+
         myPaint.setColor(Color.rgb(200, 200, 100));
 
         for (int j=0; j<xCoöList.size(); j++) {
@@ -380,38 +383,63 @@ public class MainActivity extends AppCompatActivity {
 
         if (leftBool && topBool) {
 
-            path.moveTo(x,y);
-            path.lineTo(x-200,y);
-            path.lineTo(x,y-200);
-            path.lineTo(x,y);
-
-
+            path.moveTo(x, y);
+            path.lineTo(x - 200, y);
+            path.lineTo(x, y - 200);
+            path.lineTo(x, y);
+            myPaint.setShader(new LinearGradient(x, y, x, y-200, Color.GREEN, Color.RED, Shader.TileMode.MIRROR));
 
         } else if (leftBool && bottomBool) {
-
+            path.moveTo(x, y + sensorWidth);
+            path.lineTo(x, y + 200 + sensorWidth);
+            path.lineTo(x - 200, y + sensorWidth);
+            path.lineTo(x, y + sensorWidth);
         } else if (rightBool && topBool) {
-            path.moveTo(x+sensorWidth,y);
-            path.lineTo(x+200,y);
-            path.lineTo(x+sensorWidth,y-200);
-            path.lineTo(x+sensorWidth,y);
+            path.moveTo(x + sensorWidth, y);
+            path.lineTo(x + 200, y);
+            path.lineTo(x + sensorWidth, y - 200);
+            path.lineTo(x + sensorWidth, y);
         } else if (rightBool && bottomBool) {
-
-        } else if (leftBool || rightBool) {
+            path.moveTo(x + sensorWidth, y + sensorWidth);
+            path.lineTo(x + sensorWidth, y + 200 + sensorWidth);
+            path.lineTo(x + 200 + sensorWidth, y + sensorWidth);
+            path.lineTo(x + sensorWidth, y + sensorWidth);
+        } else if (leftBool) {
             if (y > top && y < bottom) {
-
+                path.moveTo(x, y+sensorWidth);
+                path.lineTo(x - 141, y+sensorWidth-141);
+                path.lineTo(x-141, y +sensorWidth + 141);
+                path.lineTo(x, y+sensorWidth);
             }
-        } else if (topBool || bottomBool) {
+        } else if (rightBool) {
+            if (y > top && y < bottom) {
+                path.moveTo(x+sensorWidth, y+sensorWidth);
+                path.lineTo(x +sensorWidth+ 141, y+sensorWidth-141);
+                path.lineTo(x+sensorWidth+141, y +sensorWidth + 141);
+                path.lineTo(x+sensorWidth, y+sensorWidth);
+            }
+        }else if (topBool) {
             if (x > left && x < right) {
-
+                path.moveTo(x+sensorWidth, y);
+                path.lineTo(x +sensorWidth+ 141, y-141);
+                path.lineTo(x+sensorWidth-141, y - 141);
+                path.lineTo(x+sensorWidth, y);
+            }
+        }else if (bottomBool) {
+            if (x > left && x < right) {
+                path.moveTo(x+sensorWidth, y+sensorWidth);
+                path.lineTo(x +sensorWidth+ 141, y+sensorWidth+141);
+                path.lineTo(x+sensorWidth-141, y+sensorWidth + 141);
+                path.lineTo(x+sensorWidth, y+sensorWidth);
             }
         }
 
 
         topBool = rightBool = bottomBool = leftBool = false;
         path.close();
-        myPaint.setColor(android.graphics.Color.RED);
-        myPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        myPaint.setAntiAlias(true);
+        //myPaint.setColor(android.graphics.Color.RED);
+        //myPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        //myPaint.setAntiAlias(true);
 
         canvas.drawPath(path, myPaint);
         drawingSpace.setImageBitmap(bitmap);
