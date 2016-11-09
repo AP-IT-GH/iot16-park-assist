@@ -49,7 +49,7 @@ Volgens de specificaties van het project moeten we enkel zorgen voor een module 
 
 Zo zullen we een case gaan designen met een mechanisme om er voor te zorgen dat we dit op elke auto/aanhangwagen kunnen bevestigen. Uiteraard niet enkel vastmaken maar ook het kunnen verwijderen en hergebruiken is belangrijk. 
 
-Als extra elektronica/functionele uitbreiding willen we gaan werken met een accelerometer. Dit stelt ons in staat om te detecteren wanneer het voertuig in beweging is of niet. Indien het voertuig niet in beweging is, is het niet nodig dat de sensoren metingen uitvoeren, aangezien het voeruig niet dichter naar een object gaat. Ook indien het voertuig te hard rijdt, wat niet zou voorkomen bij het inparkeren, heeft het geen nut om de sensoren te laten aanstaan. Indien we in beide gevallen de sensoren uitzetten, zou dit stroom besparen, wat de batterij ten goede zou komen.
+Als extra elektronica/functionele uitbreiding willen we gaan werken met een accelerometer. Dit stelt ons in staat om te detecteren wanneer het voertuig in beweging is of niet. Indien het voertuig niet in beweging is, is het niet nodig dat de sensoren metingen uitvoeren, aangezien het voertuig niet dichter naar een object gaat. Ook indien het voertuig te hard rijdt, wat niet zou voorkomen bij het inparkeren, heeft het geen nut om de sensoren te laten aanstaan. Indien we in beide gevallen de sensoren uitzetten, zou dit stroom besparen, wat de batterij ten goede zou komen.
 
 
 
