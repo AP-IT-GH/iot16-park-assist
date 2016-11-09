@@ -45,7 +45,7 @@ Hieronder is te zien hoe dit bijvoorbeeld op een caravan eruit zou zien:
 ![park assist geplaatst op caravan](img/park assist on caravan.png)
 
 ###Uitbreidingen
-volgens de specificaties van het project moeten we enkel zorgen voor een module (bestaande uit 3 sensoren) die communiceert met de mobiele applicatie. De mobiele applicatie zal op zijn beurt aangeven hoe ver de sensoren verwijderd zijn van een object. Echter zijn er natuurlijk veel meer aspecten aan dit project waar wij (indien er tijd over is) nog aan willen gaan werken.
+Volgens de specificaties van het project moeten we enkel zorgen voor een module (bestaande uit 3 sensoren) die communiceert met de mobiele applicatie. De mobiele applicatie zal op zijn beurt aangeven hoe ver de sensoren verwijderd zijn van een object. Echter zijn er natuurlijk veel meer aspecten aan dit project waar wij (indien er tijd over is) nog aan willen gaan werken.
 
 Zo zullen we een case gaan designen met een mechanisme om er voor te zorgen dat we dit op elke auto/aanhangwagen kunnen bevestigen. Uiteraard niet enkel vastmaken maar ook het kunnen verwijderen en hergebruiken is belangrijk. 
 
