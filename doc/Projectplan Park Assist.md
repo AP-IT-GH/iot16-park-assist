@@ -28,7 +28,7 @@ Zoals gezegd in de projectbeschrijving, gaan we als project voor het vak "Intern
 
 De gebruiker kan het product in modules aankopen, waarbij iedere module bestaat uit drie interne sensoren. Iedere module is een op zichzelf staande parkeersensor, waarbij de drie sensoren gezamelijk een hoek van 90° controleren (30° per sensor om een maximale dekking te waarborgen). De drie sensoren zullen één per één hun metingen doen om zo elkaars signaal niet te storen of te registreren.
 
-De verschillende modules zullen elk apart communiceren met de mobiele applicatie, waarbij de gebruiker de afstand (doorgegeven door de modules) kan aflezen. In deze applicatie kan de gerbuiker vrij modules toevoegen (indien ze verbonden zijn met de smartphone) of verwijderen. Het toevoegen van de sensoren kan de gebruiker doen door in de applicatie aan te geven waar hij de module op het voertuig geplaatst heeft.
+De verschillende modules zullen elk apart communiceren met de mobiele applicatie, waarbij de gebruiker de afstand (doorgegeven door de modules) kan aflezen. In deze applicatie kan de gebruiker vrij modules toevoegen (indien ze verbonden zijn met de smartphone) of verwijderen. Het toevoegen van de sensoren kan de gebruiker doen door in de applicatie aan te geven waar hij de module op het voertuig geplaatst heeft.
 
 Voor dit project achten wij om 2 modules te ontwikkelen (6 sensoren in totaal, 3 per module) om deze uiteindelijk te kunnen testen op een voertuig/aanhangwagen.
 
