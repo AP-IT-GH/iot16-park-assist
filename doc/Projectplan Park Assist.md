@@ -65,21 +65,22 @@ Als extra elektronica/functionele uitbreiding willen we gaan werken met een acce
 ![Software flowchart.png](img/Software flowchart.png)
 
 
-###Bruikbare technlogieën
+###Bruikbare technologieën
 
 ####Software
 - **Android** Wordt gebruikt voor het ontwikkelen van de mobiele applicatie die de waardes van de gemeten sensoren grafisch laat zien en voor het instellen van de sensoren.
 - **Bluetooth** Wordt gebruikt voor het versturen van de sensor data van de Arduino naar de mobiele applicatie.
-- **C++ ( Arduino )** Wordt gebruikt voor het programmeren van de Arduino voor bijvoorbeeld het aansturen van de sensoren en Bluetooth module.
+- **C++ (Arduino)** Wordt gebruikt voor het programmeren van de Arduino voor bijvoorbeeld het aansturen van de sensoren en Bluetooth module.
 
 
 ####Hardware
 
 - **1X Bluetooth module (HC-05)** Wordt gebruikt voor het verzenden van data van de Arduino naar de mobiele applicatie.
-- **3X Ultra Sonic range measurement module ( M:  SEN136B5B)** Wordt gebruikt voor het meten van de afstand tot naderende objecten.
-- **1X Arduino NANO( ATMEGA328P-PU )** Wordt gebruikt voor al de logica voor het aansturen van de sensoren.
+- **3X Ultra Sonic range measurement module (M: SEN136B5B)** Wordt gebruikt voor het meten van de afstand tot naderende objecten.
+- **1X Arduino NANO (ATMEGA328P-PU)** Wordt gebruikt voor al de logica voor het aansturen van de sensoren.
 - **1X Android phone** Wordt gebruikt voor het developpen en testen van de mobiele applicatie.
-- **1X ( ATMEGA328P-PU )** Mogelijk gaan we de Arduino ook nog zelf maken zodat we de formfactor van ons project nog kleiner kunnen maken.
+- **1X Accelerometer (MMA8452)** (extra) Wordt gebruikt om na te gaan of het voertuig beweegt en of het te snel beweegt.
+- **1X Sparkfun level converter** (extra) Wordt gebruikt om de 5V spanning die de Arduino naar de accelerometer stuurt om te zetten naar 3V.
 
 ###Project Planning
 Voor het plannen en managen van het project maken we gebruik van Agile development via Github zelf.
