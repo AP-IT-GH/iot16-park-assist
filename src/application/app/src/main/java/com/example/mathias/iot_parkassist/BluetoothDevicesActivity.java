@@ -32,18 +32,18 @@ public class BluetoothDevicesActivity extends Activity {
     ExpandableListView expListView;
     List<String> listDataHeader;
     Button bluetoothSearchButton;
-    HashMap<String, List<String>> listDataChild;
-    List<String> pairedDevices = new ArrayList<String>();
-    List<String> newDevices = new ArrayList<String>();
+    HashMap<String, List<btDevices>> listDataChild;
+    List<btDevices> pairedDevices = new ArrayList<btDevices>();
+    List<btDevices> newDevices = new ArrayList<btDevices>();
 
-    class btDevices{
-        btDevices(String name,String mac){
-            Name = name;
-            Mac = mac;
-        }
-        public String Name;
-        public String Mac;
-    }
+//    class btDevices{
+//        btDevices(String name,String mac){
+//            Name = name;
+//            Mac = mac;
+//        }
+//        public String Name;
+//        public String Mac;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +125,7 @@ public class BluetoothDevicesActivity extends Activity {
                 Set<BluetoothDevice> pairedDEvices = mBluetoothAdapter.getBondedDevices();
                 if(pairedDEvices.size() > 0){
                     for (BluetoothDevice device : pairedDEvices){
-                        pairedDevices.add(device.getAddress());
+                        pairedDevices.add(new btDevices(device.getName(),device.getAddress()));
                     }
                 }
             }
@@ -151,7 +151,7 @@ public class BluetoothDevicesActivity extends Activity {
                 BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 Log.e("Found device", device.getName());
                 Toast.makeText(context,"Found a device"+device.getName(),Toast.LENGTH_SHORT).show();
-                newDevices.add(device.getName());
+                newDevices.add(new btDevices(device.getName(),device.getAddress()));
             } else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
                 mBluetoothAdapter.cancelDiscovery();
                 Log.e("BroadcastReceiver", "Discovery finished");
@@ -165,7 +165,7 @@ public class BluetoothDevicesActivity extends Activity {
      */
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDataChild = new HashMap<String, List<btDevices>>();
 
         // Adding child data
         listDataHeader.add("New Devices");
@@ -173,7 +173,7 @@ public class BluetoothDevicesActivity extends Activity {
 
         // Adding child data
 
-        newDevices.add("The Shawshank Redemption");
+        newDevices.add(new btDevices("[Park]assistSensor"," AA-DD-FF"));
 //        newDevices.add("The Godfather");
 //        newDevices.add("The Godfather: Part II");
 //        newDevices.add("Pulp Fiction");
@@ -182,7 +182,7 @@ public class BluetoothDevicesActivity extends Activity {
 //        newDevices.add("12 Angry Men");
 
 
-        pairedDevices.add("The Conjuring");
+        pairedDevices.add(new btDevices("[Park]assistSensor"," AA-CC-BB"));
 //        pairedDevices.add("Despicable Me 2");
 //        pairedDevices.add("Turbo");
 //        pairedDevices.add("Grown Ups 2");
