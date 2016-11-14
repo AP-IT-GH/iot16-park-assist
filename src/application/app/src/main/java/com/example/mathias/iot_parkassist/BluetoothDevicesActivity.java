@@ -100,6 +100,14 @@ public class BluetoothDevicesActivity extends Activity {
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
         // preparing list data
+        btDevices number1 = new btDevices("test1","000");
+        btDevices number2 = new btDevices("test2","00");
+        if(number1.equals(number2)){
+            Toast.makeText(getApplicationContext(),"The same",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"fcked up",Toast.LENGTH_SHORT).show();
+        }
         prepareListData();
 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
@@ -113,7 +121,7 @@ public class BluetoothDevicesActivity extends Activity {
                 btDevices Child = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
                 String macClickedDevice = Child.Mac;
                 ConnectThread test = new ConnectThread(Child.Device);
-                test.run();
+//                test.run();
                 Toast.makeText(getApplicationContext(),macClickedDevice,Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -202,10 +210,19 @@ public class BluetoothDevicesActivity extends Activity {
                 Toast.makeText(context,"discovery starts ",Toast.LENGTH_SHORT).show();
             }else if(BluetoothDevice.ACTION_FOUND.equals(action)){
                 Log.e("action found","found a deivce");
+
+                //only add if device is not already added
                 BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.e("Found device", device.getName());
-                Toast.makeText(context,"Found a device"+device.getName(),Toast.LENGTH_SHORT).show();
-                newDevices.add(new btDevices(device.getName(),device.getAddress(),device));
+                if(!newDevices.contains(device.getAddress()))
+                {
+
+                    Log.e("Found device", device.getName());
+                    Toast.makeText(context,"Found a device"+device.getName(),Toast.LENGTH_SHORT).show();
+                    newDevices.add(new btDevices(device.getName(),device.getAddress(),device));
+
+                }
+
+
             } else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
                 mBluetoothAdapter.cancelDiscovery();
                 Log.e("BroadcastReceiver", "Discovery finished");
