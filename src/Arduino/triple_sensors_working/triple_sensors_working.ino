@@ -18,27 +18,7 @@ void loop() {
    // The PING))) is triggered by a HIGH pulse of 2 or more microseconds.
    // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
    //set pinModes
-   /*
-   pinMode(pingPin, OUTPUT);
-   pinMode(pingPin2, OUTPUT);
-   pinMode(pingPin3, OUTPUT);
-   //give a short LOW pulse to all pins
-   digitalWrite(pingPin, LOW);
-   digitalWrite(pingPin2,LOW);
-   digitalWrite(pingPin3,LOW);
-   //wait for 2 microseconds
-   delayMicroseconds(2);
-   //give HIGH pulse to all pins
-   digitalWrite(pingPin, HIGH);
-   digitalWrite(pingPin2,HIGH);
-   digitalWrite(pingPin3,HIGH);
-   //Delay
-   delayMicroseconds(5);
-   //set pins back to LOW
-   digitalWrite(pingPin, LOW);
-   digitalWrite(pingPin2,LOW);
-   digitalWrite(pingPin3,LOW);
-   */
+   
    pinMode(pingPin, OUTPUT);
    digitalWrite(pingPin,LOW);
    delayMicroseconds(2);
