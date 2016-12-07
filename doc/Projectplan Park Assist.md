@@ -47,9 +47,11 @@ Hieronder is te zien hoe dit bijvoorbeeld op een caravan eruit zou zien:
 ###Uitbreidingen
 Volgens de specificaties van het project moeten we enkel zorgen voor een module (bestaande uit 3 sensoren) die communiceert met de mobiele applicatie. De mobiele applicatie zal op zijn beurt aangeven hoe ver de sensoren verwijderd zijn van een object. Echter zijn er natuurlijk veel meer aspecten aan dit project waar wij (indien er tijd over is) nog aan willen gaan werken.
 
-Zo zullen we een case gaan designen met een mechanisme om er voor te zorgen dat we dit op elke auto/aanhangwagen kunnen bevestigen. Uiteraard niet enkel vastmaken maar ook het kunnen verwijderen en hergebruiken is belangrijk. 
+Zo zullen we een case gaan designen met een mechanisme om er voor te zorgen dat we dit op elke auto/aanhangwagen kunnen bevestigen. Uiteraard niet enkel vastmaken maar ook het kunnen verwijderen en hergebruiken is belangrijk.
 
-Als extra elektronica/functionele uitbreiding willen we gaan werken met een accelerometer. Dit stelt ons in staat om te detecteren wanneer het voertuig in beweging is of niet. Indien het voertuig niet in beweging is, is het niet nodig dat de sensoren metingen uitvoeren, aangezien het voertuig niet dichter naar een object gaat. Ook indien het voertuig te hard rijdt, wat niet zou voorkomen bij het inparkeren, heeft het geen nut om de sensoren te laten aanstaan. Indien we in beide gevallen de sensoren uitzetten, zou dit stroom besparen, wat de batterij ten goede zou komen.
+Als extra elektronica/functionele uitbreiding willen we een inbraaksysteem implementeren, waarbij we gebruik maken van de LoRa technologie. Hiervoor hebben we een LoRa Mote en gateway nodig zodat we met ons systeem de gebruiker kunnen notificeren. 
+
+Het inbraaksysteem zal aan de binnenzijde, aan de inkom van de caravan worden bevestigt. Het systeem bestaat uit een IR sensor die de afstand meet vanaf het moment dat de user in de applicatie aangeeft dat de beveiliging aan moet. De afstand op het moment van aanzetten zal als veilige afstand gerekend worden, waarbij iedere grote verandering van deze afstand het "alarm" laat afgaan. Met de LoRa Mote versturen we hierna een signaal naar de gateway, deze zal dat dan naar het internet versturen. Hierna gaat men verdere stappen ondernemen om de eigenaar te notifiëren dat er een inbraak plaats heeft gevonden.
 
 
 
@@ -79,8 +81,9 @@ Als extra elektronica/functionele uitbreiding willen we gaan werken met een acce
 - **3X Ultra Sonic range measurement module (M: SEN136B5B)** Wordt gebruikt voor het meten van de afstand tot naderende objecten.
 - **1X Arduino NANO (ATMEGA328P-PU)** Wordt gebruikt voor al de logica voor het aansturen van de sensoren.
 - **1X Android phone** Wordt gebruikt voor het developpen en testen van de mobiele applicatie.
-- **1X Accelerometer (MMA8452)** (extra) Wordt gebruikt om na te gaan of het voertuig beweegt en of het te snel beweegt.
-- **1X Sparkfun level converter** (extra) Wordt gebruikt om de 5V spanning die de Arduino naar de accelerometer stuurt om te zetten naar 3V.
+- **1X Microchip LoRa Mote (RN2483)** Wordt gebruikt voor het versturen van signaal naar de gateway.
+- **1X LoRa Gateway** Wordt gebruikt voor het doorsturen van signaal naar het internet (en voorts naar de gebruiker).
+- **1X IR distance sensor** Wordt gebruikt voor het detecteren van afstand.
 
 ###Project Planning
 Voor het plannen en managen van het project maken we gebruik van Agile development via Github zelf.
