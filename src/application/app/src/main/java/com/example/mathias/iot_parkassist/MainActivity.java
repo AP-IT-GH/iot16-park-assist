@@ -1,3 +1,9 @@
+/////////////////////////////////////////////////////////////////////
+//Please don't look at this code, since it is all hardcoded.       //
+//May the Code Gods forgive me for this blasphemy that I call code.//
+/////////////////////////////////////////////////////////////////////
+
+
 package com.example.mathias.iot_parkassist;
 
 import android.content.Context;
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i=0; i<xCoöList.size(); i++) {
                     addSensor(xCoöList.get(i),yCoöList.get(i));
-                    drawDistance(xCoöList.get(i), yCoöList.get(i));
+                    //drawDistance(xCoöList.get(i), yCoöList.get(i), 80);
                 }
 
             }
@@ -209,24 +215,30 @@ public class MainActivity extends AppCompatActivity {
         if (leftBool && topBool) {
             drawSensor(x,y, sensorHeight, sensorWidth);
             drawSensor(x,y, sensorWidth, sensorHeight);
+            drawDistance(x,y, 160);
         } else if (leftBool && bottomBool) {
             drawSensor(x,y, sensorHeight, sensorWidth);
             drawSensor(x,y-sensorWidth, sensorWidth, sensorHeight );
+            drawDistance(x,y, 170);
         } else if (rightBool && topBool) {
             drawSensor(x,y, sensorWidth, sensorHeight);
             drawSensor(x-sensorWidth,y, sensorHeight, sensorWidth);
+            drawDistance(x,y, 125);
         } else if (rightBool && bottomBool) {
             drawSensor(x-sensorWidth,y, sensorHeight, sensorWidth);
             drawSensor(x,y-sensorWidth, sensorWidth, sensorHeight);
+            drawDistance(x,y, 220);
         } else if (leftBool || rightBool) {
             if (y > top && y < bottom) {
                 drawSensor(x, ySide, sensorWidth, sensorHeight);
-                y = ySide;
+                drawDistance(x,y, 150);
+                //y = ySide;
             }
         } else if (topBool || bottomBool) {
             if (x > left && x < right) {
                 drawSensor(xSide, y, sensorHeight, sensorWidth);
-                x = xSide;
+                drawDistance(x,y, 100);
+                //x = xSide;
             }
         }
 
@@ -245,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
         Rect sensor = new Rect(x, y, x+sensorDrawWidth, y+sensorDrawHeight);
         canvas.drawRect(sensor, myPaint);
+
         drawingSpace.setImageBitmap(bitmap);
 
         toggleAdd = false;
@@ -357,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void drawDistance(int x, int y) {
+    private void drawDistance(int x, int y, int distance) {
         if (x >= left - touchMargin && x <= left + touchMargin) {
 
             leftBool = true;
@@ -379,237 +392,316 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Path path = new Path();
-        path.setFillType(Path.FillType.EVEN_ODD);
-
+        //path.setFillType(Path.FillType.EVEN_ODD);
+        float nextPointC = 50;
+        float sideTriangle = (float) 32.25; // for sides
+        float nextPointS = (float) 32.25;
+        float divider = (float) 1.550387596899225;
         if (leftBool && topBool) {
 
             /*path.moveTo(x, y);
             path.lineTo(x - 200, y);
             path.lineTo(x, y - 200);
             path.lineTo(x, y);*/
+            if (distance >= 0) {
 
-            //red triangle
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 0, 0));
-            path.moveTo(x,y);
-            path.lineTo(x-50, y);
-            path.lineTo(x, y-50);
-            path.lineTo(x,y);
+                if (distance < 50) {
+                    nextPointC = distance;
+                }
+                //red triangle
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 0, 0));
+                path.moveTo(x, y);
+                path.lineTo(x - nextPointC, y);
+                path.lineTo(x, y - nextPointC);
+                path.lineTo(x, y);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 50) {
+                if (distance < 100) {
+                    nextPointC = distance - 50;
+                }
+                //orange part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 97, 0));
+                path.moveTo(x - 50, y);
+                path.lineTo(x - 50 - nextPointC, y);
+                path.lineTo(x, y - 50 - nextPointC);
+                path.lineTo(x, y - 50);
+                path.lineTo(x - 50, y);
 
-            //orange part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 97, 0));
-            path.moveTo(x-50,y);
-            path.lineTo(x-100, y);
-            path.lineTo(x, y-100);
-            path.lineTo(x, y-50);
-            path.lineTo(x-50,y);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 100) {
+                if (distance < 150) {
+                    nextPointC = distance - 100;
+                    Log.e("distance: ", String.valueOf(distance));
+                }
+                //yellow part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 255, 0));
+                path.moveTo(x - 100, y);
+                path.lineTo(x - 100 - nextPointC, y);
+                path.lineTo(x, y - 100 - nextPointC);
+                path.lineTo(x, y - 100);
+                path.lineTo(x - 100, y);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 150) {
+                if (distance < 200) {
+                    nextPointC = distance - 150;
+                }
+                //green part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(0, 255, 0));
+                path.moveTo(x - 150, y);
+                path.lineTo(x - 150 - nextPointC, y);
+                path.lineTo(x, y - 150 - nextPointC);
+                path.lineTo(x, y - 150);
+                path.lineTo(x - 150, y);
 
-            //yellow part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 255, 0));
-            path.moveTo(x-100,y);
-            path.lineTo(x-150, y);
-            path.lineTo(x, y-150);
-            path.lineTo(x, y-100);
-            path.lineTo(x-100,y);
-
-            path.close();
-            canvas.drawPath(path, myPaint);
-
-            //green part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(0, 255, 0));
-            path.moveTo(x-150,y);
-            path.lineTo(x-200, y);
-            path.lineTo(x, y-200);
-            path.lineTo(x, y-150);
-            path.lineTo(x-150,y);
-
-            path.close();
-            canvas.drawPath(path, myPaint);
-
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
 
         } else if (leftBool && bottomBool) {
             /*path.moveTo(x, y + sensorWidth);
             path.lineTo(x, y + 200 + sensorWidth);
             path.lineTo(x - 200, y + sensorWidth);
             path.lineTo(x, y + sensorWidth);*/
+            if (distance >= 0) {
 
-            //red triangle
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 0, 0));
-            path.moveTo(x,y+ sensorWidth);
-            path.lineTo(x-50, y+ sensorWidth);
-            path.lineTo(x, y+50+ sensorWidth);
-            path.lineTo(x,y+ sensorWidth);
+                if (distance < 50) {
+                    nextPointC = distance;
+                }
+                //red triangle
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 0, 0));
+                path.moveTo(x, y + sensorWidth);
+                path.lineTo(x - nextPointC, y + sensorWidth);
+                path.lineTo(x, y + nextPointC + sensorWidth);
+                path.lineTo(x, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 50) {
 
-            //orange part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 97, 0));
-            path.moveTo(x-50,y+ sensorWidth);
-            path.lineTo(x-100, y+ sensorWidth);
-            path.lineTo(x, y+100+ sensorWidth);
-            path.lineTo(x, y+50+ sensorWidth);
-            path.lineTo(x-50,y+ sensorWidth);
+                if (distance < 100) {
+                    nextPointC = distance - 50;
+                }
+                //orange part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 97, 0));
+                path.moveTo(x - 50, y + sensorWidth);
+                path.lineTo(x - 50 - nextPointC, y + sensorWidth);
+                path.lineTo(x, y + 50 + nextPointC + sensorWidth);
+                path.lineTo(x, y + 50 + sensorWidth);
+                path.lineTo(x - 50, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 100) {
 
-            //yellow part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 255, 0));
-            path.moveTo(x-100,y+ sensorWidth);
-            path.lineTo(x-150, y+ sensorWidth);
-            path.lineTo(x, y+150+ sensorWidth);
-            path.lineTo(x, y+100+ sensorWidth);
-            path.lineTo(x-100,y+ sensorWidth);
+                if (distance < 150) {
+                    nextPointC = distance - 100;
+                }
+                //yellow part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 255, 0));
+                path.moveTo(x - 100, y + sensorWidth);
+                path.lineTo(x - 100 - nextPointC, y + sensorWidth);
+                path.lineTo(x, y + 100 + nextPointC + sensorWidth);
+                path.lineTo(x, y + 100 + sensorWidth);
+                path.lineTo(x - 100, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 150) {
 
-            //green part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(0, 255, 0));
-            path.moveTo(x-150,y+ sensorWidth);
-            path.lineTo(x-200, y+ sensorWidth);
-            path.lineTo(x, y+200+ sensorWidth);
-            path.lineTo(x, y+150+ sensorWidth);
-            path.lineTo(x-150,y+ sensorWidth);
+                if (distance < 200) {
+                    nextPointC = distance - 150;
+                }
+                //green part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(0, 255, 0));
+                path.moveTo(x - 150, y + sensorWidth);
+                path.lineTo(x - 150 - nextPointC, y + sensorWidth);
+                path.lineTo(x, y + 150 + nextPointC + sensorWidth);
+                path.lineTo(x, y + 150 + sensorWidth);
+                path.lineTo(x - 150, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
 
         } else if (rightBool && topBool) {
             /*path.moveTo(x + sensorWidth, y);
             path.lineTo(x + 200, y);
             path.lineTo(x + sensorWidth, y - 200);
             path.lineTo(x + sensorWidth, y);*/
+            if (distance >= 0) {
 
-            //red triangle
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 0, 0));
-            path.moveTo(x+ sensorWidth,y);
-            path.lineTo(x+50+ sensorWidth, y);
-            path.lineTo(x+ sensorWidth, y-50);
-            path.lineTo(x+ sensorWidth,y);
+                if (distance < 50) {
+                    nextPointC = distance;
+                }
+                //red triangle
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 0, 0));
+                path.moveTo(x + sensorWidth, y);
+                path.lineTo(x + nextPointC + sensorWidth, y);
+                path.lineTo(x + sensorWidth, y - nextPointC);
+                path.lineTo(x + sensorWidth, y);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 50) {
 
-            //orange part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 97, 0));
-            path.moveTo(x+50+ sensorWidth,y);
-            path.lineTo(x+100+ sensorWidth, y);
-            path.lineTo(x+ sensorWidth, y-100);
-            path.lineTo(x+ sensorWidth, y-50);
-            path.lineTo(x+50+ sensorWidth,y);
+                if (distance < 100) {
+                    nextPointC = distance - 50;
+                }
+                //orange part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 97, 0));
+                path.moveTo(x + 50 + sensorWidth, y);
+                path.lineTo(x + 50 + nextPointC + sensorWidth, y);
+                path.lineTo(x + sensorWidth, y - 50 - nextPointC);
+                path.lineTo(x + sensorWidth, y - 50);
+                path.lineTo(x + 50 + sensorWidth, y);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 100) {
 
-            //yellow part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 255, 0));
-            path.moveTo(x+100+ sensorWidth,y);
-            path.lineTo(x+150+ sensorWidth, y);
-            path.lineTo(x+ sensorWidth, y-150);
-            path.lineTo(x+ sensorWidth, y-100);
-            path.lineTo(x+100+ sensorWidth,y);
+                if (distance < 150) {
+                    nextPointC = distance - 100;
+                }
+                //yellow part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 255, 0));
+                path.moveTo(x + 100 + sensorWidth, y);
+                path.lineTo(x + 100 + nextPointC + sensorWidth, y);
+                path.lineTo(x + sensorWidth, y - 100 - nextPointC);
+                path.lineTo(x + sensorWidth, y - 100);
+                path.lineTo(x + 100 + sensorWidth, y);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 150) {
 
-            //green part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(0, 255, 0));
-            path.moveTo(x+150+ sensorWidth,y);
-            path.lineTo(x+200+ sensorWidth, y);
-            path.lineTo(x+ sensorWidth, y-200);
-            path.lineTo(x+ sensorWidth, y-150);
-            path.lineTo(x+150+ sensorWidth,y);
+                if (distance < 200) {
+                    nextPointC = distance - 150;
+                }
+                //green part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(0, 255, 0));
+                path.moveTo(x + 150 + sensorWidth, y);
+                path.lineTo(x + 150 + nextPointC + sensorWidth, y);
+                path.lineTo(x + sensorWidth, y - 150 - nextPointC);
+                path.lineTo(x + sensorWidth, y - 150);
+                path.lineTo(x + 150 + sensorWidth, y);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
-
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
         } else if (rightBool && bottomBool) {
             /*path.moveTo(x + sensorWidth, y + sensorWidth);
             path.lineTo(x + sensorWidth, y + 200 + sensorWidth);
             path.lineTo(x + 200 + sensorWidth, y + sensorWidth);
             path.lineTo(x + sensorWidth, y + sensorWidth);*/
+            if (distance >= 0) {
 
-            //red triangle
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 0, 0));
-            path.moveTo(x+ sensorWidth,y+ sensorWidth);
-            path.lineTo(x+50+ sensorWidth, y+ sensorWidth);
-            path.lineTo(x+ sensorWidth, y+50+ sensorWidth);
-            path.lineTo(x+ sensorWidth,y+ sensorWidth);
+                if (distance < 50) {
+                    nextPointC = distance;
+                }
+                //red triangle
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 0, 0));
+                path.moveTo(x + sensorWidth, y + sensorWidth);
+                path.lineTo(x + nextPointC + sensorWidth, y + sensorWidth);
+                path.lineTo(x + sensorWidth, y + nextPointC + sensorWidth);
+                path.lineTo(x + sensorWidth, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 50) {
 
-            //orange part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 97, 0));
-            path.moveTo(x+50+ sensorWidth,y+ sensorWidth);
-            path.lineTo(x+100+ sensorWidth, y+ sensorWidth);
-            path.lineTo(x+ sensorWidth, y+100+ sensorWidth);
-            path.lineTo(x+ sensorWidth, y+50+ sensorWidth);
-            path.lineTo(x+50+ sensorWidth,y+ sensorWidth);
+                if (distance < 100) {
+                    nextPointC = distance - 50;
+                }
+                //orange part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 97, 0));
+                path.moveTo(x + 50 + sensorWidth, y + sensorWidth);
+                path.lineTo(x + 50 + nextPointC + sensorWidth, y + sensorWidth);
+                path.lineTo(x + sensorWidth, y + 50 + nextPointC + sensorWidth);
+                path.lineTo(x + sensorWidth, y + 50 + sensorWidth);
+                path.lineTo(x + 50 + sensorWidth, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 100) {
 
-            //yellow part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(255, 255, 0));
-            path.moveTo(x+100+ sensorWidth,y+ sensorWidth);
-            path.lineTo(x+150+ sensorWidth, y+ sensorWidth);
-            path.lineTo(x+ sensorWidth, y+150+ sensorWidth);
-            path.lineTo(x+ sensorWidth, y+100+ sensorWidth);
-            path.lineTo(x+100+ sensorWidth,y+ sensorWidth);
+                if (distance < 150) {
+                    nextPointC = distance - 100;
+                }
+                //yellow part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(255, 255, 0));
+                path.moveTo(x + 100 + sensorWidth, y + sensorWidth);
+                path.lineTo(x + 100 + nextPointC + sensorWidth, y + sensorWidth);
+                path.lineTo(x + sensorWidth, y + 100 + nextPointC + sensorWidth);
+                path.lineTo(x + sensorWidth, y + 100 + sensorWidth);
+                path.lineTo(x + 100 + sensorWidth, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
+            if (distance >= 150) {
 
-            //green part
-            path = new Path();
-            path.setFillType(Path.FillType.EVEN_ODD);
-            myPaint.setColor(Color.rgb(0, 255, 0));
-            path.moveTo(x+150+ sensorWidth,y+ sensorWidth);
-            path.lineTo(x+200+ sensorWidth, y+ sensorWidth);
-            path.lineTo(x+ sensorWidth, y+200+ sensorWidth);
-            path.lineTo(x+ sensorWidth, y+150+ sensorWidth);
-            path.lineTo(x+150+ sensorWidth,y+ sensorWidth);
+                if (distance < 200) {
+                    nextPointC = distance - 150;
+                }
+                //green part
+                path = new Path();
+                path.setFillType(Path.FillType.EVEN_ODD);
+                myPaint.setColor(Color.rgb(0, 255, 0));
+                path.moveTo(x + 150 + sensorWidth, y + sensorWidth);
+                path.lineTo(x + 150 + nextPointC + sensorWidth, y + sensorWidth);
+                path.lineTo(x + sensorWidth, y + 150 + nextPointC + sensorWidth);
+                path.lineTo(x + sensorWidth, y + 150 + sensorWidth);
+                path.lineTo(x + 150 + sensorWidth, y + sensorWidth);
 
-            path.close();
-            canvas.drawPath(path, myPaint);
+                path.close();
+                canvas.drawPath(path, myPaint);
+            }
         } else if (leftBool) {
             if (y > top && y < bottom) {
                 /*path.moveTo(x, y+sensorWidth);
@@ -617,59 +709,78 @@ public class MainActivity extends AppCompatActivity {
                 path.lineTo(x-141, y +sensorWidth + 141);
                 path.lineTo(x, y+sensorWidth);*/
 
-                float sideTriangle = (float)32.25;
 
-                //red triangle
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 0, 0));
-                path.moveTo(x,y+ sensorWidth);
-                path.lineTo(x-sideTriangle, y+ sensorWidth-sideTriangle);
-                path.lineTo(x-sideTriangle, y+sideTriangle+ sensorWidth);
-                path.lineTo(x,y+ sensorWidth);
+                if (distance >= 0) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 50) {
+                        nextPointS = (distance/divider);
+                    }
+                    //red triangle
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 0, 0));
+                    path.moveTo(x, y + sensorWidth);
+                    path.lineTo(x - nextPointS, y + sensorWidth - nextPointS);
+                    path.lineTo(x - nextPointS, y + nextPointS + sensorWidth);
+                    path.lineTo(x, y + sensorWidth);
 
-                //orange part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 97, 0));
-                path.moveTo(x-sideTriangle,y+ sensorWidth-sideTriangle);
-                path.lineTo(x-2*sideTriangle, y+ sensorWidth-2*sideTriangle);
-                path.lineTo(x-2*sideTriangle, y+ sensorWidth+2*sideTriangle);
-                path.lineTo(x-sideTriangle, y+ sensorWidth+sideTriangle);
-                path.lineTo(x-sideTriangle,y+ sensorWidth-sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 50) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 100) {
+                        nextPointS = ((distance - 50) / divider);
+                    }
+                    //orange part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 97, 0));
+                    path.moveTo(x - sideTriangle, y + sensorWidth - sideTriangle);
+                    path.lineTo(x - nextPointS - sideTriangle, y + sensorWidth - nextPointS - sideTriangle);
+                    path.lineTo(x - nextPointS - sideTriangle, y + sensorWidth + nextPointS + sideTriangle);
+                    path.lineTo(x - sideTriangle, y + sensorWidth + sideTriangle);
+                    path.lineTo(x - sideTriangle, y + sensorWidth - sideTriangle);
 
-                //yellow part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 255, 0));
-                path.moveTo(x-2*sideTriangle,y+sensorWidth-2*sideTriangle);
-                path.lineTo(x-3*sideTriangle, y+sensorWidth-3*sideTriangle);
-                path.lineTo(x-3*sideTriangle, y+sensorWidth+3*sideTriangle);
-                path.lineTo(x-2*sideTriangle, y+sensorWidth+2*sideTriangle);
-                path.lineTo(x-2*sideTriangle,y+sensorWidth-2*sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 100) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 150) {
+                        nextPointS = ((distance - 100) / divider);
+                    }
+                    //yellow part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 255, 0));
+                    path.moveTo(x - 2 * sideTriangle, y + sensorWidth - 2 * sideTriangle);
+                    path.lineTo(x - nextPointS - 2 * sideTriangle, y + sensorWidth - nextPointS - 2 * sideTriangle);
+                    path.lineTo(x - nextPointS - 2 * sideTriangle, y + sensorWidth + nextPointS + 2 * sideTriangle);
+                    path.lineTo(x - 2 * sideTriangle, y + sensorWidth + 2 * sideTriangle);
+                    path.lineTo(x - 2 * sideTriangle, y + sensorWidth - 2 * sideTriangle);
 
-                //green part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(0, 255, 0));
-                path.moveTo(x-3*sideTriangle,y+sensorWidth-3*sideTriangle);
-                path.lineTo(x-3*sideTriangle, y+sensorWidth+3*sideTriangle);
-                path.lineTo(x-4*sideTriangle, y+sensorWidth+4*sideTriangle);
-                path.lineTo(x-4*sideTriangle, y+sensorWidth-4*sideTriangle);
-                path.lineTo(x-3*sideTriangle,y+sensorWidth-3*sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 150) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 200) {
+                        nextPointS = ((distance - 150) / divider);
+                    }
+                    //green part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(0, 255, 0));
+                    path.moveTo(x - 3 * sideTriangle, y + sensorWidth - 3 * sideTriangle);
+                    path.lineTo(x - 3 * sideTriangle, y + sensorWidth + 3 * sideTriangle);
+                    path.lineTo(x - nextPointS - 3 * sideTriangle, y + sensorWidth + nextPointS + 3 * sideTriangle);
+                    path.lineTo(x - nextPointS - 3 * sideTriangle, y + sensorWidth - nextPointS - 3 * sideTriangle);
+                    path.lineTo(x - 3 * sideTriangle, y + sensorWidth - 3 * sideTriangle);
 
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
 
             }
         } else if (rightBool) {
@@ -679,58 +790,78 @@ public class MainActivity extends AppCompatActivity {
                 path.lineTo(x+sensorWidth+141, y +sensorWidth + 141);
                 path.lineTo(x+sensorWidth, y+sensorWidth);*/
 
-                float sideTriangle = (float)32.25;
 
-                //red triangle
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 0, 0));
-                path.moveTo(x+sensorWidth,y+ sensorWidth);
-                path.lineTo(x+sensorWidth+sideTriangle, y+ sensorWidth-sideTriangle);
-                path.lineTo(x+sensorWidth+sideTriangle, y+sideTriangle+ sensorWidth);
-                path.lineTo(x+sensorWidth,y+ sensorWidth);
+                if (distance >= 0) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 50) {
+                        nextPointS = (distance / divider);
+                    }
+                    //red triangle
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 0, 0));
+                    path.moveTo(x + sensorWidth, y + sensorWidth);
+                    path.lineTo(x + sensorWidth + nextPointS, y + sensorWidth - nextPointS);
+                    path.lineTo(x + sensorWidth + nextPointS, y + nextPointS + sensorWidth);
+                    path.lineTo(x + sensorWidth, y + sensorWidth);
 
-                //orange part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 97, 0));
-                path.moveTo(x+sensorWidth+sideTriangle,y+ sensorWidth-sideTriangle);
-                path.lineTo(x+sensorWidth+2*sideTriangle, y+ sensorWidth-2*sideTriangle);
-                path.lineTo(x+sensorWidth+2*sideTriangle, y+ sensorWidth+2*sideTriangle);
-                path.lineTo(x+sensorWidth+sideTriangle, y+ sensorWidth+sideTriangle);
-                path.lineTo(x+sensorWidth+sideTriangle,y+ sensorWidth-sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 50) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 100) {
+                        nextPointS = ((distance - 50) / divider);
+                    }
+                    //orange part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 97, 0));
+                    path.moveTo(x + sensorWidth + sideTriangle, y + sensorWidth - sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + sideTriangle, y + sensorWidth - nextPointS - sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + sideTriangle, y + sensorWidth + nextPointS + sideTriangle);
+                    path.lineTo(x + sensorWidth + sideTriangle, y + sensorWidth + sideTriangle);
+                    path.lineTo(x + sensorWidth + sideTriangle, y + sensorWidth - sideTriangle);
 
-                //yellow part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 255, 0));
-                path.moveTo(x+sensorWidth+2*sideTriangle,y+sensorWidth-2*sideTriangle);
-                path.lineTo(x+sensorWidth+3*sideTriangle, y+sensorWidth-3*sideTriangle);
-                path.lineTo(x+sensorWidth+3*sideTriangle, y+sensorWidth+3*sideTriangle);
-                path.lineTo(x+sensorWidth+2*sideTriangle, y+sensorWidth+2*sideTriangle);
-                path.lineTo(x+sensorWidth+2*sideTriangle,y+sensorWidth-2*sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 100) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 150) {
+                        nextPointS = ((distance - 100) / divider);
+                    }
+                    //yellow part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 255, 0));
+                    path.moveTo(x + sensorWidth + 2 * sideTriangle, y + sensorWidth - 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + 2* sideTriangle, y + sensorWidth - nextPointS - 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + 2 * sideTriangle, y + sensorWidth + nextPointS + 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth + 2 * sideTriangle, y + sensorWidth + 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth + 2 * sideTriangle, y + sensorWidth - 2 * sideTriangle);
 
-                //green part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(0, 255, 0));
-                path.moveTo(x+sensorWidth+3*sideTriangle,y+sensorWidth-3*sideTriangle);
-                path.lineTo(x+sensorWidth+3*sideTriangle, y+sensorWidth+3*sideTriangle);
-                path.lineTo(x+sensorWidth+4*sideTriangle, y+sensorWidth+4*sideTriangle);
-                path.lineTo(x+sensorWidth+4*sideTriangle, y+sensorWidth-4*sideTriangle);
-                path.lineTo(x+sensorWidth+3*sideTriangle,y+sensorWidth-3*sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 150) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 200) {
+                        nextPointS = ((distance - 150) / divider);
+                    }
+                    //green part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(0, 255, 0));
+                    path.moveTo(x + sensorWidth + 3 * sideTriangle, y + sensorWidth - 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth + 3 * sideTriangle, y + sensorWidth + 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + 3 * sideTriangle, y + sensorWidth + nextPointS + 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + 3 * sideTriangle, y + sensorWidth - nextPointS - 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth + 3 * sideTriangle, y + sensorWidth - 3 * sideTriangle);
+
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
             }
         }else if (topBool) {
             if (x > left && x < right) {
@@ -739,58 +870,78 @@ public class MainActivity extends AppCompatActivity {
                 path.lineTo(x+sensorWidth-141, y - 141);
                 path.lineTo(x+sensorWidth, y);*/
 
-                float sideTriangle = (float)32.25;
 
-                //red triangle
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 0, 0));
-                path.moveTo(x+sensorWidth,y);
-                path.lineTo(x+sensorWidth+sideTriangle, y-sideTriangle);
-                path.lineTo(x+sensorWidth-sideTriangle, y-sideTriangle);
-                path.lineTo(x+sensorWidth,y);
+                if (distance >= 0) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 50) {
+                        nextPointS = (distance / divider);
+                    }
+                    //red triangle
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 0, 0));
+                    path.moveTo(x + sensorWidth, y);
+                    path.lineTo(x + sensorWidth + nextPointS, y - nextPointS);
+                    path.lineTo(x + sensorWidth - nextPointS, y - nextPointS);
+                    path.lineTo(x + sensorWidth, y);
 
-                //orange part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 97, 0));
-                path.moveTo(x+sensorWidth+sideTriangle,y-sideTriangle);
-                path.lineTo(x+sensorWidth+2*sideTriangle, y-2*sideTriangle);
-                path.lineTo(x+sensorWidth-2*sideTriangle, y-2*sideTriangle);
-                path.lineTo(x+sensorWidth-sideTriangle, y-sideTriangle);
-                path.lineTo(x+sensorWidth+sideTriangle,y-sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 50) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 100) {
+                        nextPointS = ((distance - 50) / divider);
+                    }
+                    //orange part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 97, 0));
+                    path.moveTo(x + sensorWidth + sideTriangle, y - sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + sideTriangle, y - nextPointS - sideTriangle);
+                    path.lineTo(x + sensorWidth - nextPointS - sideTriangle, y - nextPointS - sideTriangle);
+                    path.lineTo(x + sensorWidth - sideTriangle, y - sideTriangle);
+                    path.lineTo(x + sensorWidth + sideTriangle, y - sideTriangle);
 
-                //yellow part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 255, 0));
-                path.moveTo(x+sensorWidth+2*sideTriangle,y-2*sideTriangle);
-                path.lineTo(x+sensorWidth+3*sideTriangle, y-3*sideTriangle);
-                path.lineTo(x+sensorWidth-3*sideTriangle, y-3*sideTriangle);
-                path.lineTo(x+sensorWidth-2*sideTriangle, y-2*sideTriangle);
-                path.lineTo(x+sensorWidth+2*sideTriangle,y-2*sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 100) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 150) {
+                        nextPointS = ((distance - 100) / divider);
+                    }
+                    //yellow part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 255, 0));
+                    path.moveTo(x + sensorWidth + 2 * sideTriangle, y - 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + 2 * sideTriangle, y - nextPointS - 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth - nextPointS - 2 * sideTriangle, y - nextPointS - 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth - 2 * sideTriangle, y - 2 * sideTriangle);
+                    path.lineTo(x + sensorWidth + 2 * sideTriangle, y - 2 * sideTriangle);
 
-                //green part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(0, 255, 0));
-                path.moveTo(x+sensorWidth+3*sideTriangle,y-3*sideTriangle);
-                path.lineTo(x+sensorWidth-3*sideTriangle, y-3*sideTriangle);
-                path.lineTo(x+sensorWidth-4*sideTriangle, y-4*sideTriangle);
-                path.lineTo(x+sensorWidth+4*sideTriangle, y-4*sideTriangle);
-                path.lineTo(x+sensorWidth+3*sideTriangle,y-3*sideTriangle);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 150) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 200) {
+                        nextPointS = ((distance - 150) / divider);
+                    }
+                    //green part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(0, 255, 0));
+                    path.moveTo(x + sensorWidth + 3 * sideTriangle, y - 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth - 3 * sideTriangle, y - 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth - nextPointS-3 * sideTriangle, y - nextPointS - 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth + nextPointS + 3 * sideTriangle, y - nextPointS - 3 * sideTriangle);
+                    path.lineTo(x + sensorWidth + 3 * sideTriangle, y - 3 * sideTriangle);
+
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
             }
         }else if (bottomBool) {
             if (x > left && x < right) {
@@ -799,58 +950,78 @@ public class MainActivity extends AppCompatActivity {
                 path.lineTo(x+sensorWidth-141, y+sensorWidth + 141);
                 path.lineTo(x+sensorWidth, y+sensorWidth);*/
 
-                float sideTriangle = (float)32.25;
 
-                //red triangle
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 0, 0));
-                path.moveTo(x+sensorWidth,y+sensorWidth);
-                path.lineTo(x+sensorWidth+sideTriangle, y+sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth-sideTriangle, y+sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth,y+sensorWidth);
+                if (distance >= 0) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 50) {
+                        nextPointS = (distance / divider);
+                    }
+                    //red triangle
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 0, 0));
+                    path.moveTo(x + sensorWidth, y + sensorWidth);
+                    path.lineTo(x + sensorWidth + nextPointS, y + nextPointS + sensorWidth);
+                    path.lineTo(x + sensorWidth - nextPointS, y + nextPointS + sensorWidth);
+                    path.lineTo(x + sensorWidth, y + sensorWidth);
 
-                //orange part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 97, 0));
-                path.moveTo(x+sensorWidth+sideTriangle,y+sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth+2*sideTriangle, y+2*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth-2*sideTriangle, y+2*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth-sideTriangle, y+sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth+sideTriangle,y+sideTriangle+sensorWidth);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 50) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 100) {
+                        nextPointS = ((distance - 50) / divider);
+                    }
+                    //orange part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 97, 0));
+                    path.moveTo(x + sensorWidth + sideTriangle, y + sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth + nextPointS + sideTriangle, y + nextPointS + sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth - nextPointS - sideTriangle, y + nextPointS + sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth - sideTriangle, y + sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth + sideTriangle, y + sideTriangle + sensorWidth);
 
-                //yellow part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(255, 255, 0));
-                path.moveTo(x+sensorWidth+2*sideTriangle,y+2*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth+3*sideTriangle, y+3*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth-3*sideTriangle, y+3*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth-2*sideTriangle, y+2*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth+2*sideTriangle,y+2*sideTriangle+sensorWidth);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 100) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 150) {
+                        nextPointS = ((distance - 100) / divider);
+                    }
+                    //yellow part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(255, 255, 0));
+                    path.moveTo(x + sensorWidth + 2 * sideTriangle, y + 2 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth + nextPointS + 2 * sideTriangle, y +  nextPointS + 2 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth - nextPointS - 2 * sideTriangle, y + nextPointS + 2 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth - 2 * sideTriangle, y + 2 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth + 2 * sideTriangle, y + 2 * sideTriangle + sensorWidth);
 
-                //green part
-                path = new Path();
-                path.setFillType(Path.FillType.EVEN_ODD);
-                myPaint.setColor(Color.rgb(0, 255, 0));
-                path.moveTo(x+sensorWidth+3*sideTriangle,y+3*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth-3*sideTriangle, y+3*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth-4*sideTriangle, y+4*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth+4*sideTriangle, y+4*sideTriangle+sensorWidth);
-                path.lineTo(x+sensorWidth+3*sideTriangle,y+3*sideTriangle+sensorWidth);
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
+                if (distance >= 150) {
 
-                path.close();
-                canvas.drawPath(path, myPaint);
+                    if (distance < 200) {
+                        nextPointS = ((distance - 150) / divider);
+                    }
+                    //green part
+                    path = new Path();
+                    path.setFillType(Path.FillType.EVEN_ODD);
+                    myPaint.setColor(Color.rgb(0, 255, 0));
+                    path.moveTo(x + sensorWidth + 3 * sideTriangle, y + 3 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth - 3 * sideTriangle, y + 3 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth - nextPointS - 3 * sideTriangle, y + nextPointS + 3 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth + nextPointS + 3 * sideTriangle, y + nextPointS + 3 * sideTriangle + sensorWidth);
+                    path.lineTo(x + sensorWidth + 3 * sideTriangle, y + 3 * sideTriangle + sensorWidth);
+
+                    path.close();
+                    canvas.drawPath(path, myPaint);
+                }
             }
         }
 
