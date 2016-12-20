@@ -64,8 +64,11 @@ Loraley is een alternatief open source data netwerk, deze is nog in primitieve s
 Om connectie te kunnen maken met de servers van het TTN netwerk, moesten we wat aanpassen in de configuratie van de module.
 We moesten in de local_conf.json file een aanpassing maken.
 > cd lorank8-0.2.3
+
 > cd packet_forwarder
+
 > cd poly_pkt_fwd
+
 > nano local_conf.json
 
 
