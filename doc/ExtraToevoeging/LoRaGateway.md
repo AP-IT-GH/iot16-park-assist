@@ -103,6 +103,17 @@ Deze pakketjes worden dan als datagrams verstuurd naar de server( men krijgt ook
 
 In de downstream tabel kan men zien of de datagrams ontvangen werden door de server, alsook of de radio packets succesvol over het netwerk zijn gestuurd.
 
+##Logging
+
+Het dashboard van de LoRa Gateway is opzich al een handige tool om te kunnen bekijken wat er door de gateway komt. Maar natuurlijk zijn de logs daar ook een heel handig gegeven voor.
+Om deze te kunnen bekijken gebruik je dit commando:
+> tail -f /var/log/syslog
+
+Bij een werkend systeem zie je dan ongeveer zo een logs.
+![workingsystem.png](workingsystem.png)
+
+Tussen deze logs kan je zien hoeveel packets ontvangen zijn, percentage geslaagde/gefailde zendingen, forwarded packets.
+Alsook wat er downstream gebeurd, gps tracking (indien dit ingesteld is) en de performance van de connectie.
 
 
 
