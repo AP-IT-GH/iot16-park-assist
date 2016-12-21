@@ -115,6 +115,7 @@ Bij een werkend systeem zie je dan ongeveer zo een logs.
 Tussen deze logs kan je zien hoeveel packets ontvangen zijn, percentage geslaagde/gefailde zendingen, forwarded packets.
 Alsook wat er downstream gebeurd, gps tracking (indien dit ingesteld is) en de performance van de connectie.
 
+######Source: https://www.thethingsnetwork.org/wiki/Backend/Connect/Gateway
 
 
 
