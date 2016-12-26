@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        new mqttClass(this);
+
         drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
         //final View content = findViewById(android.R.id.content);
         drawingSpace.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
