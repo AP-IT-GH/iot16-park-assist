@@ -145,7 +145,7 @@ void loop()
   if(startSensor) {
     if((distance + 10 >= analogRead(pin)) && (distance -10 <= analogRead(pin))) {
       Serial.println("TXing");
-      myLora.tx("Hello");
+      myLora.tx("An intruder has been detected!");
     }
   }
 }
