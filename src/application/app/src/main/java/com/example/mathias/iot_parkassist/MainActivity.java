@@ -7,6 +7,7 @@
 package com.example.mathias.iot_parkassist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -61,13 +62,16 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     private static final String LIST_X = "listXCoördinates";
     private static final String LIST_Y = "listYCoördinates";
+    bluetooth bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bt = new bluetooth(this);
         new mqttClass(this);
+
 
         drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
         //final View content = findViewById(android.R.id.content);
@@ -154,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonAdd = (Button) findViewById(R.id.add);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 toggleAdd = true;
             }
         });
@@ -162,6 +167,19 @@ public class MainActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 toggleDelete = true;
+            }
+        });
+
+        Button buttonStart = (Button) findViewById(R.id.start);
+        buttonStart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bt.send("Y");
+            }
+        });
+        Button buttonStop = (Button) findViewById(R.id.stop);
+        buttonStop.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bt.send("N");
             }
         });
     }

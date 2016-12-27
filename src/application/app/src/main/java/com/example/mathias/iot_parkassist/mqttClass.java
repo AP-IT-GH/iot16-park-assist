@@ -27,7 +27,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
  * Created by mathias on 26/12/2016.
  */
 
-public class mqttClass {
+public class mqttClass{
     String clientId;
     MqttAndroidClient client;
 
