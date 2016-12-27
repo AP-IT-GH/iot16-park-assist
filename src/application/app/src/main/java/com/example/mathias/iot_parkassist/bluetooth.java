@@ -51,8 +51,7 @@ public class bluetooth extends MainActivity{
                 activity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
 
-            pairedDevices = bluetoothAdapter.getBondedDevices();
-            Log.e("pairedDevices", pairedDevices.toString() );
+
 
 
 
@@ -64,6 +63,8 @@ public class bluetooth extends MainActivity{
     }
 
     public void send(String message) {
+        pairedDevices = bluetoothAdapter.getBondedDevices();
+        Log.e("pairedDevices", pairedDevices.toString() );
         if (!pairedDevices.isEmpty()) {
             //new ConnectThread(pairedDevices.iterator().next()).run();
             BluetoothConnector bc = new BluetoothConnector(pairedDevices.iterator().next(), true, bluetoothAdapter, null);

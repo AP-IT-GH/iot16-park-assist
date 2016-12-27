@@ -18,6 +18,7 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -35,7 +36,7 @@ public class mqttClass{
         final Context classContext = context;
 
         clientId = MqttClient.generateClientId();
-        client = new MqttAndroidClient(classContext, "tcp://mqtt.luytsm.be:1883", clientId);
+        client = new MqttAndroidClient(classContext, "tcp://staging.thethingsnetwork.org:1883", clientId);
         client.setCallback(new MqttCallback() {
             @Override
             public void connectionLost(Throwable cause) {
@@ -77,13 +78,13 @@ public class mqttClass{
         });
 
         //We will use this to connect to the things network
-        //MqttConnectOptions options = new MqttConnectOptions();
-        /*options.setUserName("USERNAME");
-        options.setPassword("PASSWORD".toCharArray());*/
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setUserName("70B3D57ED00018A3");
+        options.setPassword("nrmLIdzcRc+zQTpiWO7QGvwCCJtN7Kw0F5how6WjBbY=".toCharArray());
 
         try {
-            IMqttToken token = client.connect();
-            //IMqttToken token = client.connect(options); //use this one when using the password and username
+            //IMqttToken token = client.connect();
+            IMqttToken token = client.connect(options); //use this one when using the password and username
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
@@ -105,7 +106,7 @@ public class mqttClass{
     }
 
     private void subscribe() {
-        String topic = "test";
+        String topic = "70B3D57ED00018A3/devices/000000009CC4931F/up";
         int qos = 1;
         try {
             IMqttToken subToken = client.subscribe(topic, qos);
