@@ -6,6 +6,7 @@
 
 package com.example.mathias.iot_parkassist;
 
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Shader;
+import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,9 +38,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOError;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         bt = new bluetooth(this);
         new mqttClass(this);
-
+        bt.getPairedDevices();
+        new LooperTask().execute(bt.pairedDevices.iterator().next());
 
         drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
         //final View content = findViewById(android.R.id.content);
@@ -83,51 +89,10 @@ public class MainActivity extends AppCompatActivity {
                 //modify the layout from within this method.
                 drawingSpace.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 
-                //Now you can get the width and height from content
-                width = drawingSpace.getWidth();
-                height = drawingSpace.getHeight();
-                bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-                canvas = new Canvas(bitmap);
-                drawingSpace.setImageBitmap(bitmap);
-
-                top = left = 300;
-                right = width-300;
-                bottom = height-300;
-                sensorWidth = 40;
-                sensorHeight = sensorWidth*2;
-                touchMargin = sensorWidth;
-
-                myPaint.setColor(Color.rgb(0, 0, 0));
-                myPaint.setStrokeWidth(10);
-
-                canvas.drawRect(left, top, right, bottom, myPaint);
+                drawCenter();
 
 
-
-                //Here comes the code where we retrieve the connected sensors and put them in macList
-                macList.add("z");
-
-                /*xCoöList = new int[macList.size()];
-                yCoöList = new int[macList.size()];*/
-
-                sharedPreferencesX = getSharedPreferences(LIST_X, Context.MODE_PRIVATE);
-                sharedPreferencesY = getSharedPreferences(LIST_Y, Context.MODE_PRIVATE);
-
-                xCoöList = getCoöList(sharedPreferencesX);
-                yCoöList = getCoöList(sharedPreferencesY);
-
-                clearSharedPreferences(sharedPreferencesX);
-                clearSharedPreferences(sharedPreferencesY);
-
-                fillSharedPreferences(sharedPreferencesX, xCoöList);
-                fillSharedPreferences(sharedPreferencesY, yCoöList);
-
-                myPaint.setColor(Color.rgb(200, 200, 100));
-
-                for (int i=0; i<xCoöList.size(); i++) {
-                    addSensor(xCoöList.get(i),yCoöList.get(i));
-                    //drawDistance(xCoöList.get(i), yCoöList.get(i), 80);
-                }
+                drawAllSensors(0);
 
             }
         });
@@ -143,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
                     //case MotionEvent.ACTION_MOVE:
                     case MotionEvent.ACTION_UP:
                         if(toggleAdd) {
-                            myPaint.setColor(Color.rgb(200, 200, 100));
-                            addSensor(x, y);
+
+                            addSensor(x, y, 0, "20:16:02:18:48:20");
+                            toggleAdd = false;
                         } else if(toggleDelete) {
                             deleteSensor(x,y);
                         }
@@ -158,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         Button buttonAdd = (Button) findViewById(R.id.add);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 toggleAdd = true;
             }
         });
@@ -184,6 +149,55 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private class LooperTask extends AsyncTask<BluetoothDevice, String, String> {
+
+        @Override
+        protected String doInBackground(BluetoothDevice... device) {
+            BluetoothConnector bc = new BluetoothConnector(device[0], true, bt.bluetoothAdapter, null);
+            try {
+                BluetoothConnector.BluetoothSocketWrapper bs = bc.connect();
+                InputStream input = bs.getInputStream();
+                while (true) {
+                    String distanceString = bt.read(device[0], input);
+                    Log.e("distanceAs", distanceString);
+                    //Long distance;
+                    try {
+                        //distance = Long.getLong(distanceString);
+                        publishProgress(distanceString, device[0].toString());
+                    } catch (NumberFormatException nfe) {
+                        Log.e("nfe", nfe.toString());
+                    }
+
+                    SystemClock.sleep(300);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+       // @Override
+        protected void onProgressUpdate(String... data) {
+            int distance = 0;
+            try {
+                distance = new Integer(data[0].trim());
+                Log.e("progress", String.valueOf(distance));
+            } catch (NumberFormatException nfe) {
+                Log.e("nfe", nfe.toString());
+            }
+
+            sharedPreferencesX = getSharedPreferences(LIST_X, Context.MODE_PRIVATE);
+            sharedPreferencesY = getSharedPreferences(LIST_Y, Context.MODE_PRIVATE);
+
+            String mac = data[1].trim();
+            //bitmap.eraseColor(Color.TRANSPARENT);
+            drawCenter();
+            addSensor(sharedPreferencesX.getInt(mac, -1), sharedPreferencesY.getInt(mac,-1), distance, mac);
+
+            //drawAllSensors(distance);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -206,7 +220,63 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addSensor(int x, int y) {
+    private void drawCenter() {
+        width = drawingSpace.getWidth();
+        height = drawingSpace.getHeight();
+        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
+        drawingSpace.setImageBitmap(bitmap);
+
+        top = left = 300;
+        right = width-300;
+        bottom = height-300;
+        sensorWidth = 40;
+        sensorHeight = sensorWidth*2;
+        touchMargin = sensorWidth;
+
+        myPaint.setColor(Color.rgb(0, 0, 0));
+        myPaint.setStrokeWidth(10);
+
+        canvas.drawRect(left, top, right, bottom, myPaint);
+
+    }
+
+    private void drawAllSensors(int distance) {
+        bt.getPairedDevices();
+        if (!bt.pairedDevices.isEmpty()) {
+            //new ConnectThread(pairedDevices.iterator().next()).run();
+            /*for (int j = 0; j<=bt.pairedDevices.size(); j++) {
+                Log.e("pairedDevice:    ", bt.pairedDevices.iterator().next().toString());
+                macList.add(bt.pairedDevices.iterator().next().toString());
+            }*/
+            Iterator iter = bt.pairedDevices.iterator();
+            while(iter.hasNext()){
+                //Log.e("iter:    ", iter.next().toString());
+                macList.add(iter.next().toString());
+            }
+        }
+
+        sharedPreferencesX = getSharedPreferences(LIST_X, Context.MODE_PRIVATE);
+        sharedPreferencesY = getSharedPreferences(LIST_Y, Context.MODE_PRIVATE);
+
+        xCoöList = getCoöList(sharedPreferencesX);
+        yCoöList = getCoöList(sharedPreferencesY);
+
+        clearSharedPreferences(sharedPreferencesX);
+        clearSharedPreferences(sharedPreferencesY);
+
+        fillSharedPreferences(sharedPreferencesX, xCoöList);
+        fillSharedPreferences(sharedPreferencesY, yCoöList);
+
+        myPaint.setColor(Color.rgb(200, 200, 100));
+
+        for (int i=0; i<xCoöList.size(); i++) {
+            addSensor(xCoöList.get(i),yCoöList.get(i), distance, macList.get(i));
+            //drawDistance(xCoöList.get(i), yCoöList.get(i), 80);
+        }
+    }
+
+    private void addSensor(int x, int y, int distance, String mac) {
 
 
         //necessary to have the sensor drawn with the touch point as middle. Momenteel niet in gebruik!!!!
@@ -235,29 +305,29 @@ public class MainActivity extends AppCompatActivity {
         if (leftBool && topBool) {
             drawSensor(x,y, sensorHeight, sensorWidth);
             drawSensor(x,y, sensorWidth, sensorHeight);
-            drawDistance(x,y, 160);
+            drawDistance(x,y, distance);
         } else if (leftBool && bottomBool) {
             drawSensor(x,y, sensorHeight, sensorWidth);
             drawSensor(x,y-sensorWidth, sensorWidth, sensorHeight );
-            drawDistance(x,y, 170);
+            drawDistance(x,y, distance);
         } else if (rightBool && topBool) {
             drawSensor(x,y, sensorWidth, sensorHeight);
             drawSensor(x-sensorWidth,y, sensorHeight, sensorWidth);
-            drawDistance(x,y, 125);
+            drawDistance(x,y, distance);
         } else if (rightBool && bottomBool) {
             drawSensor(x-sensorWidth,y, sensorHeight, sensorWidth);
             drawSensor(x,y-sensorWidth, sensorWidth, sensorHeight);
-            drawDistance(x,y, 220);
+            drawDistance(x,y, distance);
         } else if (leftBool || rightBool) {
             if (y > top && y < bottom) {
                 drawSensor(x, ySide, sensorWidth, sensorHeight);
-                drawDistance(x,y, 150);
+                drawDistance(x,y, distance);
                 //y = ySide;
             }
         } else if (topBool || bottomBool) {
             if (x > left && x < right) {
                 drawSensor(xSide, y, sensorHeight, sensorWidth);
-                drawDistance(x,y, 100);
+                drawDistance(x,y, distance);
                 //x = xSide;
             }
         }
@@ -266,21 +336,21 @@ public class MainActivity extends AppCompatActivity {
 
         //z = mac address of the sensor that has been selected to add.
         //TODO: check of de coo al in de arrays zitten, want dan moeten deze niet weer toegevoegd worden.
-        editor = sharedPreferencesX.edit().putInt("z", x);
+        editor = sharedPreferencesX.edit().putInt(mac, x);
         editor.commit();
-        editor = sharedPreferencesY.edit().putInt("z", y);
+        editor = sharedPreferencesY.edit().putInt(mac, y);
         editor.commit();
 
     }
 
     private void drawSensor(int x, int y, int sensorDrawWidth, int sensorDrawHeight) {
-
+        myPaint.setColor(Color.rgb(200, 200, 100));
         Rect sensor = new Rect(x, y, x+sensorDrawWidth, y+sensorDrawHeight);
         canvas.drawRect(sensor, myPaint);
 
         drawingSpace.setImageBitmap(bitmap);
 
-        toggleAdd = false;
+
     }
 
     private ArrayList<Integer> getCoöList(SharedPreferences sharedPreferences) {
@@ -304,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteSensor(int x, int y) {
-        //!!!!!!!!Voor verwijderen bluetooth nodig, denk dat het op deze manier werkt maar niet zeker (linkerbovenhoek).
+        /*//!!!!!!!!Voor verwijderen bluetooth nodig, denk dat het op deze manier werkt maar niet zeker (linkerbovenhoek).
 
         //Log.e("in delete", String.valueOf(toggleDelete));
         xCoöList = yCoöList = new ArrayList<Integer>();
@@ -315,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
 
         myPaint.setColor(Color.rgb(255, 255, 255));
         for (int i=0; i<xCoöList.size(); i++) {
-            addSensor(xCoöList.get(i),yCoöList.get(i));
+            addSensor(xCoöList.get(i),yCoöList.get(i), 200);
         }
         Log.e("size", String.valueOf(xCoöList.size()));
         for (int i=0; i<xCoöList.size(); i++) {
@@ -356,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (leftBool && bottomBool) {
                                     /*if (x >= xList && x <= xList+sensorHeight && y >= yList-sensorWidth && y <= yList) {
 
-                                    }*/
+                                    }*//*
             } else if (rightBool && topBool) {
 
             } else if (rightBool && bottomBool) {
@@ -385,9 +455,9 @@ public class MainActivity extends AppCompatActivity {
         myPaint.setColor(Color.rgb(200, 200, 100));
 
         for (int j=0; j<xCoöList.size(); j++) {
-            addSensor(xCoöList.get(j),yCoöList.get(j));
+            addSensor(xCoöList.get(j),yCoöList.get(j), 200);
         }
-
+*/
     }
 
     private void drawDistance(int x, int y, int distance) {
@@ -1110,5 +1180,6 @@ public class MainActivity extends AppCompatActivity {
         path.close();
         canvas.drawPath(path, myPaint);
     }
+
 }
 
