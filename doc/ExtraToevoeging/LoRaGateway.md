@@ -50,14 +50,6 @@ Men kon kiezen voor de Poly Packets van TTN, die van Semtech of Loraley
 ![loragatewayadmin.png](img/loragatewayadmin.png)
 
 
-##Waarom TTN?
-The Things Network is een netwerk dat Crowd Sourced IOT van vrij gebruik voorziet; Op dit netwerk is het voor ons dus ook toegestaan om ons project verder te realiseren.
-
-Semtech is een bedrijf dat een router host dat alle gateways mogen gebruiken voor demonstratie doeleinden.
-Semtech stelt dus enkel hun services vrij voor demonstraties, het zou maar een tijdelijke oplossing zijn.
-
-Loraley is een alternatief open source data netwerk, deze is nog in primitieve staat dus nog niet aan te raden als betrouwbaar netwerk. Het is dus nog niet Up & Running naar behoren.
-
 
 * * *
 ##Connectie met het TTN netwerk
