@@ -41,7 +41,7 @@ Als een extra toevoeging aan ons project, gaan we een inbraakdetectie systeem ma
 ###LoRa Mota verbinden met Arduino
 Verbind de Mote op de volgende manier met de Arduino DUE:
 
-![lora_arduino_connection.png](img/lora_arduino_connection.png)
+![lora_arduino_connect.png](img/lora_arduino_connect.png)
 
 Indien je de LoRa Mote gebruikt, zorg er dan altijd voor dat de antenne verbonden is met het board voor je er stroom opzet. Indien je dit niet doet, kan dit ernstige schade toebrengen. 
 
@@ -63,8 +63,15 @@ Ga naar de volgende site van TTN (https://v1.account.thethingsnetwork.org/users/
 
 ###Waarom TTN?
 
+The Things Network is een netwerk dat Crowd Sourced IOT van vrij gebruik voorziet; Op dit netwerk is het voor ons dus ook toegestaan om ons project verder te realiseren.
+
+Semtech is een bedrijf dat een router host dat alle gateways mogen gebruiken voor demonstratie doeleinden.
+Semtech stelt dus enkel hun services vrij voor demonstraties, het zou maar een tijdelijke oplossing zijn.
+
+Loraley is een alternatief open source data netwerk, deze is nog in primitieve staat dus nog niet aan te raden als betrouwbaar netwerk. Het is dus nog niet Up & Running naar behoren.
+
 ###Verbinden met LoRa Mote
-Indien je rechtstreeks verbinding wilt maken met de RN2483 Transceiver module die zich op dit bord bevind, zal je je laptop via een USB to Micro-USB kabel moeten verbinden met de LoRa Mote. 
+Indien je rechtstreeks verbinding wilt maken met de RN2483 Transceiver module die zich op dit bord bevind, zal je je laptop via een USB to Micro-USB kabel moeten verbinden met de LoRa Mote.
 
 Nadat dit is gebeurt, zal de LoRa Mote opstarten, waarna we Serieel verbinding kunnen maken. Dit doen we door een programma termite 3.2 te gebruiken, aangezien Putty hier niet zal werken. Op thermite stel je de volgende instellingen moeten aanpassen:
 
