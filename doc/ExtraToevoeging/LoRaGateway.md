@@ -115,6 +115,7 @@ Bij een werkend systeem zie je dan ongeveer zo een logs.
 Tussen deze logs kan je zien hoeveel packets ontvangen zijn, percentage geslaagde/gefailde zendingen, forwarded packets.
 Alsook wat er downstream gebeurd, gps tracking (indien dit ingesteld is) en de performance van de connectie.
 
+
 ######Source: https://www.thethingsnetwork.org/wiki/Backend/Connect/Gateway
 
 ##Test
@@ -129,6 +130,8 @@ We hadden al eerder een schakeling opgemaakt met de LoRa Mote en een Arduino Due
 De LoRa Gateway kreeg power via een USB kabel, de Arduino & Mote combinatie werden gepowered via een 5V powerbank.
 
 ###Rangetest
+=======
+
 
 (15h13)
 De Gateway bleef stationair in Lokaal 01.05 van AP campus ELL, de Mote verplaatste zich naar de Starbucks automaat van AP campus NOO. Tijdens deze verplaatsing bleef de Mote radio packets uitzenden in tijdsintervallen van 30 seconden.
