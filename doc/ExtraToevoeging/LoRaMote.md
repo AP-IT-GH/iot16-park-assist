@@ -59,8 +59,27 @@ Verbind de IR sensor op de volgende manier met de Arduino DUE:
 ###Registreren op TTN
 Ga naar de volgende site van TTN (https://v1.account.thethingsnetwork.org/users/login) en maak hier een account aan. Eenmaal je ingelogd bent, ga je naar je dashboard. --> is allemaal veranderd naar deze site precies: https://console.thethingsnetwork.org/applications/add
 
+Na de eenvoudige registratie en activatie van het account, is het de beurt om de mote zelf te registreren.
+
+Boven in de menubalk klikt men op de tab console, vervolgens maakt men een applicatie aan. Men geeft deze een applicatie ID, een beschrijving en men kiest een handler naar keuze (logische keuze bij ons is die van Europa).
+
+Hierna komt men terecht in het applicatie-dashboard. Hier kan men de applicatie EUIs terugvinden, devices toevoegen en managen, collaborators toevoegen en ook de access keys vinden.
+
+####Device registreren
+
+Bij het registreren van de device zelf, geeft men deze een Device ID. Deze ID is uniek en kan maar 1 maal gekozen worden. Dan voert men het Device EUI in (uniek aan het device zelf).
+Vervolgens krijgt men een generated App Key (aan de hand van de opgegeven EUIS) en onderaan vindt men de App EUI.
+
+
 ####ABP vs OTAA
 
+Activation By Personalization (ABP), in sommige gevallen is het een noodzaak om security keys en Device Address te hardcoden op het device. Met deze strategie hou je het systeem simpeler, omdat het gehele join process dan niet meer nodig is. Het geeft dan wel mogelijk een security-risico.
+
+Over The Air Activation(OTAA), vaakst voorkomende en meest veilige manier om met The Things Network te verbinden.
+Devices zullen eerst een join-procedure met het netwerk uitvoeren. Tijdens deze procedure zullen de devices een dynamisch Device Address krijgen en zullen de security keys worden onderhandeld.
+
+
+**Wij kozen voor ABP.**
 ###Waarom TTN?
 
 The Things Network is een netwerk dat Crowd Sourced IOT van vrij gebruik voorziet; Op dit netwerk is het voor ons dus ook toegestaan om ons project verder te realiseren.
