@@ -34,9 +34,10 @@ public class mqttClass{
 
     mqttClass(Context context) {
         final Context classContext = context;
-
+        Log.e("in mqtt", "mqqt");
         clientId = MqttClient.generateClientId();
         client = new MqttAndroidClient(classContext, "tcp://staging.thethingsnetwork.org:1883", clientId);
+        //client = new MqttAndroidClient(classContext, "tcp://mqtt.luytsm.be:1883", clientId);
         client.setCallback(new MqttCallback() {
             @Override
             public void connectionLost(Throwable cause) {
@@ -49,13 +50,14 @@ public class mqttClass{
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
-
+                Log.e("mqqt", "message arrived");
                 NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(classContext)
                         .setSmallIcon(android.R.drawable.ic_dialog_alert) //doesn't show for some reason
                         .setLargeIcon(BitmapFactory.decodeResource(classContext.getResources(), R.drawable.warning))
                         .setContentTitle("Intruder alert!")
                         .setPriority(Notification.PRIORITY_MAX)
-                        .setContentText(message.toString())
+                        //.setContentText(message.toString())
+                        .setContentText("Someone has entered your property.")
                         .setVibrate(new long[] { 0, 1000, 1000, 1000, 1000 })
                         .setLights(Color.RED, 2000, 2000);
 
@@ -107,6 +109,7 @@ public class mqttClass{
 
     private void subscribe() {
         String topic = "70B3D57ED00018A3/devices/000000009CC4931F/up";
+        //String topic = "test";
         int qos = 1;
         try {
             IMqttToken subToken = client.subscribe(topic, qos);

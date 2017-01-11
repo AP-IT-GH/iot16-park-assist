@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         bt = new bluetooth(this);
         new mqttClass(this);
         bt.getPairedDevices();
-        new LooperTask().execute(bt.pairedDevices.iterator().next());
+        //new LooperTask().execute(bt.pairedDevices.iterator().next());
 
         drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
         //final View content = findViewById(android.R.id.content);
@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
             sharedPreferencesY = getSharedPreferences(LIST_Y, Context.MODE_PRIVATE);
 
             String mac = data[1].trim();
+            Log.e("mac", mac);
             //bitmap.eraseColor(Color.TRANSPARENT);
             drawCenter();
             addSensor(sharedPreferencesX.getInt(mac, -1), sharedPreferencesY.getInt(mac,-1), distance, mac);
