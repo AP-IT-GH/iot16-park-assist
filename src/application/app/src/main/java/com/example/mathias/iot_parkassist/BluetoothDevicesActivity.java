@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -25,6 +26,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
+
+import static android.content.ContentValues.TAG;
 
 public class BluetoothDevicesActivity extends Activity {
 
@@ -56,18 +59,22 @@ public class BluetoothDevicesActivity extends Activity {
 
         public ConnectThread(BluetoothDevice device){
             BluetoothSocket tmp = null;
+            Log.e("ConnectThread","Starting connecting bluetooth");
             mmDevice = device;
             try{
                 UUID test = UUID.fromString(Installation.id(getApplicationContext()));
                 tmp = device.createRfcommSocketToServiceRecord(UUID.fromString(Installation.id(getApplicationContext()).toString()));
+                Log.e("ConnectThread","End of try");
+
             }catch(IOException e){
+                Log.e("ConnectThread","Exception" + e.toString());
 
             }
             mmSocket = tmp;
         }
         public void run(){
             mBluetoothAdapter.cancelDiscovery();
-
+            Log.e("ConnectThread","run bluetoothThread");
             try{
                 mmSocket.connect();
             }catch (IOException connectionException){
@@ -78,7 +85,6 @@ public class BluetoothDevicesActivity extends Activity {
                 }
             }
 
-//            manageCon
 
         }
     }
@@ -100,6 +106,8 @@ public class BluetoothDevicesActivity extends Activity {
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
         // preparing list data
+        //check if bt device already exist
+        //TODO: check if this code is working and if not fix it!
         btDevices number1 = new btDevices("test1","000");
         btDevices number2 = new btDevices("test2","00");
         if(number1.equals(number2)){
@@ -118,10 +126,11 @@ public class BluetoothDevicesActivity extends Activity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 //first get the "category" by getting it from array listDataHeader by group position. Than get the child by child position
+                Log.e("Onclick lister","in on click listener of bt device");
                 btDevices Child = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
                 String macClickedDevice = Child.Mac;
                 ConnectThread test = new ConnectThread(Child.Device);
-//                test.run();
+                test.run();
                 Toast.makeText(getApplicationContext(),macClickedDevice,Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -213,14 +222,20 @@ public class BluetoothDevicesActivity extends Activity {
 
                 //only add if device is not already added
                 BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                if(!newDevices.contains(device.getAddress()))
-                {
+                try{
+                    if(!(newDevices.contains(device)))
+                    {
 
-                    Log.e("Found device", device.getName());
-                    Toast.makeText(context,"Found a device"+device.getName(),Toast.LENGTH_SHORT).show();
-                    newDevices.add(new btDevices(device.getName(),device.getAddress(),device));
+                        Log.e("Found device", device.getName());
+                        Toast.makeText(context,"Found a device"+device.getName(),Toast.LENGTH_SHORT).show();
+                        newDevices.add(new btDevices(device.getName(),device.getAddress(),device));
 
+                    }
+                }catch (Exception e){
+                    Log.e("Crash","something crashed");
+                    e.printStackTrace();
                 }
+
 
 
             } else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
@@ -246,7 +261,7 @@ public class BluetoothDevicesActivity extends Activity {
 
         // Adding child data
 
-        newDevices.add(new btDevices("[Park]assistSensor"," AA-DD-FF"));
+//        newDevices.add(new btDevices("[Park]assistSensor"," AA-DD-FF"));
 //        newDevices.add("The Godfather");
 //        newDevices.add("The Godfather: Part II");
 //        newDevices.add("Pulp Fiction");
