@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         bt.getPairedDevices();
         //new LooperTask().execute(bt.pairedDevices.iterator().next());
 
+
         drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
         //final View content = findViewById(android.R.id.content);
         drawingSpace.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                         if(toggleAdd) {
 
-                            addSensor(x, y, 0, "20:16:02:18:48:20");
+                            addSensor(x, y, 0, "20:16:01:26:15:73");
                             toggleAdd = false;
                         } else if(toggleDelete) {
                             deleteSensor(x,y);
