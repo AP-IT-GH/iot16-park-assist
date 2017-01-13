@@ -13,7 +13,6 @@ Wordt nu gebruik gemaakt van termite 3.2 wat zelf de juiste instellingen detecte
 - append CR+LF: on
 
 Mote wordt toegevoegd aan het netwerk aan de hand van abp (activation by personalization)
-... uitleg abp vs otaa etc...
 
 radio tx 48656c6C6F
 zal via terminal hello zenden
@@ -31,11 +30,11 @@ In the responses, the first "ok" just shows that the command was accepted by the
 Als een extra toevoeging aan ons project, gaan we een inbraakdetectie systeem maken dat gebruik maakt van LoRaWan technologie. Door gebruik te maken van LoRaWan kunnen we de module verbinden met het internet, zelfs op meer afgelegen plaatsen, waardoor dit systeem uitermate geschikt is voor een caravan.
 
 ##Hardware
-- LoRa Gateway (http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138)
-- LoRa Mote
-- IR Distance Sensor
-- Arduino DUE
-- Bluetooth module HC05
+- [LoRa Gateway](http://webshop.ideetron.nl/LORANK-8)
+- [LoRa Mote](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138)
+- [IR Distance Sensor](http://qqtrading.com.my/infrared-proximity-sensor-4cm-30cm-sharp-gp0a41sk)
+- [Arduino DUE](https://www.arduino.cc/en/Main/arduinoBoardDue)
+- [Bluetooth module HC05](http://www.martyncurrey.com/hc-05-fc-114-and-hc-06-fc-114-first-look/)
 
 ##Module Hardware
 ###LoRa Mota verbinden met Arduino
@@ -61,7 +60,7 @@ Ga naar de volgende site van TTN (https://v1.account.thethingsnetwork.org/users/
 
 Na de eenvoudige registratie en activatie van het account, is het de beurt om de mote zelf te registreren.
 
-Boven in de menubalk klikt men op de tab console, vervolgens maakt men een applicatie aan. Men geeft deze een applicatie ID, een beschrijving en men kiest een handler naar keuze (logische keuze bij ons is die van Europa).
+Boven in de menubalk klikt men op de tab conLorsole, vervolgens maakt men een applicatie aan. Men geeft deze een applicatie ID, een beschrijving en men kiest een handler naar keuze (logische keuze bij ons is die van Europa).
 
 Hierna komt men terecht in het applicatie-dashboard. Hier kan men de applicatie EUIs terugvinden, devices toevoegen en managen, collaborators toevoegen en ook de access keys vinden.
 
