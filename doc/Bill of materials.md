@@ -1,7 +1,7 @@
 ## Bill of materials
 Dit document geeft alle componenten weer dat dit project nodig heeft om te maken.
 ##parkeer sensor
-*Prijzen kunnen varieren en is een globale inducatie van hoeveel het kan kosten. Prijzen zijn per stuk*
+*Prijzen kunnen variëren en is een globale inducatie van hoeveel het kan kosten. Prijzen zijn per stuk*
 
 |#  | product 			| waarde 	| prijs 	| extra uitleg 				|
 |---|-------------------|--------	|-----------|-------------				|
@@ -22,10 +22,10 @@ Dit document geeft alle componenten weer dat dit project nodig heeft om te maken
 |1  |Arduino     		|Nano  		|€4,18   	|n.v.t     					|
 |1  |Ultra Sonic sensor |SEN136B5B  |€14,10  	|n.v.t     					|
 
-Totale geschatte kosten (dit is met aantal opgeteld):€79,25
+Totale geschatte kosten (dit is met aantal opgeteld): €79,25
 ##inbraak detectie systeem
 
-*Prijzen kunnen varieren en is een globale inducatie van hoeveel het kan kosten. Prijzen zijn per stuk*
+*Prijzen kunnen variëren en is een globale inducatie van hoeveel het kan kosten. Prijzen zijn per stuk*
 
 |#  | product 			| waarde 	| prijs 	| extra uitleg 				|
 |---|-------------------|--------	|-----------|-------------				|
@@ -35,5 +35,5 @@ Totale geschatte kosten (dit is met aantal opgeteld):€79,25
 |1  |Arduino  			|DUE    	|€25,99 	|n.v.t       				|
 |1  |Bt module 			|HC05   	|€7,50  	|n.v.t		     			|
 
-Totale geschatte kosten (dit is met aantal opgeteld):€487,46
+Totale geschatte kosten (dit is met aantal opgeteld): €487,46
 
