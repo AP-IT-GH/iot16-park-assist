@@ -2,8 +2,6 @@
 
 In deze handleiding vindt u alle informatie terug die nodig is om zelf dit project te maken. Het project bestaat uit een module die in de caravan komt te staan en een gateway die ervoor zorgt dat de verzonden data naar de applicatie geraakt.
 
-
-[TOC]
 ##Hardware
 
 - [LoRa Gateway](http://webshop.ideetron.nl/LORANK-8)
