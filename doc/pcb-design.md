@@ -59,3 +59,15 @@ Vanaf het moment dat de batterijen en alle componenten goed zijn aangesloten is 
 Schakel de schakelaar om zodat er stroom naar de Arduino gaat. Na enkele seconden zal de schakeling klaar zijn om in gebruik genomen te worden.
 De sensoren beginnen automatisch met detecteren en zullen automatisch proberen hun data te versturen.
 Voor het koppelen van de applicatie met de schakeling verwijs ik u door naar de handleiding van de [Applicatie](Applicatie link.md)
+
+
+#Overige images
+Hieronder worden nog wat images van het PCB design.
+Het PCB design met power plane:
+![pcb design met power plane](img/pcb-design-met-power-plane.png)
+De 3d weergaves van het PCB (de componenten die worden getoond zijn niet dezelfde als in finale versie)
+Bovenaanzicht:
+![bovenaanzicht pcb](img/bovenaanzicht-3d-pcb.png)
+
+Onderaanzicht:
+![onderaanzicht pcb](img/onderaanzicht-3d-pcb.png)
