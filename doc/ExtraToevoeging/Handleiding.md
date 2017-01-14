@@ -16,8 +16,8 @@ In deze handleiding vindt u alle informatie terug die nodig is om zelf dit proje
     * [Device registreren](#device-registreren)
    * [Arduino code](#arduino-code)
    * [Application code](#application-code)
-    * [Applicatie installeren](#applicatie-installeren)
-    * [Werking applicatie](#werking-applicatie)
+     * [Applicatie installeren](#applicatie-installeren)
+     * [Werking applicatie](#werking-applicatie)
 * [LoRa Gateway](#lora-gateway)
 
 * [Testing](#testing)
