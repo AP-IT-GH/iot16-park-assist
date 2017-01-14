@@ -12,7 +12,7 @@ Een voorbeeld van hoe deze parkeer sensoren bevestigd kunnen worden op de carava
 
 ###De werking/staat van de parkeer sensor
 De parkeer sensor werkt zeer simpel vanaf het moment dat de voedingsbron is aangesloten en de parkeer sensor is aangezet begint hij meteen met detecteren van objecten.
-Dit doet hij door 3 internet sensoren die geplaatst zijn op elke 30 graden van elkaar om een totale hoek van 90 graden te bekomen.
+Dit doet hij door 3 interne sensoren die geplaatst zijn op elke 30 graden van elkaar om een totale hoek van 90 graden te bekomen.
 De sensoren sturen de data door naar de Arduino die dan zal kijken wat de kleinste afstand is. Deze afstand zal de Arduino doorsturen naar de verbonden applicatie. De applicatie zal dan visueel tonen hoe dicht je op een object zit.
 ([voor meer info over de applicatie verwijs ik u door naar de applicatie documentatie](documentatie url ))
 Schematisch gezien ziet het er als volgt uit:
@@ -24,8 +24,8 @@ Vervolgens zal de applicatie visueel tonen hoever het object is van de parkeer s
 
 ###Waarom deze oplossing
 ####Sensoren
-We hebben gekozen voor ultro sonic sensor(HC-SR04) voornamelijk omdat we hier al een keer mee hebben gewerkt alsook hadden we ondervonden dat de IR sensoren niet zo betrouwbaar waren als gehoopt.
-Echter na het testen met de standaard sensoren van op school zijn we er achter gekomen dat deze toch een flinke afwijking hebben.
+Als eerste wouden we kiezen voor de ultra sonic sensor(HC-SR04) voornamelijk omdat we hier al een keer mee hadden gewerkt alsook hadden ondervonden dat de IR sensoren niet zo betrouwbaar waren als gehoopt.
+Echter na het testen met de HC-SR04 sensoren van school zijn we er achter gekomen dat deze toch een flinke afwijking hadden.
 Hoe verder de afstand van een object hoe meer afwijking er op de data zou zitten. Een oplossing hierop zou zijn geweest het filteren van de data en analyseren van de data. Helaas zat op elke sensor een andere afwijking en zou de data ook een stuk onbetrouwbaarder maken en dat is niet echt handig bij parkeer sensoren.
 Bij het doornemen van de datasheets van deze sensoren zijn we er ook achter gekomen dat de effectieve meet hoek maar op 15 graden lag. Dit zou betekenen dat we in plaats van 3 nu 6 sensoren nodig hadden en dit zorgde voor veel problemen.
 Het werd namelijk onmogelijk om deze zo te plaatsen om een hoek van 90 graden te krijgen (vanwege de formfactor van de sensoren) en het zou onnodige delay veroorzaken wat we niet wilde.
