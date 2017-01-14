@@ -2,6 +2,31 @@
 
 In deze handleiding vindt u alle informatie terug die nodig is om zelf dit project te maken. Het project bestaat uit een module die in de caravan komt te staan en een gateway die ervoor zorgt dat de verzonden data naar de applicatie geraakt.
 
+##Inhoudsopgave
+
+[Hardware](#hardware)
+[Module Hardware](#module-hardware)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[LoRa Mote verbinden met Arduino](#lora-mote-verbinden-met-arduino)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Arduino verbinden met Bluetooth module](#arduino-verbinden-met-bluetooth-module)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IR sensor verbinden met Arduino](#ir-sensor-verbinden-met-arduino)
+[Module software](#module-software)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The Things Network](#the-things-network)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Waarom TTN?](#waarom-ttn)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Applicatie registreren](#applicatie-registreren)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Device registreren](#device-registreren)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Activation By Personalization (ABP)](#activation-by-personalization-(abp)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Over The Air Activation (OTAA)](#over-the-air-activation-(otaa)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Arduino code](#arduino-code)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Application code](#application-code)
+[LoRa Gateway](#lora-gateway)
+
+[Testing](#testing)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Verbinden met RN2483](#verbinden-met-rn2483)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[RN2483 configureren](#rn2483-configureren)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TTN joinen](#ttn-joinen)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Data verzenden](#data-verzenden)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Data ontvangen](#data-ontvangen)
+
 ##Hardware
 
 - [LoRa Gateway](http://webshop.ideetron.nl/LORANK-8)
