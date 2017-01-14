@@ -36,8 +36,8 @@ Als ook de formfactor van deze alternatieven is een stuk moeilijker aan te passe
 Deze methodes zijn dan ook vooral bedoeld om protypes te maken en wij toch echt richten op een finaal product te maken.
 Helaas hebben wij door de kapotte PCB machine toch moeten hergrijpen naar het Matrix bord. Hiervoor hebben we wel deels het PCB herbruikt.
 Hieronder 2 foto's van hoe het er nu uitziet:
-![matrix bord bovenkant](img/matrix-bord-bovenkant.png)
-![matrix bord onderkant](img/matrix-bord-onderkant.png)
+![matrix bord bovenkant](img/matrix-bord-bovenkant.jpg)
+![matrix bord onderkant](img/matrix-bord-onderkant.jpg)
 
 ###reflectie resultaat
 Persoonlijk ben ik zeer tevreden over het resultaat het PCB ziet er heel goed uit zeker met de hoeken.
