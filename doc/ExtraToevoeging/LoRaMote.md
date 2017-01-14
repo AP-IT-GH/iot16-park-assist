@@ -22,14 +22,14 @@ Indien je de LoRa Mote gebruikt, zorg er dan altijd voor dat de antenne verbonde
 ###Arduino verbinden met Bluetooth module
 Verbind de Arduino DUE op de volgende manier met de Bluetooth module:
 
-![bluetooth_arduino_connect.png](img/bluetooth_arduino_connect.png)
+![bluetooth_arduino_connect.png](img/bluetooth_arduino_connect.PNG)
 
 De RX van de bluetooth module kan maar 3,3V aan, waardoor er normaal een spanningsdeler wordt gebruikt tussen de TX van de arduino en de RX van de bluetooth module. Zoals te zien is op de foto is deze spanningsdeler niet aanwezig, aangezien de Arduino Due standaard op 3,3V werkt.
 
 ###IR sensor verbinden met Arduino
 Verbind de IR sensor op de volgende manier met de Arduino DUE:
 
-![sensor_arduino_connect.png](img/sensor_arduino_connect.png)
+![sensor_arduino_connect.png](img/sensor_arduino_connect.PNG)
 
 ##Module software
 ###The Things Network
