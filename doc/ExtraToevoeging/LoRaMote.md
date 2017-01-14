@@ -206,7 +206,7 @@ Indien je de LoRa Mote wilt uittesten zonder gebruik te maken van de Arduino en 
 ###Verbinden met RN2483
 Indien je rechtstreeks verbinding wilt maken met de RN2483 Transceiver module die zich op het board bevind, zal je je laptop via een USB to Micro-USB kabel moeten verbinden met de LoRa Mote.
 
-Nadat dit is gebeurt, zal de LoRa Mote opstarten, waarna we Serieel verbinding kunnen maken. Dit doen we door een programma met de naam "termite 3.2" te gebruiken, aangezien "Putty" hier niet zal werken. Op thermite zal je de volgende instellingen moeten aanpassen:
+Nadat dit is gebeurt, zal de LoRa Mote opstarten, waarna we Serieel verbinding kunnen maken. Dit doen we door een programma met de naam "termite 3.2" te gebruiken, aangezien "Putty" hier niet zal werken. Op termite zal je de volgende instellingen moeten aanpassen:
 
 - Baud rate: 57600
 - Parity: none
@@ -222,21 +222,21 @@ Door gebruik te maken van deze commando's is het mogelijk om data te verzenden e
 
 ###RN2483 configureren
 Voor we TTN kunnen joinen zullen we eerst de nodige gegevens moeten instellen. In het geval van ABP activatie, zoals we in dit project gebruiken, moeten we het "device address", "network session key" en "application session key" instellen, wat we met de volgende commando's doen:
-- mac set devaddr ++address++
-- mac set nwkskey ++network session key++
-- mac set appskey ++application session key++
+- mac set devaddr [address]
+- mac set nwkskey [network session key]
+- mac set appskey [application session key]
 
-Bij deze commando's is het onderlijnde element hetgeen dat vervangen moet worden door de relevante data.
+Bij deze commando's is het element tussen de vierkante haken hetgeen dat vervangen moet worden door de relevante data.
 
 ###TTN joinen
-Nu alles ingesteld is, kunnen we verbinding mamken met TTN en dat doen we met het volgende commando:
-- mac join ++mode++
+Nu alles ingesteld is, kunnen we verbinding maken met TTN en dat doen we met het volgende commando:
+- mac join [mode]
 
 Mode staat hier voor de activatiemethode, met andere woorden zal je mode moeten vervangen door oftewel "abp" oftewel "otaa". Aangezien we alles geconfigureerd hebben voor abp kiezen we ook voor deze methode.
 
 ###Data verzenden
 Nu we verbonden zijn met TTN kunnen we data verzenden door gebruik te maken van het volgende commando:
-- mac tx ++type++ ++port number++ ++data++
+- mac tx [type] [port number] [data]
 
 Type stelt het uplink payload type voor en kan "cnf" of "uncnf" zijn, wat respectievelijk voor confirmed en unconfirmed staat.
 
@@ -251,7 +251,7 @@ Dit kunnen we doen door gebruik te maken van "Mosquitto". Om Mosquitto te gebrui
 - apt-get install mosquitto mosquitto-clients
 
 Om te subscriben gebruik je dit commando:
-- mosquitto_sub -h ++broker++ -t ++topic++ -u ++username++ -P ++wachtwoord++
+- mosquitto_sub -h [broker] -t [topic] -u [username] -P [wachtwoord]
 
 De te vervangen data is te vinden op je TTN dashboard wanneer je bij je Application info" op "learn how to get data from this app" klikt.
 
