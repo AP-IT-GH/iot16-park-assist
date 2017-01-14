@@ -16,6 +16,8 @@ In deze handleiding vindt u alle informatie terug die nodig is om zelf dit proje
     * [Device registreren](#device-registreren)
    * [Arduino code](#arduino-code)
    * [Application code](#application-code)
+    * [Applicatie installeren](#applicatie-installeren)
+    * [Werking applicatie](#werking-applicatie)
 * [LoRa Gateway](#lora-gateway)
 
 * [Testing](#testing)
@@ -207,8 +209,6 @@ join_result = myLora.initABP("9CC4931F", "F6A0912BC9B5CC12075D87D9A0553C89", "82
 
 De code voor de applicatie die we in dit project gebruiken is [hier](http://) te vinden. Aangezien in deze applicatie ook de code zit voor de parkeersensors, is het van belang dat je enkel de bluetooth module van dit project aan je smartphone gekoppeld hebt en niets anders.
 
-
-
 Deze applicatie zal verbinden met de MQTT server van TTN en zich registreren op het topic van ons gebruikte device. Indien je dit voor je eigen device wilt doen, moet je de volgende lijnen in de code aanpassen met de gegevens van je eigen geregistreerde applicatie en device op TTN. Deze code is terug te vinden in [mqttClass.java](http://).
 
 
@@ -228,10 +228,24 @@ options.setPassword("nrmLIdzcRc+zQTpiWO7QGvwCCJtN7Kw0F5how6WjBbY=".toCharArray()
 String topic = "70B3D57ED00018A3/devices/000000009CC4931F/up";
 
 ```
+####Applicatie installeren
+Voor we de applicatie kunnen gebruiken, zullen we deze eerst op de smartphone moeten zetten. Om dit te doen, verbinden we de smartphone met de laptop en openen we de applicatie in "Android Studio". In Android studio klik je op run in het menu, waarna je je smartphone selecteert en op "OK" klikt.
 
-Nu de code klaar is voor gebruik, hoef je enkel maar op start te klikken om "Y" naar de Arduino te sturen en op stop te klikken om "N" naar de Arduino te sturen.
+![run.png](img/run.png)
 
+Na een tijdje zal er op je scherm gevraagd worden of je de applicatie wilt installeren, selecteer hier "installeren". Nu wordt de applicatie geïnstalleerd, waarna deze klaar is om te gebruiken.
 
+####Werking applicatie
+
+Nu alles klaar is voor gebruik, hoef je enkel nog maar je bluetooth te koppelen met de bluetooth module van de Arduino. Het is van belang dat dit het enigste gekoppelde device op je smartphone is.
+
+Om het alarm aan te zetten, moet je nu enkel op start klikken om "Y" naar de Arduino te sturen, wat het alarm zal aanzetten. Indien je op stop klikt, zal er "N" naar de Arduino gezonden worden, wat het alarm zal afzetten.
+
+![app_volledig_inbraak.png](img/app_volledig_inbraak.png)
+
+Indien de module data naar de MQTT server stuurt, zal de applicatie dit zien en een notificatie aan de gebruiker geven als waarschuwing dat er iemand het alarm heeft doen afgaan.
+
+![notificatie.png](img/notificatie.png)
 
 ##LoRa Gateway
 
