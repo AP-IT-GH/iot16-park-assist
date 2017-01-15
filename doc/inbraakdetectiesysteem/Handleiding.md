@@ -1,33 +1,13 @@
-#Inbraakdetectiesysteem
+# Inbraakdetectiesysteem
 
 In deze handleiding vindt u alle informatie terug die nodig is om zelf dit project te maken. Het project bestaat uit een module die in de caravan komt te staan en een gateway die ervoor zorgt dat de verzonden data naar de applicatie geraakt.
 
-##Inhoudsopgave
+## Inhoudsopgave
 
-* [Hardware](#hardware)
-* [Module Hardware](#module-hardware)
-  * [LoRa Mote verbinden met Arduino](#lora-mote-verbinden-met-arduino)
-  * [Arduino verbinden met Bluetooth module](#arduino-verbinden-met-bluetooth-module)
-  * [IR sensor verbinden met Arduino](#ir-sensor-verbinden-met-arduino)
-* [Module software](#module-software)
-  * [The Things Network](#the-things-network)
-    * [Waarom TTN?](#waarom-ttn)
-    * [Applicatie registreren](#applicatie-registreren)
-    * [Device registreren](#device-registreren)
-   * [Arduino code](#arduino-code)
-   * [Application code](#application-code)
-     * [Applicatie installeren](#applicatie-installeren)
-     * [Werking applicatie](#werking-applicatie)
-* [LoRa Gateway](#lora-gateway)
+<!-- START doctoc -->
+<!-- END doctoc -->
 
-* [Testing](#testing)
-  * [Verbinden met RN2483](#verbinden-met-rn2483)
-  * [RN2483 configureren](#rn2483-configureren)
-  * [TTN joinen](#ttn-joinen)
-  * [Data verzenden](#data-verzenden)
-  * [Data ontvangen](#data-ontvangen)
-
-##Hardware
+## Hardware
 
 - [LoRa Gateway](http://webshop.ideetron.nl/LORANK-8)
 
@@ -45,9 +25,9 @@ Datasheets etc. zijn te vinden op de link van ieder device.
 
 
 
-##Module Hardware
+## Module Hardware
 
-###LoRa Mote verbinden met Arduino
+### LoRa Mote verbinden met Arduino
 
 Verbind de Mote op de volgende manier met de Arduino DUE:
 
@@ -61,7 +41,7 @@ Indien je de LoRa Mote gebruikt, zorg er dan altijd voor dat de antenne verbonde
 
 
 
-###Arduino verbinden met Bluetooth module
+### Arduino verbinden met Bluetooth module
 
 Verbind de Arduino DUE op de volgende manier met de Bluetooth module:
 
@@ -75,7 +55,7 @@ De RX van de bluetooth module kan maar 3,3V aan, waardoor er normaal een spannin
 
 
 
-###IR sensor verbinden met Arduino
+### IR sensor verbinden met Arduino
 
 Verbind de IR sensor op de volgende manier met de Arduino DUE:
 
@@ -85,11 +65,11 @@ Verbind de IR sensor op de volgende manier met de Arduino DUE:
 
 
 
-##Module software
+## Module software
 
-###The Things Network
+### The Things Network
 
-####Waarom TTN?
+#### Waarom TTN?
 
 
 
@@ -109,7 +89,7 @@ Naast TTN zijn er nog andere opties, maar deze zijn minder geschik voor ons proj
 
 
 
-####Applicatie registreren
+#### Applicatie registreren
 
 
 
@@ -125,7 +105,7 @@ Ga naar de volgende site van TTN (https://v1.account.thethingsnetwork.org/users/
 
 
 
-####Device registreren
+#### Device registreren
 
 Nu je een application hebt geregistreerd, kan je devices aan deze applicatie toewijzen. Deze devices zijn de nodes waarmee we data naar het netwerk verzenden. In ons geval willen we de LoRa Mote registreren.
 
@@ -143,13 +123,13 @@ Wanneer we een device willen registreren kunnen we kiezen uit twee manieren van 
 
 
 
-######Activation By Personalization (ABP)
+###### Activation By Personalization (ABP)
 
 In sommige gevallen is het een noodzaak om security keys en Device Address te hardcoden op het device. Met deze strategie hou je het systeem simpeler, omdat het gehele join process dan niet meer nodig is. Het geeft dan wel mogelijk een security-risico.
 
 
 
-######Over The Air Activation (OTAA)
+###### Over The Air Activation (OTAA)
 
 Vaakst voorkomende en meest veilige manier om met The Things Network te verbinden. Devices zullen hierbij eerst een join-procedure met het netwerk uitvoeren. Tijdens deze procedure zullen de devices een dynamisch Device Address krijgen en zullen de security keys worden onderhandeld.
 
@@ -171,7 +151,7 @@ Indien je naar de pagina van je device gaat, zal je zien dat je hier alle inform
 
 
 
-###Arduino code
+### Arduino code
 
 De code die we op de Arduino zetten is [hier](https://github.com/AP-Elektronica-ICT/iot16-park-assist/blob/Lora/src/Arduino/LoRa_volledig_werkend/LoRa_volledig_werkend.ino) te verkrijgen. Deze code zal automatisch blijven proberen te verbinden met TTN en indien dit gelukt is, zal het wachten op data die hij binnenkrijgt via de bluetooth module. Deze data zal via de android applicatie verzonden worden.
 
@@ -205,7 +185,7 @@ join_result = myLora.initABP("9CC4931F", "F6A0912BC9B5CC12075D87D9A0553C89", "82
 
 
 
-###Application code
+### Application code
 
 De code voor de applicatie die we in dit project gebruiken is [hier](http://) te vinden. Aangezien in deze applicatie ook de code zit voor de parkeersensors, is het van belang dat je enkel de bluetooth module van dit project aan je smartphone gekoppeld hebt en niets anders.
 
@@ -228,14 +208,14 @@ options.setPassword("nrmLIdzcRc+zQTpiWO7QGvwCCJtN7Kw0F5how6WjBbY=".toCharArray()
 String topic = "70B3D57ED00018A3/devices/000000009CC4931F/up";
 
 ```
-####Applicatie installeren
+#### Applicatie installeren
 Voor we de applicatie kunnen gebruiken, zullen we deze eerst op de smartphone moeten zetten. Om dit te doen, verbinden we de smartphone met de laptop en openen we de applicatie in "Android Studio". In Android studio klik je op run in het menu, waarna je je smartphone selecteert en op "OK" klikt.
 
 ![run.png](img/run.png)
 
 Na een tijdje zal er op je scherm gevraagd worden of je de applicatie wilt installeren, selecteer hier "installeren". Nu wordt de applicatie geïnstalleerd, waarna deze klaar is om te gebruiken.
 
-####Werking applicatie
+#### Werking applicatie
 
 Nu alles klaar is voor gebruik, hoef je enkel nog maar je bluetooth te koppelen met de bluetooth module van de Arduino. Het is van belang dat dit het enigste gekoppelde device op je smartphone is.
 
@@ -247,9 +227,9 @@ Indien de module data naar de MQTT server stuurt, zal de applicatie dit zien en 
 
 ![notificatie.png](img/notificatie.png)
 
-##LoRa Gateway
+## LoRa Gateway
 
-###Hoe beginnen we eraan?
+### Hoe beginnen we eraan?
 
 Voor we iets kunnen doen met de gateway, is er natuurlijk een voedingsbron nodig, men kan deze via een USB-kabel verbinden met een laptop en deze hiervan poweren. Voorts hebben we ook een Ethernet-kabel nodig om de LoRa Gateway van internet te kunnen voorzien.
 
@@ -257,7 +237,7 @@ Omdat het de eerste keer was dat we met dit materiaal werken, hebben wij gebruik
 
 
 
-###Praten met de LoRa Gateway
+### Praten met de LoRa Gateway
 
 Om de LoRa Gateway te kunnen gebruiken, hebben we de gateway verbonden via een seriële poort. Zodus konden we gebruik maken van Putty om via seriële connectie te kunnen praten met de gateway.
 Aangezien het ook de eerste keer was, dat de gateway werd gebruikt, waren de default inlog gegevens nog in gebruik. Deze inloggegevens zijn ook vindbaar in de Installation Guide van de LoRa Gateway.
@@ -272,7 +252,7 @@ Om de Gateway te laten werken, moest men ook de nodige certificaten installeren 
 
 Eens dit was geïnstalleerd, kan verder worden gegaan met het proces.
 
-###Verbinding met het internet
+### Verbinding met het internet
 
 *Vanaf dit punt maken we gebruik van de Manual guide van Ideetron.*
 
@@ -304,7 +284,7 @@ In de Admintab kan men ook instellen welke soort pakketjes men wou ontvangen en 
 
 
 
-###Connectie met het TTN netwerk
+### Connectie met het TTN netwerk
 
 Natuurlijk is er ook connectie nodig met The Things Network zelf, zonder dit staat de Gateway niets te doen en kan men ook geen berichten verzenden over het netwerk. Om dit te doen, zijn er enkele aanpassingen nodig.
 De configuratie van de module heeft een aanpassing nodig en om nauwkeuriger te zijn de local_conf.json file.
@@ -352,7 +332,7 @@ Men kan nu dus ook in realtime de quality van de datastreams zien.
 
 
 
-###Packets ontvangen & verzenden
+### Packets ontvangen & verzenden
 
 Na verzenden van pakketjes via de LoRa Mote, dan is dit ook visueel zichtbaar op het dashboard van de gateway. In de tabel Upstream kan men zien hoeveel packets er worden ontvangen en of deze al dan niet goed werden ontvangen door de gateway.
 De packets die men goed kan ontvangen, zullen worden geforward naar de TTN server. Dit keer zullen ze wel als datagrams worden verstuurd ipv losse packetjes.
@@ -368,7 +348,7 @@ In de Downstream tabel kan men zien of de datagrams aangekomen zijn om de server
 
 
 
-###Logging
+### Logging
 
 
 
@@ -391,7 +371,7 @@ Ook wat er downstream allemaal gebeurd, gps tracking en de performacie van de ve
 
 
 
-##Testing
+## Testing
 
 Indien je de LoRa Mote wilt uittesten zonder gebruik te maken van de Arduino en de applicatie, kan je dit op volgende manier doen. We gaan bij deze stappen er wel van uit dat de Gateway aanstaat en verbonden is met TTN.
 
@@ -399,7 +379,7 @@ Indien je de LoRa Mote wilt uittesten zonder gebruik te maken van de Arduino en 
 
 
 
-###Verbinden met RN2483
+### Verbinden met RN2483
 
 Indien je rechtstreeks verbinding wilt maken met de RN2483 Transceiver module die zich op het board bevind, zal je je laptop via een USB to Micro-USB kabel moeten verbinden met de LoRa Mote.
 
@@ -433,7 +413,7 @@ Door gebruik te maken van deze commando's is het mogelijk om data te verzenden e
 
 
 
-###RN2483 configureren
+### RN2483 configureren
 
 Voor we TTN kunnen joinen zullen we eerst de nodige gegevens moeten instellen. In het geval van ABP activatie, zoals we in dit project gebruiken, moeten we het "device address", "network session key" en "application session key" instellen, wat we met de volgende commando's doen:
 
@@ -449,7 +429,7 @@ Bij deze commando's is het element tussen de vierkante haken hetgeen dat vervang
 
 
 
-###TTN joinen
+### TTN joinen
 
 Nu alles ingesteld is, kunnen we verbinding maken met TTN en dat doen we met het volgende commando:
 
@@ -461,7 +441,7 @@ Mode staat hier voor de activatiemethode, met andere woorden zal je mode moeten 
 
 
 
-###Data verzenden
+### Data verzenden
 
 Nu we verbonden zijn met TTN kunnen we data verzenden door gebruik te maken van het volgende commando:
 
@@ -481,7 +461,7 @@ Data is gelijk aan de data die je wilt verzenden en moet in hexadecimale vorm zi
 
 
 
-###Data ontvangen
+### Data ontvangen
 
 Nu we data naar TTN hebben verzonden, kunnen we deze ook ontvangen door onszelf te subscriben op ons device op de TTN MQTT server.
 
