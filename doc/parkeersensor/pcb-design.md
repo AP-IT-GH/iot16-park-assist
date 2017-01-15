@@ -55,7 +55,14 @@ Als ook de formfactor van deze alternatieven is een stuk moeilijker aan te passe
 Deze methodes zijn dan ook vooral bedoeld om protypes te maken en wij toch echt richten op een finaal product te maken.
 Helaas hebben wij door de kapotte PCB machine toch moeten hergrijpen naar het Matrix bord. Hiervoor hebben we wel deels het PCB herbruikt.
 Hieronder 2 foto's van hoe het er nu uitziet:
+
+Bovenkant:
+
+
 ![matrix bord bovenkant](img/matrix-bord-bovenkant.jpg)
+
+Onderkant:
+
 ![matrix bord onderkant](img/matrix-bord-onderkant.jpg)
 
 ### reflectie resultaat
@@ -69,6 +76,7 @@ Voor dat het PCB in gebruik kan worden genomen zullen de nodige componenten en h
 Voor de prijzen en dergelijke van de componenten verwijs ik u door naar de [Bill of materials](../Bill of materials.md).
 Alle componenten zullen gesoldeerd moeten worden zoals onderstaand PCB schema (dit is het schema zonder power plate).
 ![pcb design schema zonder power plane](img/pcb-design-zonder-power-plane.png)
+
 De enigste 2 componenten die aan de onderkant moeten geplaatst worden zijn de headers voor de Arduino Nano. Dit omdat het anders veel plek in zou nemen.
 
 Plaats de componenten in de juiste headers (Arduino Nano,BT device, Batterijen, etc) en zorg ervoor dat alles goed is aangesloten voor naar de gebruikers handleiding te gaan.
@@ -83,10 +91,15 @@ Voor het koppelen van de applicatie met de schakeling verwijs ik u door naar de 
 ## Overige images
 Hieronder worden nog wat images van het PCB design.
 Het PCB design met power plane:
+
 ![pcb design met power plane](img/pcb-design-met-power-plane.png)
+
 De 3d weergaves van het PCB (de componenten die worden getoond zijn niet dezelfde als in finale versie)
 Bovenaanzicht:
+
 ![bovenaanzicht pcb](img/bovenaanzicht-3d-pcb.png)
 
+
 Onderaanzicht:
+
 ![onderaanzicht pcb](img/onderaanzicht-3d-pcb.png)
