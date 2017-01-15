@@ -48,6 +48,8 @@ Schematisch gezien ziet het er als volgt uit:
 De huidige van de staat van de parkeer sensor is exact het zelfde als hierboven vermeld.
 We kunnen namelijk de afstanden meten en sturen dan ook de kleinste afstand door naar de applicatie.
 Vervolgens zal de applicatie visueel tonen hoever het object is van de parkeer sensor.
+Hieronder is de flow te zien van de parkeer sensor:
+![flow parkeer sensor](img/flowchart park assist.png)
 
 ### Waarom deze oplossing
 #### Sensoren
