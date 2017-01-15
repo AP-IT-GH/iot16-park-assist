@@ -41,7 +41,6 @@ Een voorbeeld van hoe deze parkeer sensoren bevestigd kunnen worden op de carava
 De parkeer sensor werkt zeer simpel vanaf het moment dat de voedingsbron is aangesloten en de parkeer sensor is aangezet begint hij meteen met detecteren van objecten.
 Dit doet hij door 3 internet sensoren die geplaatst zijn op elke 30 graden van elkaar om een totale hoek van 90 graden te bekomen.
 De sensoren sturen de data door naar de Arduino die dan zal kijken wat de kleinste afstand is. Deze afstand zal de Arduino doorsturen naar de verbonden applicatie. De applicatie zal dan visueel tonen hoe dicht je op een object zit.
-([voor meer info over de applicatie verwijs ik u door naar de applicatie documentatie](documentatie url ))
 Schematisch gezien ziet het er als volgt uit:
 ![schema parkeer sensor](img/schema parkeersensor.png)
 
