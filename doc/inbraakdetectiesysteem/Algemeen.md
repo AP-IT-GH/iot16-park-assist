@@ -8,13 +8,12 @@ U vindt hier tevens ook hoe het systeem in zijn geheel is opgemaakt. U zou dit d
 Iets wat campers/caravans momenteel niet erg bestendig tegen zijn, is inbraak. Met ons systeem zouden de eigenaars, al dan niet met een iets geruster hart, hun caravan kunnen achterlaten.
 De bedoeling van ons product is dat, na installatie in de caravan, de eigenaar zijn sleurhut zou kunnen achterlaten zonder toch een gevoel van paranoïa te hebben. Ons systeem zou ervoor zorgen dat, stel er toch een inbraak plaatsvindt, de eigenaar een notificatie op zijn/haar smartphone zou aankrijgen.
 
-### Werking en staat van het anti-inbraaksysteem
+### Algemene werking en staat van het anti-inbraaksysteem
 
 In principe is het systeem ongeveer plug & play. Vanaf je het systeem power geeft en je op de app aangeeft dat je het systeem in werking hebt gesteld, kan men meldingen ontvangen.
 Dus eens men deze dingen gedaan heeft, begint de sensor te detecteren of er objecten/personen voorbij komen.
 
-Het detecteren gebeurt via een infrarood sensor die data verstuurd naar de Arduino. Op de Arduino runt een programma dat constant de gemiddelde afstand berekent en als er een anomalie tussenkomt dan zal er een melding optreden.
-Dit gaat als volgt; de Arduino zal dan een bepaalde code in actie stellen. Deze zorgt ervoor dat er via de LoRa Mote een pakketje zal worden verstuurd naar de dichtsbijzijnde LoRa Gateway. De Gateway zal dan via het Things Network terugkunnen sturen naar de eigenaar. Vervolgens zal de eigenaar dus een melding krijgen op zijn smartphone.
+Het detecteren gebeurt via een infrarood sensor die data verstuurd naar de Arduino. Op de Arduino runt een programma dat constant de afstand berekent en als er een verschil is met de afstand die berekend is bij het aanzetten van het alarm, zal de LoRa Mote een pakketje verzenden naar de dichtsbijzijne LoRa Gateway. Eenmaal de gateway het pakketje heeft ontvangen stuurt hij dit door naar de juiste MQTT server op TTN. Op het moment dat de applicatie een pakketje ziet verschijnen op deze MQTT server zal de gebruiker een melding ontvangen.
 
 Schematisch gezien ziet het er zo uit:
 
@@ -27,10 +26,7 @@ Hieronder de flowchart van de code die op de Arduino wordt uitgevoerd:
 
 ![flowchart inbraak](img/flowchart inbraak.png)
 
-De huidige staat van het anti-inbraaksysteem is realistisch gezien hetzelfde.
-Om ons systeem te laten werken, is er echter een gateway nodig die actieve verbinding heeft met het TTN netwerk.
-Aangezien dit een technologie is die voorlopig nog in verdere ontwikkeling zit, is dit niet zo voornamelijk. Gateways zijn nog niet zo heel frequent maar meerdere telecom bedrijven beginnen met deze technologie te experimenteren dus we blijven hoopvol.
-Er is ook nog het probleem dat we de Mote moeten resetten als de power uitgegaan is.
+Indien u een uitgebreidere uitleg wilt over hoe u het project zelf kan opstellen, verwijzen we u door naar de [handleiding](https://github.com/AP-Elektronica-ICT/iot16-park-assist/blob/master/doc/inbraakdetectiesysteem/Handleiding.md) die het gehele project tot in de details uitlegt.
 
 ### Waarom deze oplossing?
 #### Sensor
@@ -41,10 +37,9 @@ De sensor meet ideaal tussen 3cm en 40cm, wat in principe genoeg is voor ons pro
 Na een tip van Mr.Luyts, hebben we ons op het LoRa WAN verhaal gestort. Er was een LoRa Mote en een LoRa Gateway tot onze beschikking in het labo. Deze komen beide van Ideetron.
 De Mote, met de RN2483 module konden we met Arduino code besturen om zo pakketjes te broadcasten naar de dichtsbijzijnde gateway.
 De gateway, een Lorank8 module stond ons ook ter beschikking.
-Tussen de mote en de gateway moet wel een afstand van minstens 2m moeten bewaard worden. Anders kunnen ze elkaar niet bereiken. Dit komt omdat LoRa eigenlijk een technologie is die over lange afstand werkt.
+Tussen de mote en de gateway moet volgens de documentatie wel een afstand van minstens 2m moeten bewaard worden. Anders kunnen ze elkaar niet bereiken. Dit komt omdat LoRa eigenlijk een technologie is die over lange afstand werkt.
 
 We hebben getest wat het bereik zou zijn met onze opstelling, en die zou ongeveer een 200-tal meters zijn. Maar wij werkten niet noodzakelijk in de meest optimale omgeving. Lees; beton, isolatie, bereik van de wifi voor mqtt...
-Meer gedetailleerde uitleg over deze technologie kan u vinden in onze handleiding.
 
 #### TTN
 Omdat deze een early adopter technologie is, maakte het voor ons ook heel interessant om hiermee te werken, alsook omdat deze technologie open source is. Er valt op het forum toch vrij veel over te vinden. We kunnen dit netwerk vrij gebruiken hoe we willen en dat maakte het voor ons toch zeker een voorsprong te hebben op de andere netwerken.
