@@ -52,25 +52,6 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
 │   │   └── pcb-design.md
 │   ├── Projectplan Park Assist.md
 │   ├── README.md
-│   ├── schema
-│   │   ├── 1 cell battery protect.ms13
-│   │   ├── 1 cell battery protect.ms13 (Security copy)
-│   │   ├── battery-protection (Exemplaar met conflict van Marijn Joosens 2016-10-16).ms13
-│   │   ├── battery-protection.ms13
-│   │   ├── battery-protection.ms13 (Security copy)
-│   │   ├── park-assist-PCB@2016-10-15-2147.ewnet
-│   │   ├── park-assist-PCB.ewprj
-│   │   ├── park-assist-PCB.ewprj (Security copy)
-│   │   ├── park-assist-PCB (Exemplaar met conflict van joey driessen 2016-10-15).ewprj
-│   │   ├── Park-assist-Schema@2016-10-16-2014.ewnet
-│   │   ├── Park-assist-Schema@2016-10-16-2016.ewnet
-│   │   ├── Park-assist-Schema.ms13
-│   │   ├── Park-assist-Schema.ms13 (Security copy)
-│   │   ├── pcb-design.md
-│   │   ├── protection-with-blocks.ms13
-│   │   ├── protection-with-blocks.ms13 (Security copy)
-│   │   ├── UltrasonicSensor.ms13
-│   │   └── UltrasonicSensor.ms13 (Security copy)
 │   └── timing.md
 ├── README.md
 └── src
