@@ -268,7 +268,7 @@ Indien de module data naar de MQTT server stuurt, zal de applicatie dit zien en 
 
 Voor we iets kunnen doen met de gateway, is er natuurlijk een voedingsbron nodig, men kan deze via een USB-kabel verbinden met een laptop en deze hiervan poweren. Voorts hebben we ook een Ethernet-kabel nodig om de LoRa Gateway van internet te kunnen voorzien.
 
-Omdat het de eerste keer was dat we met dit materiaal werken, hebben wij gebruik gemaakt van de Manual en Installation Guide van Ideetron, de leverancier van het materiaal.
+Omdat het de eerste keer was dat we met dit materiaal werken, hebben wij gebruik gemaakt van de [Manual](http://webshop.ideetron.nl/Files/3/1000/1211/Attachments/Product/23t415f609w49D376q7N237h696Q544S.pdf) en [Installation Guide](http://webshop.ideetron.nl/Files/3/1000/1211/Attachments/Product/0819XIN2397Nnb7T0OtUV646848934v0.pdf) van Ideetron, de leverancier van het materiaal.
 
 
 
@@ -289,7 +289,7 @@ Eens dit was geïnstalleerd, kan verder worden gegaan met het proces.
 
 ### Verbinding met het internet
 
-*Vanaf dit punt maken we gebruik van de Manual guide van Ideetron.*
+*Vanaf dit punt maken we gebruik van de [Manual guide](http://webshop.ideetron.nl/Files/3/1000/1211/Attachments/Product/23t415f609w49D376q7N237h696Q544S.pdf) van Ideetron.*
 
 Om verder aan de slag te kunnen gaan met de Gateway, was er natuurlijk connectie met het internet nodig. We hadden natuurlijk een (RJ-45) Ethernet-kabel nodig om tot het internet te kunnen geraken.
 
