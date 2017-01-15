@@ -1,4 +1,22 @@
-##Beschrijving PCB design
+# Inhoudsopgave
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Beschrijving PCB design](#beschrijving-pcb-design)
+  - [doel van het PCB design](#doel-van-het-pcb-design)
+  - [De werking en staat van het blok](#de-werking-en-staat-van-het-blok)
+  - [Waarom gekozen voor deze oplossing](#waarom-gekozen-voor-deze-oplossing)
+  - [Mogelijke alternatieven](#mogelijke-alternatieven)
+  - [reflectie resultaat](#reflectie-resultaat)
+  - [Installatie handleiding PCB design](#installatie-handleiding-pcb-design)
+  - [Gebruikers handleiding PCB design](#gebruikers-handleiding-pcb-design)
+- [Overige images](#overige-images)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Beschrijving PCB design
 Onze eerste revisie van het PCB design was vooral gericht op een zo klein mogelijke form factor.
 Dit hebben we gedaan aangezien dit gegvraagd was door onze product owner (meneer Overdulve).
 Hierom hebben we gekozen om componenten aan weerszijden te plaatsen dit zorgt ervoor dat we zo weinig mogelijk ruimte gebruiken.
@@ -17,19 +35,19 @@ De componenten die zijn toegevoegd:
 
 Zoals je op het plaatje ziet is het bovenste design de tweede revisie.
 
-###doel van het PCB design
+## doel van het PCB design
 Het PCB design wordt gebruikt om alle componenten te waarborgen in een zo klein mogelijke form factor voor de parkeer sensor. Alle componenten worden doormiddel van headers op het PCB geplaatst en connecteren hierdoor met de Arduino.
 Door alles op een PCB te zetten in plaats van een Matrix bord of Breadbord krijgen we een netter afgewerkt product. Als ook veel meer betrouwbaarheid aangezien er geen verbindingen gemakkelijk opeens verbroken kunnen worden.
 
-###De werking/staat van het blok
+## De werking en staat van het blok
 Helaas tijdens het printen van dit PCB  is de PCB printer stuk gegaan. Hierdoor is ons PCB niet volledig afgeraakt en hebben we het dus ook niet kunnen testen. We hebben echter wel nog het PCB gebruikt als placeholder voor de sensoren aangezien deze in afgemeten hoeken moesten staan die wel aanwezig waren op het PCB, maar niet op het Matrix bordje.
 Het PCB zou werken als een goeie/stabiele manier van het verbinden van de componenten als ook ervoor zorgen dat het product een zo klein mogelijk form factor kon hebben.
 
-###Waarom gekozen voor deze oplossing
+## Waarom gekozen voor deze oplossing
 We hebben mede voor deze oplossing gekozen omdat het een van de vereisten was van de opdracht. Het was namelijk verplicht om een PCB te maken gebasseerd op het product. Echter als dit niet het geval was geweest hadden we als nog gekozen om een PCB te laten afdrukken. De reden hiervoor is omdat het relatief gemakkelijk is om goed in te schatten hoe je eindproduct eruit gaat zien. Je weet waar alle componenten staan en je kan makkelijk experimenten (doormiddel van simulatie) waar alle componenten/banen moeten komen. Met een Matrix bord vind ik dat persoonlijk een stuk minder omdat je zelf ook nog de draadjes moet leggen en het niet zo makkelijk/mooi is om ze onder elkaar door te laten gaan.
 Tevens bied het PCB ook een veel betrouwbare manier van connecties van alle componenten.
 
-###Mogelijke alternatieven
+## Mogelijke alternatieven
 Zoals hierboven al een paar keer gerefeeerd waren onze alternatieven een Breadbord of een Matrix bordje.
 We hebben niet voor deze 2 gekozen omdat de verbindingen van deze beide niet zo betrouwbaar zijn als een PCB design.
 Als ook de formfactor van deze alternatieven is een stuk moeilijker aan te passen of in te schatten. Zeker bij een Breadbord heb je hier weinig keuze in omdat deze al in bepaalde grootes komen.
@@ -39,13 +57,13 @@ Hieronder 2 foto's van hoe het er nu uitziet:
 ![matrix bord bovenkant](img/matrix-bord-bovenkant.jpg)
 ![matrix bord onderkant](img/matrix-bord-onderkant.jpg)
 
-###reflectie resultaat
+## reflectie resultaat
 Persoonlijk ben ik zeer tevreden over het resultaat het PCB ziet er heel goed uit zeker met de hoeken.
 Dit geeft toch een goeie touch dan simpel een vierkant PCB. Uiteraard met wat meer meten en testen hadden we het PCB design misschien nog een stuk kleiner kunnen maken, maar we mogen zeker niet klagen over de grote.
 Wat echter jammer is (maar niks aan gedaan kan worden) is dat het PCB machine stuk is gegaan. Hierdoor weten we niet zeker of het PCB ook echt goed zou werken of dat er nog kleine foutjes in het design zitten.
 
 
-##Installatie handleiding PCB design
+## Installatie handleiding PCB design
 Voor dat het PCB in gebruik kan worden genomen zullen de nodige componenten en headers op het PCB gesoldeerd moeten worden.
 Voor de prijzen en dergelijke van de componenten verwijs ik u door naar de [Bill of materials](Bill of materials.md).
 Alle componenten zullen gesoldeerd moeten worden zoals onderstaand PCB schema (dit is het schema zonder power plate).
@@ -54,14 +72,14 @@ De enigste 2 componenten die aan de onderkant moeten geplaatst worden zijn de he
 
 Plaats de componenten in de juiste headers (Arduino Nano,BT device, Batterijen, etc) en zorg ervoor dat alles goed is aangesloten voor naar de gebruikers handleiding te gaan.
 
-##Gebruikers handleiding PCB design
+## Gebruikers handleiding PCB design
 Vanaf het moment dat de batterijen en alle componenten goed zijn aangesloten is het tijd om het PCB in gebruik te nemen.
 Schakel de schakelaar om zodat er stroom naar de Arduino gaat. Na enkele seconden zal de schakeling klaar zijn om in gebruik genomen te worden.
 De sensoren beginnen automatisch met detecteren en zullen automatisch proberen hun data te versturen.
 Voor het koppelen van de applicatie met de schakeling verwijs ik u door naar de handleiding van de [Applicatie](Applicatie link.md)
 
 
-#Overige images
+# Overige images
 Hieronder worden nog wat images van het PCB design.
 Het PCB design met power plane:
 ![pcb design met power plane](img/pcb-design-met-power-plane.png)
