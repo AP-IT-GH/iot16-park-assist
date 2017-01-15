@@ -43,8 +43,7 @@ Meer gedetailleerde uitleg over deze technologie kan u vinden in onze handleidin
 
 #### TTN
 Omdat deze een early adopter technologie is, maakte het voor ons ook heel interessant om hiermee te werken, alsook omdat deze technologie open source is. Er valt op het forum toch vrij veel over te vinden. We kunnen dit netwerk vrij gebruiken hoe we willen en dat maakte het voor ons toch zeker een voorsprong te hebben op de andere netwerken.
-Semtech was relatief beperkt in gebruik, educatieve doeleinden was toegestaan maar ook maar beperkt in hoeveel packets er mocht worden verzonden.
-Loraley was nog in early development dus niet de manier om te werken.
+
 
 ### Mogelijke alternatieven
 #### Sensor
@@ -52,6 +51,9 @@ Loraley was nog in early development dus niet de manier om te werken.
 Hier was het bijvoorbeeld ook mogelijk geweest van een duurdere technologie zoals lasers te gebruiken. Maar omdat dit niet aanwezig was in het labo en omdat deze sensoren zeer duur in aankoop zijn, was dit niet aangewezen.
 
 #### LoRa
+Semtech was relatief beperkt in gebruik, educatieve doeleinden was toegestaan maar ook maar beperkt in hoeveel packets er mocht worden verzonden.
+Loraley was nog in early development dus niet de manier om te werken.
+
 Een alternatief voor lora wan had zigbee kunnen zijn, maar deze technologie is wel beperkter in reikwijdte.
 Deze technologie was ons ook tot beschikking in het labo en hadden we ook kunnen gebruiken.
 Maar omdat LoRa een nieuwe technologie is voor ons en voor de docenten wouden we de uitdaging wel aan.
