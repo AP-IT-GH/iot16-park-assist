@@ -64,10 +64,37 @@ Het eindresultaat ziet er prima uit de sensoren zijn zeer accuraat en de data tr
 
 #Installatie handleiding parkeer sensor
 Vanaf dat het PCB in mekaar is gezet ([handleiding PCB](link naar pcb handleiding)) hoef je enkel nog maar de app te installeren en te koppelen.
-De app werkt voor nu nog enkel op Android en meer informatie over de app is [hier](handleiding naar applicatie doc) te vinden.
+
+##Applicatie installeren
+
+Aangezien de applicatie niet helemaal is afgeraakt, is het momenteel enkel mogelijk om met 1 parkeersensor module te werken. Om dit te doen is het noodzakelijk dat je in het bestand [MainActivity.java]() de volgende lijn aanpast met het MAC adres van de bluetooth module die je gebruikt.
+
+> //lijn 113
+> addSensor(x, y, 0, "20:16:01:26:15:73");
+
+Voor we de app kunnen gebruiken, zullen we deze eerst op de smartphone moeten zetten. Om dit te doen, verbinden we de smartphone met de laptop en openen we de applicatie in "Android Studio". In Android studio klik je op run in het menu, waarna je je smartphone selecteert en op "OK" klikt.
+
+![run.png](img/run.png)
+
+Na een tijdje zal er op je scherm gevraagd worden of je de applicatie wilt installeren, selecteer hier "installeren". Nu wordt de applicatie geïnstalleerd, waarna deze klaar is om te gebruiken.
 
 #Gebruikers handleiding parkeer sensor
 Voor in gebruik name van de parkeer sensor moet je enkel de voedingsbron aansluiten en de parkeersensor aan te zetten.
 Dit wordt gedaan doormiddel van de schakelaar om te zetten naar links of rechts (beide kanten doet hetzelfde).
-Hierna kan je de telefoon verbinden met de Bluetooh module op de parkeer sensor en dan enkel nog de app starten.
+
 Uiteraard is het ook belangrijk dat je de parkeer sensor stevig vast maakt op het voorwerp waar je het voor wilt gebruiken.
+
+##Applicatie gebruiken
+Voor we de applicatie starten is het belangrijk dat het enigste aan je smartphone gekoppelde bluetooth device, de bluetoothmodule van de parkeersensor is.
+
+Indien dit zo is, kan je de applicatie opstarten en beginnen te gebruiken. aangezien dit de eerste keer is dat je het gebruikt, zal er nog geen module toegevoegd zijn aan de applicatie. Het toevoegen van een module doe je door op "Add" te klikken, waarna je op een plaats rond het zwarte vlak (dit stelt de caravan voor) klikt. Indien je dicht genoeg rond het zwarte vlak hebt geklikt, zal er hier een module verschijnen.
+
+Omdat je de parkeersensor al aan je smartphone hebt gekoppeld, zal je ook meteen de afstand te zien krijgen.
+
+![200.png](img/200.png)
+
+Zoals je ziet is de afstand in vier kleuren verdeelt, waarbij iedere kleur een afstand van 50cm voorstelt. Indien de afstand kleiner dan 2m is, zal je dus ook kleuroppervlakken zien verkleinen of totaal zien verdwijnen.
+
+![minder.png](img/minder.png)
+
+Indien je een sensor wilt verwijderen zal dit op het moment niet gaan, aangezien deze functie niet helemaal is afgeraakt.
