@@ -102,6 +102,8 @@ Verbind de IR sensor op de volgende manier met de Arduino DUE:
 
 ### The Things Network
 
+LET OP! Alle uitleg over TTN gaat over de "staging" versie van dit netwerk, namelijk "v1". Ondertussen is er "v2" en men dient dus deze versie van TTN te gebruiken.
+
 #### Waarom TTN?
 
 
