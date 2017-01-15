@@ -19,10 +19,49 @@ Dit gaat als volgt; de Arduino zal dan een bepaalde code in actie stellen. Deze 
 Schematisch gezien ziet het er zo uit:
 ![diagram-inbraak](img/diagram-inbraak.png)
 
-De huidige staat van het anti-inbraaksysteem is realistisch gezien niet exact hetzelfde.
+De huidige staat van het anti-inbraaksysteem is realistisch gezien hetzelfde.
 Om ons systeem te laten werken, is er echter een gateway nodig die actieve verbinding heeft met het TTN netwerk.
 Aangezien dit een technologie is die voorlopig nog in verdere ontwikkeling zit, is dit niet zo voornamelijk. Gateways zijn nog niet zo heel frequent maar meerdere telecom bedrijven beginnen met deze technologie te experimenteren dus we blijven hoopvol.
-Er is ook nog het probleem dat we de Mote om de zoveel keren terug moeten activeren. Het TTN netwerk zet de Mote op inactief als er enige tijd niets meer wordt verzonden. Als de power wegvalt, zal dit tevens ook moeten gebeuren.
+Er is ook nog het probleem dat we de Mote moeten resetten als de power uitgegaan is.
+
+### Waarom deze oplossing?
+#### Sensor
+We hebben gekozen voor de Infrarood sensor die aanwezig was in het labo. De Sharp IR sensor gebruiken we al een hele tijd en het leek voor ons ook het handigste om voor die te gaan. Deze sensoren werken niet perfect en detecteren niet altijd de juiste waarden, maar aangezien we niet het kapitaal hadden om lasersensoren aan te kopen was dit de aangewezen sensor.
+
+Na even zoekwerk hebben we een [library](http://playground.arduino.cc/Main/SharpIR) gevonden die het gemiddelde berekent van de gemeten waarden, deze werkte als gegoten voor ons project.
+
+De sensor meet ideaal tussen 3cm en 40cm, wat in principe genoeg is voor ons project om indringers te kunnen detecteren.
+
+#### LoRa
+Na een tip van Mr.Luyts, hebben we ons op het LoRa WAN verhaal gestort. Er was een LoRa Mote en een LoRa Gateway tot onze beschikking in het labo. Deze komen beide van Ideetron.
+De Mote, met de RN2483 module konden we met Arduino code besturen om zo pakketjes te broadcasten naar de dichtsbijzijnde gateway.
+De gateway, een Lorank8 module stond ons ook ter beschikking.
+Tussen de mote en de gateway moet wel een afstand van minstens 2m moeten bewaard worden. Anders kunnen ze elkaar niet bereiken. Dit komt omdat LoRa eigenlijk een technologie is die over lange afstand werkt.
+
+We hebben getest wat het bereik zou zijn met onze opstelling, en die zou ongeveer een 200-tal meters zijn. Maar wij werkten niet noodzakelijk in de meest optimale omgeving. Lees; beton, isolatie, bereik van de wifi voor mqtt...
+Meer gedetailleerde uitleg over deze technologie kan u vinden in onze handleiding.
+
+#### MQTT
+We maken gebruik van MQTT om de eigenaar van de caravan te notifiëren van mogelijke indringers.
+We sturen over LoRa een bepaald pakket dat dan via MQTT een melding kan voortsturen.
+
+### Mogelijke alternatieven
+#### Sensor
+
+Hier was het bijvoorbeeld ook mogelijk geweest van een duurdere technologie zoals lasers te gebruiken. Maar omdat dit niet aanwezig was in het labo en omdat deze sensoren zeer duur in aankoop zijn, was dit niet aangewezen.
+
+#### LoRa
+Een alternatief voor lora wan had zigbee kunnen zijn, maar deze technologie is wel beperkter in reikwijdte.
+Deze technologie was ons ook tot beschikking in het labo en hadden we ook kunnen gebruiken.
+Maar omdat LoRa een nieuwe technologie is voor ons en voor de docenten wouden we de uitdaging wel aan.
+
+### Reflectie
+Het resultaat is meer dan we hadden verwacht. Omdat we vrij laat aan onze extra hardware pas zijn kunnen beginnen, hadden we nooit voor ogen dat we ons volledig anti-inbraaksysteem klaar gingen hebben op zo een geslaagde manier.
+LoRa WAN was voor ons ook een compleet nieuwe ervaring maar dat maakte het alleen maar leuker om dit te kunnen bereiken.
+
+Ondanks dat het nieuw was voor ons, hebben we volgens ons toch een goed resultaat kunnen afgeven.
+
+
 
 ## Besluit
 
