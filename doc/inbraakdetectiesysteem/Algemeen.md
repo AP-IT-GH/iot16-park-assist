@@ -22,6 +22,11 @@ Schematisch gezien ziet het er zo uit:
 ![diagram-inbraak](img/diagram-inbraak.png)
 
 
+Hieronder de flowhcart van de app.
+
+
+![flowchart inbraak](img/flowchart inbraak.png)
+
 De huidige staat van het anti-inbraaksysteem is realistisch gezien hetzelfde.
 Om ons systeem te laten werken, is er echter een gateway nodig die actieve verbinding heeft met het TTN netwerk.
 Aangezien dit een technologie is die voorlopig nog in verdere ontwikkeling zit, is dit niet zo voornamelijk. Gateways zijn nog niet zo heel frequent maar meerdere telecom bedrijven beginnen met deze technologie te experimenteren dus we blijven hoopvol.
