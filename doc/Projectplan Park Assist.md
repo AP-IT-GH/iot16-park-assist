@@ -36,13 +36,13 @@ Om het wat duidelijker weer te geven hebben we een paar images die iets meer dui
 Hieronder is te zien hoe de parkeer assist module eruit ziet. Zoals je kan zien zitten er 3 sensoren per module.
 
 Vooraanzicht:
-![3D case park assist](img/case design parking sensor.png)
+![3D case park assist](parkeersensor/img/case design parking sensor.png)
 
 Bovenaanzicht (met cover geopend):
-![3D case park assist met cover open](img/case design parking sensor open cover.png)
+![3D case park assist met cover open](parkeersensor/img/case design parking sensor open cover.png)
 
 Hieronder is te zien hoe dit bijvoorbeeld op een caravan eruit zou zien:
-![park assist geplaatst op caravan](img/park assist on caravan.png)
+![park assist geplaatst op caravan](parkeersensor/img/park assist on caravan.png)
 
 ###Uitbreidingen
 Volgens de specificaties van het project moeten we enkel zorgen voor een module (bestaande uit 3 sensoren) die communiceert met de mobiele applicatie. De mobiele applicatie zal op zijn beurt aangeven hoe ver de sensoren verwijderd zijn van een object. Echter zijn er natuurlijk veel meer aspecten aan dit project waar wij (indien er tijd over is) nog aan willen gaan werken.
@@ -60,11 +60,11 @@ Het inbraaksysteem zal aan de binnenzijde, aan de inkom van de caravan worden be
 
 ###High level blokdiagrammen
 
-![blokdiagram.png](img/blokdiagram.png)
+![blokdiagram.png](parkeersensor/img/blokdiagram.png)
 
 ###Flowcharts software
 
-![Software flowchart.png](img/Software flowchart.png)
+![Software flowchart.png](parkeersensor/img/Software flowchart.png)
 
 
 ###Bruikbare technologieën
@@ -77,13 +77,14 @@ Het inbraaksysteem zal aan de binnenzijde, aan de inkom van de caravan worden be
 
 ####Hardware
 
-- **1X Bluetooth module (HC-05)** Wordt gebruikt voor het verzenden van data van de Arduino naar de mobiele applicatie.
+- **2X Bluetooth module (HC-05)** Wordt gebruikt voor het verzenden van data van de Arduino naar de mobiele applicatie.
 - **3X Ultra Sonic range measurement module (M: SEN136B5B)** Wordt gebruikt voor het meten van de afstand tot naderende objecten.
 - **1X Arduino NANO (ATMEGA328P-PU)** Wordt gebruikt voor al de logica voor het aansturen van de sensoren.
 - **1X Android phone** Wordt gebruikt voor het developpen en testen van de mobiele applicatie.
 - **1X Microchip LoRa Mote (RN2483)** Wordt gebruikt voor het versturen van signaal naar de gateway.
 - **1X LoRa Gateway** Wordt gebruikt voor het doorsturen van signaal naar het internet (en voorts naar de gebruiker).
 - **1X IR distance sensor** Wordt gebruikt voor het detecteren van afstand.
+- **1X Arduino DUE** Wordt gebruikt voor het inbraakdetectiesysteem
 
 ###Project Planning
 Voor het plannen en managen van het project maken we gebruik van Agile development via Github zelf.
