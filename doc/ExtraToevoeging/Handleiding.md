@@ -437,11 +437,11 @@ Door gebruik te maken van deze commando's is het mogelijk om data te verzenden e
 
 Voor we TTN kunnen joinen zullen we eerst de nodige gegevens moeten instellen. In het geval van ABP activatie, zoals we in dit project gebruiken, moeten we het "device address", "network session key" en "application session key" instellen, wat we met de volgende commando's doen:
 
-- mac set devaddr [address]
+> mac set devaddr [address]
 
-- mac set nwkskey [network session key]
+> mac set nwkskey [network session key]
 
-- mac set appskey [application session key]
+> mac set appskey [application session key]
 
 
 
@@ -453,7 +453,7 @@ Bij deze commando's is het element tussen de vierkante haken hetgeen dat vervang
 
 Nu alles ingesteld is, kunnen we verbinding maken met TTN en dat doen we met het volgende commando:
 
-- mac join [mode]
+> mac join [mode]
 
 
 
@@ -465,7 +465,7 @@ Mode staat hier voor de activatiemethode, met andere woorden zal je mode moeten 
 
 Nu we verbonden zijn met TTN kunnen we data verzenden door gebruik te maken van het volgende commando:
 
-- mac tx [type] [port number] [data]
+> mac tx [type] [port number] [data]
 
 
 
@@ -489,13 +489,13 @@ Nu we data naar TTN hebben verzonden, kunnen we deze ook ontvangen door onszelf 
 
 Dit kunnen we doen door gebruik te maken van "Mosquitto". Om Mosquitto te gebruiken heb je een Linux device nodig of moet je gebruik maken van Bash voor Windows. Om mosquitto te installeren, runnen we het volgende commando:
 
-- apt-get install mosquitto mosquitto-clients
+> apt-get install mosquitto mosquitto-clients
 
 
 
 Om te subscriben gebruik je dit commando:
 
-- mosquitto_sub -h [broker] -t [topic] -u [username] -P [wachtwoord]
+> mosquitto_sub -h [broker] -t [topic] -u [username] -P [wachtwoord]
 
 
 
