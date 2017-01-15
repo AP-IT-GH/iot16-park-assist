@@ -251,61 +251,44 @@ Indien de module data naar de MQTT server stuurt, zal de applicatie dit zien en 
 
 ###Hoe beginnen we eraan?
 
-Voor de gateway aan de praat te krijgen, hebben we een voedingsbron nodig. Deze kan men via een USB-kabel verbinden met een laptop en hiermee via poweren. Voorts hebben we ook een Ethernet kabel nodig om de LoRa Gateway van internet te voorzien. De Ethernet kabel hebben we dan ook aan de laptop gehongen en dan via DHCP gaven we de LoRa Gateway internet. 
+Voor we iets kunnen doen met de gateway, is er natuurlijk een voedingsbron nodig, men kan deze via een USB-kabel verbinden met een laptop en deze hiervan poweren. Voorts hebben we ook een Ethernet-kabel nodig om de LoRa Gateway van internet te kunnen voorzien.
 
-
-
-Voor te beginnen maakten we ook gebruik van de Manual en installation guide van ideetron. Deze zijn ook te vinden in de documentatie onder de map ExtraToevoeging.
+Omdat het de eerste keer was dat we met dit materiaal werken, hebben wij gebruik gemaakt van de Manual en Installation Guide van Ideetron, de leverancier van het materiaal.
 
 
 
 ###Praten met de LoRa Gateway
 
-We kunnen via de seriële connectie met Putty op de gateway geraken.
+Om de LoRa Gateway te kunnen gebruiken, hebben we de gateway verbonden via een seriële poort. Zodus konden we gebruik maken van Putty om via seriële connectie te kunnen praten met de gateway.
+Aangezien het ook de eerste keer was, dat de gateway werd gebruikt, waren de default inlog gegevens nog in gebruik. Deze inloggegevens zijn ook vindbaar in de Installation Guide van de LoRa Gateway.
+De guide hebben we gevonden via de verkoper van het toestel.
+Als men toevallig nog toegang nodig zou hebben, deze gegevens zijn nog steeds in gebruik (Login: root; pwd: LorankAdmin).
 
-Aangezien het de eerste keer was dat de gateway werd gebruikt, zijn de default inloggegevens nog geldig.
+De LoRa Gateway gebuikt als default forwarder, het Poly pakket. Dit pakket wordt gebruikt in The Things Network. Tevens is dit het netwerk dat wij gebruiken om onze toepassing op te laten werken.
+Deze keuze is bewust gemaakt met reden dat dit de makkelijkste methode is en er de meeste uitleg over te vinden is.
 
-Deze kan men ook vinden in de Installation Guide van de LoRa Gateway. Deze default gegevens zijn nog momenteel nog in gebruik. (Login: root; pwd: LorankAdmin)
+Om de Gateway te laten werken, moest men ook de nodige certificaten installeren om connectie te kunnen hebben. 
+> Dit kan eenvoudig gedaan worden via het commando: apt-get install ca-certificates
 
-De Gateway forward als default het Poly pakket. Deze pakketjes worden gebruikt in The Things Network. Tevens ook het netwerk dat wij als verzendmogelijkheid zien voor onze toepassing.
-
-Omdat het ook de eerste keer is dat men de gateway gebruikt, was het ook nodig om de certificaten te installeren.
-
-> Dit ging via het commando: apt-get install ca-certificates.
-
-
-
-Eens dit gebeurt was, konden we verder gaan met het proces.
-
-
+Eens dit was geïnstalleerd, kan verder worden gegaan met het proces.
 
 ###Verbinding met het internet
 
-Eens de installatie voorbij was, konden we verder aan de slag met de gateway.
+*Vanaf dit punt maken we gebruik van de Manual guide van Ideetron.*
 
-Vanaf dit punt maakten we ook gebruik van de Manual van Ideetron.
+Om verder aan de slag te kunnen gaan met de Gateway, was er natuurlijk connectie met het internet nodig. We hadden natuurlijk een (RJ-45) Ethernet-kabel nodig om tot het internet te kunnen geraken.
 
-Beide de USB-kabel en de Ethernet-kabel waren verbonden, en de lampjes van de gateway branden, dus konden we verder aan de slag.
+Als eerste moesten we ontdekken op welk IP-adres we het gateway dashboard konden bereiken.
+> Met het alomgekende ifconfig, was dit een simpele taak.
 
-Als eerste moesten we ontdekken op welk IP-adres we de gateway konden bereiken.
+De Ethernet-kabel zit momenteel nog enkel in de poort van de laptop ingestoken. Hierdoor heeft de gateway dus nog steeds geen connectie.
+Dit kan opgelost worden door een netwerkbrug op te zetten tussen de Wifi-module van de laptop en de Ethernet-kabel waarmee de Gateway was verbonden.
+Zo kan er een IP-adres gegeven worden aan de LoRa Gateway en kan men deze ook vanuit de "buitenwereld" bereiken.
+> snel nog even een ifconfig in de commandline en we weten het IP van de gateway.
 
-> Met het alomgekende ifconfig kwamen we hier makkelijk achter.
-
-
-
-In het netwerkcentrum zetten we een netwerkbrug op; een brug tussen Ethernet & de Wifi-module van de laptop.
-
-Zo konden we een IP-adres geven aan de LoRa Gateway en kon deze naar de buitenwereld toe zichtbaar worden.
-
-
-
-Voorts gingen we naar onze favoriete browser, Google Chrome en typten we dat IP-adres in.
-
-Als we surften naar dat adres kwamen we terecht op het adminscherm van de gateway.
-
-Hierop was te zien met welke server hij verbonden was, hoeveel pakketjes er al op werden verstuurd...
-
-Er was een tabel te zien met Upstream-data en een tabel met Downstream-data.
+Voorts kan men naar een van uw favoriete browsers gaan en het IP adres intypen (Wij kozen voor Google Chrome).  
+Als men dan surft naar dat adres, dan komt men terecht op het dashboard van de gateway. Op dit dashboard kan men vinden met welke server de gateway is verbonden, alsook informatie over de pakketjes.
+Handig aan dit scherm is dat men zowel Upstream als Downstream kan meevolgen wat er wordt verstuurd, of de pakketjes zijn aangekomen of hoeveel er niet zijn doorgeraakt.
 
 
 
@@ -313,9 +296,7 @@ Er was een tabel te zien met Upstream-data en een tabel met Downstream-data.
 
 
 
-Verder kon men ook instellen welke soort pakketjes men wou ontvangen en versturen via de gateway.
-
-Men kon kiezen voor de Poly Packets van TTN, die van Semtech of Loraley
+In de Admintab kan men ook instellen welke soort pakketjes men wou ontvangen en versturen via de Gateway. Men kan hier kiezen uit de Poly Packets van TTN, de packets van Semtech of die van Loraley.
 
 
 
@@ -325,33 +306,17 @@ Men kon kiezen voor de Poly Packets van TTN, die van Semtech of Loraley
 
 ###Connectie met het TTN netwerk
 
-Om connectie te kunnen maken met de servers van het TTN netwerk, moesten we wat aanpassen in de configuratie van de module.
-
-We moesten in de local_conf.json file een aanpassing maken.
-
-> cd lorank8-0.2.3
-
-
+Natuurlijk is er ook connectie nodig met The Things Network zelf, zonder dit staat de Gateway niets te doen en kan men ook geen berichten verzenden over het netwerk. Om dit te doen, zijn er enkele aanpassingen nodig.
+De configuratie van de module heeft een aanpassing nodig en om nauwkeuriger te zijn de local_conf.json file.
+ >cd lorank8-0.2.3
 
 > cd packet_forwarder
 
-
-
-> cd poly_pkt_fwd
-
-
+>cd poly_pkt_fwd
 
 > nano local_conf.json
 
-
-
-
-
-In deze json file voegen we het volgende toe:
-
-
-
-
+In deze json file moet dit worden toegevoegd:
 
 
 
@@ -371,19 +336,15 @@ In deze json file voegen we het volgende toe:
 
 
 
-Et voilà!
+
 
 ![connectie.png](img/connectie.png)
 
 
 
-De gateway heeft connectie met de servers, zendt en ontvangt ook heartbeats van de servers!
+Nu heeft de gateway connectie met de servers, hij zendt en ontvangt ook heartbeats van de servers. De verbinding tussen gateway en server wordt +- om de 2 minuten getest, volgens onze observatie.
+Men kan nu dus ook in realtime de quality van de datastreams zien.
 
-De connectie tussen gateway en servers wordt ook om de +-2 min. getest.
-
-+
-
-Men kan ook in real time de quality van de datastreams zien.
 
 
 
@@ -393,19 +354,17 @@ Men kan ook in real time de quality van de datastreams zien.
 
 ###Packets ontvangen & verzenden
 
-Als men pakketjes verstuurd via de LoRa Mote, dan is dit ook zichtbaar op het dashboard van de gateway.
-
-Bij de tabel Upstream krijgen we radio packets aan; ook wordt er een onderscheid gemaakt tussen pakketjes die goed of slecht worden ontvangen. Degene die goed werden ontvangen, zullen verder worden verzonden naar de server.
-
-Deze pakketjes worden dan als datagrams verstuurd naar de server( men krijgt ook een acknowledgement van de TTN server als dit gebeurd).
-
+Na verzenden van pakketjes via de LoRa Mote, dan is dit ook visueel zichtbaar op het dashboard van de gateway. In de tabel Upstream kan men zien hoeveel packets er worden ontvangen en of deze al dan niet goed werden ontvangen door de gateway.
+De packets die men goed kan ontvangen, zullen worden geforward naar de TTN server. Dit keer zullen ze wel als datagrams worden verstuurd ipv losse packetjes.
+Als dit gebeurd is, dan krijgt men ook een acknowledgement van de TTN server teruggestuurd.
 
 
 ![packetsreceived.png](img/packetsreceived.png)
 
 
 
-In de downstream tabel kan men zien of de datagrams ontvangen werden door de server, alsook of de radio packets succesvol over het netwerk zijn gestuurd.
+In de Downstream tabel kan men zien of de datagrams aangekomen zijn om de server, alsook of de radio packets succesvol over het netwerk zijn verstuurd.
+
 
 
 
@@ -413,23 +372,22 @@ In de downstream tabel kan men zien of de datagrams ontvangen werden door de ser
 
 
 
-Het dashboard van de LoRa Gateway is opzich al een handige tool om te kunnen bekijken wat er door de gateway komt. Maar natuurlijk zijn de logs daar ook een heel handig gegeven voor.
+Het dashboard van de LoRa Gateway is opzich al een handige tool om te kunnen bekijken wat er door de gateway allemaal heen gaat, maar daar zijn logs natuurlijk nog een handiger gegeven voor.
+Als men even teruggaat naar Putty dan kan men via een handig commando ook meekijken wat er gebeurt.
 
-Om deze te kunnen bekijken gebruik je dit commando:
 
 > tail -f /var/log/syslog
 
 
 
-Bij een werkend systeem zie je dan ongeveer zo een logs.
+Bij een werkend systeem zien de logs er +- als volgend uit.
 
 ![workinglog.png](img/workinglog.png)
 
 
 
-Tussen deze logs kan je zien hoeveel packets ontvangen zijn, percentage geslaagde/gefailde zendingen, forwarded packets.
-
-Alsook wat er downstream gebeurd, gps tracking (indien dit ingesteld is) en de performance van de connectie.
+Tussen deze logs, vind men informatie over hoeveel packets ontvangen zijn, percentages over geslaagde of mislukte zendingen, packets die geforwarded zijn.
+Ook wat er downstream allemaal gebeurd, gps tracking en de performacie van de verbinding.
 
 
 
