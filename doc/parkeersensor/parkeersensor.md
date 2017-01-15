@@ -124,3 +124,12 @@ Zoals je ziet is de afstand in vier kleuren verdeelt, waarbij iedere kleur een a
 ![minder.png](img/minder.png)
 
 Indien je een sensor wilt verwijderen zal dit op het moment niet gaan, aangezien deze functie niet helemaal is afgeraakt.
+
+## Resultaat
+De parkeer sensor is goed afgeraakt desondanks de verschillende "problemen" die we hebben ondervonden.
+Het heeft allemaal geleid tot een prima werkend prototype en werkt zeer snel en accuraat.
+Het is jammer dat het niet het finale product is geweest als we gehoopt hadden, maar daar zitten we niet ver vanaf.
+Het project is goed schaalbaar aangezien de app enkel nog moet werken voor meerdere BT devices en de mogelijkheid om deze vanuit te app te koppelen.
+Als we het PCB design nog hadden kunnen testen was deze ook klaar geweest voor massa productie en deze zou ook mee schalen.
+
+De haalbaarheid van dit project is dus heel hoog mits alle externe factoren meewerken.
