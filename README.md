@@ -41,11 +41,7 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
 │   ├── inbraakdetectiesysteem
 │   │   ├── Algemeen.md
 │   │   ├── Handleiding.md
-│   │   ├── img
-│   │   ├── loragatewayinstall.pdf
-│   │   ├── loragatewaymanual.pdf
-│   │   ├── LoRaGateway.md
-│   │   └── LoRaMote.md
+│   │   └── img
 │   ├── parkeersensor
 │   │   ├── img
 │   │   ├── parkeersensor.md
@@ -55,12 +51,6 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
 │   └── timing.md
 ├── README.md
 └── src
-    ├── application
-    │   ├── app
-    │   │   └── build
-    │   └── build
-    │       ├── generated
-    │       └── intermediates
     ├── inbraakdetectiesysteem
     │   ├── Android
     │   │   └── application
