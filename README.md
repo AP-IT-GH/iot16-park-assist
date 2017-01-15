@@ -136,7 +136,8 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
     │       ├── Park-Assist-Schema.ms13
     │       └── README.md
     └── README.md
-    ```
+```
+
 ## Documentatie
 Hier kan je alle nodige documentatie vinden in dit project.
 
