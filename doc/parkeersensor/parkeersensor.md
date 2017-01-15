@@ -88,7 +88,7 @@ Het eindresultaat ziet er prima uit de sensoren zijn zeer accuraat en de data tr
 Vanaf dat het PCB in mekaar is gezet ([handleiding PCB](pcb-design.md)) hoef je enkel nog maar de app te installeren en te koppelen.
 ### Applicatie installeren
 
-Aangezien de applicatie niet helemaal is afgeraakt, is het momenteel enkel mogelijk om met 1 parkeersensor module te werken. Om dit te doen is het noodzakelijk dat je in het bestand [MainActivity.java]() de volgende lijn aanpast met het MAC adres van de bluetooth module die je gebruikt.
+Aangezien de applicatie niet helemaal is afgeraakt, is het momenteel enkel mogelijk om met 1 parkeersensor module te werken. Om dit te doen is het noodzakelijk dat je in het bestand [MainActivity.java](https://github.com/AP-Elektronica-ICT/iot16-park-assist/blob/master/src/parkeersensor/Android/application/app/src/main/java/com/example/mathias/iot_parkassist/MainActivity.java) de volgende lijn aanpast met het MAC adres van de bluetooth module die je gebruikt.
 
 > //lijn 113
 > addSensor(x, y, 0, "20:16:01:26:15:73");
