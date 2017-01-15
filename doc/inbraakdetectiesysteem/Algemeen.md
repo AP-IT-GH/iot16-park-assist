@@ -2,6 +2,9 @@
 In dit document kunt u alles lezen over hoe het inbraaksysteem in zijn werking gaat.
 U vindt hier tevens ook hoe het systeem in zijn geheel is opgemaakt. U zou dit document kunnen gebruiken als guide om een vergelijkbaar systeem te maken.
 
+<!-- START doctoc -->
+<!-- END doctoc -->
+
 ## Beschrijving anti-inbraaksysteem
 
 ### Doel van het anti-inbraaksysteem
