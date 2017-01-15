@@ -24,3 +24,10 @@ Om ons systeem te laten werken, is er echter een gateway nodig die actieve verbi
 Aangezien dit een technologie is die voorlopig nog in verdere ontwikkeling zit, is dit niet zo voornamelijk. Gateways zijn nog niet zo heel frequent maar meerdere telecom bedrijven beginnen met deze technologie te experimenteren dus we blijven hoopvol.
 Er is ook nog het probleem dat we de Mote om de zoveel keren terug moeten activeren. Het TTN netwerk zet de Mote op inactief als er enige tijd niets meer wordt verzonden. Als de power wegvalt, zal dit tevens ook moeten gebeuren.
 
+## Besluit
+
+Hoewel we pas laat aan dit project zijn beginnen, is het toch vrij vlot en goed verlopen. We hebben een werkende use case, wat de grootste vereiste was van dit project. Tijdens het project was het soms moeilijk om aan informatie omtrent LoRaWan te komen, aangezien dit een technologie is die continu wordt uitgebreid, maar dankzij de paar site's die hier wel mee bezig zijn hebben we alles kunnen oplossen.
+
+Indien er naar de schaalbaarheid van het project wordt gekeken, kan er wel gezegd worden dat het systeem te duur is voor wat het doet. Nu moesten we zelf een LoRa Gateway gebruiken wat de grootste kostfactor was, maar indien het systeem in productie zou gaan, zou dit wegvallen omdat we dan afhankelijk zijn van al reeds geïnstalleerde gateways. Ondanks het wegvallen van de gateway lijkt dit product nog steeds te duur. In termen van haalbaarheid is dit project zeker haalbaar met de producten die al reeds op de markt te koop zijn.
+
+Omdat de technologie nog volop in ontwikkeling is en er nog niet overal LoRaWan coverage is, kan het project enkel gebruikt worden in gebieden waar dit wel het geval is. Dit zorgt ervoor dat de schaalbaarheid en haalbaarheid van het project beperkt worden tot gebieden waar deze coverage voldoende is. 
