@@ -7,10 +7,6 @@ Hieronder is een inhoudsopgave van de belangrijkste onderdelen in ons project.
 
 - [documentatie](doc/)
   - [Bill of materials](doc/Bill%20of%20materials.md)
-  - [schema](doc/schema/) (alles over PCB)
-    - [Park assist PCB Multisim ontwerp](doc/schema/Park-assist-Schema.ms13)
-    - [Park assist PCB Ultiboard ontwerp](doc/schema/park-assist-PCB.ewprj)
-    - [Park assist PCB Documentatie](doc/schema/pcb-design.md)
   - [parkeer sensor](doc/parkeersensor/)
     - [images](doc/parkeersensor/img)
     - [parkeersensor documentatie](doc/parkeersensor/parkeersensor.md)
@@ -19,7 +15,7 @@ Hieronder is een inhoudsopgave van de belangrijkste onderdelen in ons project.
   	- [images](doc/inbraakdetectiesysteem/img)
   	- [lgemeen](doc/inbraakdetectiesysteem/Algemeen.md)
   	- [handleiding](doc/inbraakdetectiesysteem/Handleiding.md)
-- [code](src/)
+- [source](src/)
   - [inbraakdetectiesysteem](src/inbraakdetectiesysteem)
   	- [Android applicatie](src/inbraakdetectiesysteem/Android/application)
   	- [Arduino code](src/inbraakdetectiesysteem/Arduino/LoRa_volledig_werkend.ino)
@@ -46,49 +42,12 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
 │   │   ├── Algemeen.md
 │   │   ├── Handleiding.md
 │   │   ├── img
-│   │   │   ├── aangekregenpackets.JPG
-│   │   │   ├── application_info.png
-│   │   │   ├── app_volledig_inbraak.png
-│   │   │   ├── badpackets.png
-│   │   │   ├── bluetooth_arduino_connect.PNG
-│   │   │   ├── configuration.png
-│   │   │   ├── connectie.png
-│   │   │   ├── diagram-inbraak.png
-│   │   │   ├── lora_arduino_connect.png
-│   │   │   ├── loragatewayadmin.png
-│   │   │   ├── loragateway.png
-│   │   │   ├── motedatasend.png
-│   │   │   ├── netwerktest.png
-│   │   │   ├── notificatie.png
-│   │   │   ├── onlinelogs.png
-│   │   │   ├── packets_arrived.JPG
-│   │   │   ├── packetsreceived.png
-│   │   │   ├── register_device.png
-│   │   │   ├── run.png
-│   │   │   ├── sensor_arduino_connect.PNG
-│   │   │   └── workinglog.png
 │   │   ├── loragatewayinstall.pdf
 │   │   ├── loragatewaymanual.pdf
 │   │   ├── LoRaGateway.md
 │   │   └── LoRaMote.md
 │   ├── parkeersensor
 │   │   ├── img
-│   │   │   ├── 200.png
-│   │   │   ├── blokdiagram.png
-│   │   │   ├── bovenaanzicht-3d-pcb.png
-│   │   │   ├── case design parking sensor open cover.png
-│   │   │   ├── case design parking sensor.png
-│   │   │   ├── matrix-bord-bovenkant.jpg
-│   │   │   ├── matrix-bord-onderkant.jpg
-│   │   │   ├── minder.png
-│   │   │   ├── onderaanzicht-3d-pcb.png
-│   │   │   ├── park assist on caravan.png
-│   │   │   ├── pcb-design-met-power-plane.png
-│   │   │   ├── pcb designs.jpg
-│   │   │   ├── pcb-design-zonder-power-plane.png
-│   │   │   ├── run.png
-│   │   │   ├── schema parkeersensor.png
-│   │   │   └── Software flowchart.png
 │   │   ├── parkeersensor.md
 │   │   └── pcb-design.md
 │   ├── Projectplan Park Assist.md
@@ -137,10 +96,6 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
     │       └── README.md
     └── README.md
 ```
-
-## Documentatie
-Hier kan je alle nodige documentatie vinden in dit project.
-
 
 
 ## Groepsleden
