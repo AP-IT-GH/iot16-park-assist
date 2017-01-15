@@ -29,10 +29,7 @@ Er is ook nog het probleem dat we de Mote moeten resetten als de power uitgegaan
 
 ### Waarom deze oplossing?
 #### Sensor
-We hebben gekozen voor de Infrarood sensor die aanwezig was in het labo. De Sharp IR sensor gebruiken we al een hele tijd en het leek voor ons ook het handigste om voor die te gaan. Deze sensoren werken niet perfect en detecteren niet altijd de juiste waarden, maar aangezien we niet het kapitaal hadden om lasersensoren aan te kopen was dit de aangewezen sensor.
-
-Na even zoekwerk hebben we een [library](http://playground.arduino.cc/Main/SharpIR) gevonden die het gemiddelde berekent van de gemeten waarden, deze werkte als gegoten voor ons project.
-
+We maken gebruik van een infrarood sensor van SharpIR.
 De sensor meet ideaal tussen 3cm en 40cm, wat in principe genoeg is voor ons project om indringers te kunnen detecteren.
 
 #### LoRa
@@ -44,9 +41,10 @@ Tussen de mote en de gateway moet wel een afstand van minstens 2m moeten bewaard
 We hebben getest wat het bereik zou zijn met onze opstelling, en die zou ongeveer een 200-tal meters zijn. Maar wij werkten niet noodzakelijk in de meest optimale omgeving. Lees; beton, isolatie, bereik van de wifi voor mqtt...
 Meer gedetailleerde uitleg over deze technologie kan u vinden in onze handleiding.
 
-#### MQTT
-We maken gebruik van MQTT om de eigenaar van de caravan te notifiëren van mogelijke indringers.
-We sturen over LoRa een bepaald pakket dat dan via MQTT een melding kan voortsturen.
+#### TTN
+Omdat deze een early adopter technologie is, maakte het voor ons ook heel interessant om hiermee te werken, alsook omdat deze technologie open source is. Er valt op het forum toch vrij veel over te vinden. We kunnen dit netwerk vrij gebruiken hoe we willen en dat maakte het voor ons toch zeker een voorsprong te hebben op de andere netwerken.
+Semtech was relatief beperkt in gebruik, educatieve doeleinden was toegestaan maar ook maar beperkt in hoeveel packets er mocht worden verzonden.
+Loraley was nog in early development dus niet de manier om te werken.
 
 ### Mogelijke alternatieven
 #### Sensor
