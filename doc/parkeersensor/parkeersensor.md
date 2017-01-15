@@ -80,15 +80,13 @@ Aangezien onze meeste ervaring lag bij de ultra sonic sensoren hebben we dan ook
 Voor communicate waren we voornamelijk maar over 2 dingen aan het denken en dat was Bluetooth of WiFi.
 Aangezien voor WiFi de afstand te kort was en we hier totaal nog geen ervaring mee hadden gingen we al snel voor Bluetooth.
 
-### Reflectie
 
-Het eindresultaat ziet er prima uit de sensoren zijn zeer accuraat en de data transfer is snel genoeg waardoor het in de app goed te zien is. Soms zitten er wat verspringingen in doordat de sensoren wat rare data oppakken, maar het is snel genoeg om snel weer de juist data weer te geven. We hadden misschien wel nog een filter kunnen toevoegen op de gemeten waardes en dan pas doorsturen, maar zelfs zonder deze filter werkt het zeer prima.
 
 ## Installatie handleiding parkeer sensor
 Vanaf dat het PCB in mekaar is gezet ([handleiding PCB](pcb-design.md)) hoef je enkel nog maar de app te installeren en te koppelen.
 ### Applicatie installeren
 
-Aangezien de applicatie niet helemaal is afgeraakt, is het momenteel enkel mogelijk om met 1 parkeersensor module te werken. Om dit te doen is het noodzakelijk dat je in het bestand [MainActivity.java](https://github.com/AP-Elektronica-ICT/iot16-park-assist/blob/master/src/parkeersensor/Android/application/app/src/main/java/com/example/mathias/iot_parkassist/MainActivity.java) de volgende lijn aanpast met het MAC adres van de bluetooth module die je gebruikt.
+Aangezien de applicatie niet helemaal is afgeraakt, is het momenteel enkel mogelijk om met 1 parkeersensor module te werken. Om dit te doen is het noodzakelijk dat je in het bestand [MainActivity.java]() de volgende lijn aanpast met het MAC adres van de bluetooth module die je gebruikt.
 
 > //lijn 113
 > addSensor(x, y, 0, "20:16:01:26:15:73");
@@ -120,9 +118,13 @@ Zoals je ziet is de afstand in vier kleuren verdeelt, waarbij iedere kleur een a
 
 Indien je een sensor wilt verwijderen zal dit op het moment niet gaan, aangezien deze functie niet helemaal is afgeraakt.
 
+
 ## Resultaat
 De parkeer sensor is goed afgeraakt desondanks de verschillende "problemen" die we hebben ondervonden.
 Het heeft allemaal geleid tot een prima werkend prototype en werkt zeer snel en accuraat.
+Ook is alles goed weergegeven in de app en zie je snel goeie veranderingen (op een paar hops van de data van de sensoren na). Misschien het toevoegen van wat filters of het gemiddelde van de afstanden was beter geweest, maar het werkt prima zo.
+
+
 Het is jammer dat het niet het finale product is geweest als we gehoopt hadden, maar daar zitten we niet ver vanaf.
 Het project is goed schaalbaar aangezien de app enkel nog moet werken voor meerdere BT devices en de mogelijkheid om deze vanuit te app te koppelen.
 Als we het PCB design nog hadden kunnen testen was deze ook klaar geweest voor massa productie en deze zou ook mee schalen.
