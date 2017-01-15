@@ -1,5 +1,5 @@
 # Internet of Things - Park Assist
-In deze repo ga je al onze code en documentatie die dit project mogelijk maken
+In deze repo ga je al onze code en documentatie vinden die dit project mogelijk maken.
 
 
 ## Inhoudsopgave
@@ -13,7 +13,7 @@ Hieronder is een inhoudsopgave van de belangrijkste onderdelen in ons project.
     - [parkeersensor PCB documentatie](doc/parkeersensor/pcb-design.md)
   - [inbraakdetectiesysteem](doc/inbraakdetectiesysteem/)
   	- [images](doc/inbraakdetectiesysteem/img)
-  	- [lgemeen](doc/inbraakdetectiesysteem/Algemeen.md)
+  	- [algemeen](doc/inbraakdetectiesysteem/Algemeen.md)
   	- [handleiding](doc/inbraakdetectiesysteem/Handleiding.md)
 - [source](src/)
   - [inbraakdetectiesysteem](src/inbraakdetectiesysteem)
