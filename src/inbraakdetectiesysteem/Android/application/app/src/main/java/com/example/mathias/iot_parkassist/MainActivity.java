@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         bt = new bluetooth(this);
         new mqttClass(this);
         bt.getPairedDevices();
-        new LooperTask().execute(bt.pairedDevices.iterator().next());
+        //new LooperTask().execute(bt.pairedDevices.iterator().next());
 
 
         drawingSpace = (ImageView) findViewById(R.id.drawingSpace);
