@@ -3,8 +3,32 @@ In deze repo ga je al onze code en documentatie die dit project mogelijk maken
 
 
 ## Inhoudsopgave
+Hieronder is een inhoudsopgave van de belangrijkste onderdelen in ons project.
 
-
+- [documentatie](doc/)
+  - [Bill of materials](doc/Bill%20of%20materials.md)
+  - [De werking en staat van de parkeer sensor](#de-werking-en-staat-van-de-parkeer-sensor)
+  - [schema](doc/schema/) (alles over PCB)
+    - [Park assist PCB Multisim ontwerp](doc/schema/Park-assist-Schema.ms13)
+    - [Park assist PCB Ultiboard ontwerp](doc/schema/park-assist-PCB.ewprj)
+    - [Park assist PCB Documentatie](doc/schema/pcb-design.md)
+  - [parkeer sensor](doc/parkeersensor/img)
+    - [images](doc/parkeersensor/img)
+    - [parkeersensor documentatie](doc/parkeersensor/parkeersensor.md)
+    - [parkeersensor PCB documentatie](doc/parkeersensor/pcb-design.md)
+  - [inbraakdetectiesysteem](doc/inbraakdetectiesysteem)
+  	- [images](doc/inbraakdetectiesysteem/img)
+  	- [lgemeen](doc/inbraakdetectiesysteem/Algemeen.md)
+  	- [handleiding](doc/inbraakdetectiesysteem/Handleiding.md)
+- [code](src/)
+  - [inbraakdetectiesysteem](src/inbraakdetectiesysteem)
+  	- [Android applicatie](src/inbraakdetectiesysteem/Android/application)
+  	- [Arduino code](src/inbraakdetectiesysteem/Arduino/LoRa_volledig_werkend.ino)
+  - [parkeer sensor](src/parkeersensor)
+  	- [Android applicatie](src/parkeersensor/Android/application)
+  	- [Arduino code](src/parkeersensor/Arduino/uitlezen3sensorenenVerzendenbt.ino)
+  	- [Multisim schema](src/parkeersensor/PCB%20design/Park-Assist-Schema.ms13)
+  	- [PCB design](src/parkeersensor/PCB%20design/park-assist-PCB.ewprj)
 
 ## Beschrijving Project
 Park Assist is een portable parkeer sensor voor bijvoorbeeld op een aanhanger of caraven.
@@ -14,14 +38,14 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
 
 
 ##Folder structuur
-
+```
 .
 ├── doc
 │   ├── Bill of materials.md
 │   ├── deliverables.md
 │   ├── inbraakdetectiesysteem
 │   │   ├── Algemeen.md
-│   │   ├── [Handleiding.md](doc/inbraakdetectiesysteem/Handleiding.md)
+│   │   ├── Handleiding.md
 │   │   ├── img
 │   │   │   ├── aangekregenpackets.JPG
 │   │   │   ├── application_info.png
@@ -113,7 +137,7 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
     │       ├── Park-Assist-Schema.ms13
     │       └── README.md
     └── README.md
-
+    ```
 ## Documentatie
 Hier kan je alle nodige documentatie vinden in dit project.
 
