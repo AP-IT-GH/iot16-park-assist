@@ -1,14 +1,18 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
 
 - [Bill of materials](#bill-of-materials)
+  - [Parkeer sensor](#parkeer-sensor)
+  - [Inbraak detectie systeem](#inbraak-detectie-systeem)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Bill of materials
+
+
+# Bill of materials
 Dit document geeft alle componenten weer dat dit project nodig heeft om te maken.
-##parkeer sensor
+## Parkeer sensor
 *Prijzen kunnen variëren en is een globale inducatie van hoeveel het kan kosten. Prijzen zijn per stuk*
 
 |#  | product 			| waarde 	| prijs 	| extra uitleg 				|
@@ -31,7 +35,7 @@ Dit document geeft alle componenten weer dat dit project nodig heeft om te maken
 |1  |Ultra Sonic sensor |SEN136B5B  |€14,10  	|n.v.t     					|
 
 Totale geschatte kosten (dit is met aantal opgeteld): €79,25
-##inbraak detectie systeem
+## Inbraak detectie systeem
 
 *Prijzen kunnen variëren en is een globale inducatie van hoeveel het kan kosten. Prijzen zijn per stuk*
 
