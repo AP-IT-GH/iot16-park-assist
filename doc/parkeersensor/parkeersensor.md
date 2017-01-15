@@ -5,7 +5,7 @@
 
 - [Beschrijving parkeer sensor](#beschrijving-parkeer-sensor)
     - [Doel van de parkeersensor](#doel-van-de-parkeersensor)
-    - [De werking/staat van de parkeer sensor](#de-werkingstaat-van-de-parkeer-sensor)
+    - [De werking en staat van de parkeer sensor](#de-werking-en-staat-van-de-parkeer-sensor)
     - [Waarom deze oplossing](#waarom-deze-oplossing)
         - [Sensoren](#sensoren)
         - [Communicate](#communicate)
@@ -32,7 +32,7 @@ Zo zou de case eruit zien en zoals je ziet zouden er 3 sensoren uit steken.
 Een voorbeeld van hoe deze parkeer sensoren bevestigd kunnen worden op de caravan.
 ![Parkeer sensor camper](img/park assist on caravan.png)
 
-## De werking/staat van de parkeer sensor
+## De werking en staat van de parkeer sensor
 De parkeer sensor werkt zeer simpel vanaf het moment dat de voedingsbron is aangesloten en de parkeer sensor is aangezet begint hij meteen met detecteren van objecten.
 Dit doet hij door 3 internet sensoren die geplaatst zijn op elke 30 graden van elkaar om een totale hoek van 90 graden te bekomen.
 De sensoren sturen de data door naar de Arduino die dan zal kijken wat de kleinste afstand is. Deze afstand zal de Arduino doorsturen naar de verbonden applicatie. De applicatie zal dan visueel tonen hoe dicht je op een object zit.
