@@ -1,5 +1,11 @@
-#Beschrijving parkeer sensor
+#parkeer Sensor
+#Inhoudsopgave
 
+[TOC]
+
+
+
+#Beschrijving parkeer sensor
 ###Doel van de parkeersensor
 De parkeer sensor moet helpen met het kunnen parkeren van een bijvoorbeeld een camper die standaard geen parkeer sensor heeft.
 De bedoeling van dit product is dan ook dat deze op het voertuig bevestigd kan worden en dat de bestuurder via een app de informatie binnenkrijgt.
