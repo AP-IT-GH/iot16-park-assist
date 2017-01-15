@@ -1,49 +1,73 @@
 # Internet of Things - Park Assist
+In deze repo ga je al onze code en documentatie die dit project mogelijk maken
+
+
+## Inhoudsopgave
+
+
+
 ## Beschrijving Project
 Park Assist is een portable parkeer sensor voor bijvoorbeeld op een aanhanger of caraven.
 De bedoeling van dit project is om parkeer sensoren te bieden aan voortuigen die dit niet hebben.
 Tevens bied dit project ook een inbraak systeem die controleert of een deur wordt open gemaakt op een moment dat dit niet mag.
 Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarschuwen.
 
+
 ##Folder structuur
-```
+
 .
 ├── doc
 │   ├── Bill of materials.md
 │   ├── deliverables.md
 │   ├── inbraakdetectiesysteem
+│   │   ├── Algemeen.md
+│   │   ├── [Handleiding.md](doc/inbraakdetectiesysteem/Handleiding.md)
 │   │   ├── img
 │   │   │   ├── aangekregenpackets.JPG
+│   │   │   ├── application_info.png
+│   │   │   ├── app_volledig_inbraak.png
 │   │   │   ├── badpackets.png
+│   │   │   ├── bluetooth_arduino_connect.PNG
 │   │   │   ├── configuration.png
 │   │   │   ├── connectie.png
+│   │   │   ├── diagram-inbraak.png
+│   │   │   ├── lora_arduino_connect.png
 │   │   │   ├── loragatewayadmin.png
 │   │   │   ├── loragateway.png
 │   │   │   ├── motedatasend.png
 │   │   │   ├── netwerktest.png
+│   │   │   ├── notificatie.png
 │   │   │   ├── onlinelogs.png
+│   │   │   ├── packets_arrived.JPG
 │   │   │   ├── packetsreceived.png
+│   │   │   ├── register_device.png
+│   │   │   ├── run.png
+│   │   │   ├── sensor_arduino_connect.PNG
 │   │   │   └── workinglog.png
+│   │   ├── loragatewayinstall.pdf
+│   │   ├── loragatewaymanual.pdf
 │   │   ├── LoRaGateway.md
 │   │   └── LoRaMote.md
 │   ├── parkeersensor
 │   │   ├── img
+│   │   │   ├── 200.png
 │   │   │   ├── blokdiagram.png
 │   │   │   ├── bovenaanzicht-3d-pcb.png
 │   │   │   ├── case design parking sensor open cover.png
 │   │   │   ├── case design parking sensor.png
 │   │   │   ├── matrix-bord-bovenkant.jpg
 │   │   │   ├── matrix-bord-onderkant.jpg
+│   │   │   ├── minder.png
 │   │   │   ├── onderaanzicht-3d-pcb.png
 │   │   │   ├── park assist on caravan.png
 │   │   │   ├── pcb-design-met-power-plane.png
 │   │   │   ├── pcb designs.jpg
 │   │   │   ├── pcb-design-zonder-power-plane.png
+│   │   │   ├── run.png
 │   │   │   ├── schema parkeersensor.png
 │   │   │   └── Software flowchart.png
 │   │   ├── parkeersensor.md
 │   │   └── pcb-design.md
-│   ├── parkeersensor.md
 │   ├── Projectplan Park Assist.md
 │   ├── README.md
 │   ├── schema
@@ -70,33 +94,26 @@ Hierbij wordt gebruikt van LORA en het Things Network om de gebruiker te waarsch
 └── src
     ├── application
     │   ├── app
-    │   │   ├── app.iml
-    │   │   ├── build
-    │   │   ├── build.gradle
-    │   │   ├── proguard-rules.pro
-    │   │   └── src
-    │   ├── application.iml
-    │   ├── build
-    │   │   ├── generated
-    │   │   └── intermediates
-    │   ├── build.gradle
-    │   ├── gradle
-    │   │   └── wrapper
-    │   ├── gradle.properties
-    │   ├── gradlew
-    │   ├── gradlew.bat
-    │   ├── local.properties
-    │   └── settings.gradle
-    ├── Arduino
-    │   ├── ArduinoMote.ino
-    │   ├── uitlezen_new_sensors.ino
-    │   └── uitlezen_sensoren.ino
-    ├── PCB design
-    │   ├── park-assist-PCB.ewprj
-    │   ├── Park-Assist-Schema.ms13
-    │   └── README.md
+    │   │   └── build
+    │   └── build
+    │       ├── generated
+    │       └── intermediates
+    ├── inbraakdetectiesysteem
+    │   ├── Android
+    │   │   └── application
+    │   └── Arduino
+    │       └── LoRa_volledig_werkend.ino
+    ├── parkeersensor
+    │   ├── Android
+    │   │   └── application
+    │   ├── Arduino
+    │   │   └── uitlezen3sensorenenVerzendenbt.ino
+    │   └── PCB design
+    │       ├── park-assist-PCB.ewprj
+    │       ├── Park-Assist-Schema.ms13
+    │       └── README.md
     └── README.md
-    ```
+
 ## Documentatie
 Hier kan je alle nodige documentatie vinden in dit project.
 
