@@ -17,7 +17,10 @@ Het detecteren gebeurt via een infrarood sensor die data verstuurd naar de Ardui
 Dit gaat als volgt; de Arduino zal dan een bepaalde code in actie stellen. Deze zorgt ervoor dat er via de LoRa Mote een pakketje zal worden verstuurd naar de dichtsbijzijnde LoRa Gateway. De Gateway zal dan via het Things Network terugkunnen sturen naar de eigenaar. Vervolgens zal de eigenaar dus een melding krijgen op zijn smartphone.
 
 Schematisch gezien ziet het er zo uit:
+
+
 ![diagram-inbraak](img/diagram-inbraak.png)
+
 
 De huidige staat van het anti-inbraaksysteem is realistisch gezien hetzelfde.
 Om ons systeem te laten werken, is er echter een gateway nodig die actieve verbinding heeft met het TTN netwerk.
