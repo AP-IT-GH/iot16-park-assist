@@ -1,3 +1,24 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Deliverables](#deliverables)
+  - [Projectplan](#projectplan)
+    - [Team](#team)
+    - [Project keuze](#project-keuze)
+    - [Projectbeschrijving](#projectbeschrijving)
+    - [Functionele analyse:](#functionele-analyse)
+      - [Technologieën](#technologie%C3%ABn)
+      - [Inventarisatie Hardware](#inventarisatie-hardware)
+      - [High Level Diagrammen](#high-level-diagrammen)
+      - [Project Planning](#project-planning)
+        - [Backlog:](#backlog)
+        - [Planning](#planning)
+  - [PCB Design](#pcb-design)
+    - [1ste Versie](#1ste-versie)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Deliverables
 Richtlijnen voor de te inleveren documenten.
 

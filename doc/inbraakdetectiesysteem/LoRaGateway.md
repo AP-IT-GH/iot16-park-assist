@@ -1,10 +1,27 @@
-#LoRa Gateway
-##Korte inleiding
+# LoRa Gateway
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Korte inleiding
+
+- [Korte inleiding](#korte-inleiding)
+- [Hardware](#hardware)
+- [Hoe beginnen we eraan?](#hoe-beginnen-we-eraan)
+- [Praten met de LoRa Gateway](#praten-met-de-lora-gateway)
+- [Verbinding met het internet](#verbinding-met-het-internet)
+- [Connectie met het TTN netwerk](#connectie-met-het-ttn-netwerk)
+    - [Et voilà!](#et-voil%C3%A0)
+- [Packets ontvangen & verzenden](#packets-ontvangen--verzenden)
+- [Logging](#logging)
+- [Sources](#sources)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+## Korte inleiding
 Als extra toevoeging aan ons project werd ons voorgesteld om LoRa WAN eens te bekijken.
 We zouden dit kunnen gebruiken als extra hardware aan ons project van Internet of Things.
 Naast het Park assistentie systeem dat wij hebben ontworpen, gaan we een anti-inbraaksysteem maken.
 
-##Hardware
+## Hardware
 - LoRa Gateway
 - LoRa Mote
 - IR Distance Sensor
@@ -17,7 +34,7 @@ De Ethernet kabel hebben we dan ook aan de laptop gehongen en dan via DHCP gaven
 Voor te beginnen maakten we ook gebruik van de Manual en installation guide van ideetron.
 Deze zijn ook te vinden in de documentatie onder de map ExtraToevoeging.
 
-##Praten met de LoRa Gateway
+## Praten met de LoRa Gateway
 We kunnen via de seriële connectie met Putty op de gateway geraken.
 Aangezien het de eerste keer was dat de gateway werd gebruikt, zijn de default inloggegevens nog geldig.
 Deze kan men ook vinden in de Installation Guide van de LoRa Gateway. Deze default gegevens zijn nog momenteel nog in gebruik. (Login: root; pwd: LorankAdmin)
@@ -27,7 +44,7 @@ Omdat het ook de eerste keer is dat men de gateway gebruikt, was het ook nodig o
 
 Eens dit gebeurt was, konden we verder gaan met het proces.
 
-##Verbinding met het internet
+## Verbinding met het internet
 Eens de installatie voorbij was, konden we verder aan de slag met de gateway.
 Vanaf dit punt maakten we ook gebruik van de Manual van Ideetron.
 Beide de USB-kabel en de Ethernet-kabel waren verbonden, en de lampjes van de gateway branden, dus konden we verder aan de slag.
@@ -37,7 +54,7 @@ Als eerste moesten we ontdekken op welk IP-adres we de gateway konden bereiken.
 In het netwerkcentrum zetten we een netwerkbrug op; een brug tussen Ethernet & de Wifi-module van de laptop.
 Zo konden we een IP-adres geven aan de LoRa Gateway en kon deze naar de buitenwereld toe zichtbaar worden.
 
-#####Voorts gingen we naar onze favoriete browser, Google Chrome en typten we dat IP-adres in.
+Voorts gingen we naar onze favoriete browser, Google Chrome en typten we dat IP-adres in.
 Als we surften naar dat adres kwamen we terecht op het adminscherm van de gateway.
 Hierop was te zien met welke server hij verbonden was, hoeveel pakketjes er al op werden verstuurd...
 Er was een tabel te zien met Upstream-data en een tabel met Downstream-data.
@@ -52,7 +69,7 @@ Men kon kiezen voor de Poly Packets van TTN, die van Semtech of Loraley
 
 
 * * *
-##Connectie met het TTN netwerk
+## Connectie met het TTN netwerk
 Om connectie te kunnen maken met de servers van het TTN netwerk, moesten we wat aanpassen in de configuratie van de module.
 We moesten in de local_conf.json file een aanpassing maken.
 > cd lorank8-0.2.3
@@ -76,7 +93,7 @@ In deze json file voegen we het volgende toe:
     }]
 
 
-####Et voilà!
+#### Et voilà!
 ![connectie.png](img/connectie.png)
 
 De gateway heeft connectie met de servers, zendt en ontvangt ook heartbeats van de servers!
@@ -86,7 +103,7 @@ Men kan ook in real time de quality van de datastreams zien.
 
 ![netwerktest.png](img/netwerktest.png)
 
-##Packets ontvangen & verzenden
+## Packets ontvangen & verzenden
 Als men pakketjes verstuurd via de LoRa Mote, dan is dit ook zichtbaar op het dashboard van de gateway.
 Bij de tabel Upstream krijgen we radio packets aan; ook wordt er een onderscheid gemaakt tussen pakketjes die goed of slecht worden ontvangen. Degene die goed werden ontvangen, zullen verder worden verzonden naar de server.
 Deze pakketjes worden dan als datagrams verstuurd naar de server( men krijgt ook een acknowledgement van de TTN server als dit gebeurd).
@@ -95,7 +112,7 @@ Deze pakketjes worden dan als datagrams verstuurd naar de server( men krijgt ook
 
 In de downstream tabel kan men zien of de datagrams ontvangen werden door de server, alsook of de radio packets succesvol over het netwerk zijn gestuurd.
 
-##Logging
+## Logging
 
 Het dashboard van de LoRa Gateway is opzich al een handige tool om te kunnen bekijken wat er door de gateway komt. Maar natuurlijk zijn de logs daar ook een heel handig gegeven voor.
 Om deze te kunnen bekijken gebruik je dit commando:
@@ -107,7 +124,8 @@ Bij een werkend systeem zie je dan ongeveer zo een logs.
 Tussen deze logs kan je zien hoeveel packets ontvangen zijn, percentage geslaagde/gefailde zendingen, forwarded packets.
 Alsook wat er downstream gebeurd, gps tracking (indien dit ingesteld is) en de performance van de connectie.
 
-######Source: https://www.thethingsnetwork.org/wiki/Backend/Connect/Gateway
+## Sources
+ `https://www.thethingsnetwork.org/wiki/Backend/Connect/Gateway`
 
 
 

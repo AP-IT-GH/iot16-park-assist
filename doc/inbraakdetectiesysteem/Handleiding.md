@@ -4,8 +4,41 @@ In deze handleiding vindt u alle informatie terug die nodig is om zelf dit proje
 
 ## Inhoudsopgave
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Hardware](#hardware)
+- [Module Hardware](#module-hardware)
+  - [LoRa Mote verbinden met Arduino](#lora-mote-verbinden-met-arduino)
+  - [Arduino verbinden met Bluetooth module](#arduino-verbinden-met-bluetooth-module)
+  - [IR sensor verbinden met Arduino](#ir-sensor-verbinden-met-arduino)
+- [Module software](#module-software)
+  - [The Things Network](#the-things-network)
+    - [Waarom TTN?](#waarom-ttn)
+    - [Applicatie registreren](#applicatie-registreren)
+    - [Device registreren](#device-registreren)
+        - [Activation By Personalization (ABP)](#activation-by-personalization-abp)
+        - [Over The Air Activation (OTAA)](#over-the-air-activation-otaa)
+  - [Arduino code](#arduino-code)
+  - [Application code](#application-code)
+    - [Applicatie installeren](#applicatie-installeren)
+    - [Werking applicatie](#werking-applicatie)
+- [LoRa Gateway](#lora-gateway)
+  - [Hoe beginnen we eraan?](#hoe-beginnen-we-eraan)
+  - [Praten met de LoRa Gateway](#praten-met-de-lora-gateway)
+  - [Verbinding met het internet](#verbinding-met-het-internet)
+  - [Connectie met het TTN netwerk](#connectie-met-het-ttn-netwerk)
+  - [Packets ontvangen & verzenden](#packets-ontvangen--verzenden)
+  - [Logging](#logging)
+- [Testing](#testing)
+  - [Verbinden met RN2483](#verbinden-met-rn2483)
+  - [RN2483 configureren](#rn2483-configureren)
+  - [TTN joinen](#ttn-joinen)
+  - [Data verzenden](#data-verzenden)
+  - [Data ontvangen](#data-ontvangen)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Hardware
 
