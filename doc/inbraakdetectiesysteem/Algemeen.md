@@ -2,8 +2,24 @@
 In dit document kunt u alles lezen over hoe het inbraaksysteem in zijn werking gaat.
 U vindt hier tevens ook hoe het systeem in zijn geheel is opgemaakt. U zou dit document kunnen gebruiken als guide om een vergelijkbaar systeem te maken.
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Beschrijving anti-inbraaksysteem](#beschrijving-anti-inbraaksysteem)
+  - [Doel van het anti-inbraaksysteem](#doel-van-het-anti-inbraaksysteem)
+  - [Algemene werking en staat van het anti-inbraaksysteem](#algemene-werking-en-staat-van-het-anti-inbraaksysteem)
+  - [Waarom deze oplossing?](#waarom-deze-oplossing)
+    - [Sensor](#sensor)
+    - [LoRa](#lora)
+    - [TTN](#ttn)
+  - [Mogelijke alternatieven](#mogelijke-alternatieven)
+    - [Sensor](#sensor-1)
+    - [LoRa](#lora-1)
+    - [TTN](#ttn-1)
+- [Besluit](#besluit)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Beschrijving anti-inbraaksysteem
 

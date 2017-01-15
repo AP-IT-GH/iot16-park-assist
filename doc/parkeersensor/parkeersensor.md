@@ -15,11 +15,11 @@ Ook kan je hier lezen hoe dit allemaal tot stand is gekomen en hoe je dit zelf z
   - [Mogelijke alternatieven](#mogelijke-alternatieven)
     - [Sensoren](#sensoren-1)
     - [Communicatie](#communicatie)
-  - [Reflectie](#reflectie)
 - [Installatie handleiding parkeer sensor](#installatie-handleiding-parkeer-sensor)
   - [Applicatie installeren](#applicatie-installeren)
 - [Gebruikers handleiding parkeer sensor](#gebruikers-handleiding-parkeer-sensor)
   - [Applicatie gebruiken](#applicatie-gebruiken)
+- [Resultaat](#resultaat)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Beschrijving parkeer sensor
